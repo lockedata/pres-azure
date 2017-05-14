@@ -5,7 +5,7 @@ warnings_are_errors: false
 install: 
   - R -e 'install.packages("devtools")'
   - R -e 'devtools::install_deps(dep = T)'
-  - R CMD build --no-build-vignettes .
+  - R CMD build --no-build-vignettes --no-manual .
   - R CMD check *tar.gz
   - Rscript -e 'devtools::install(pkg = ".")'
 before_script:
