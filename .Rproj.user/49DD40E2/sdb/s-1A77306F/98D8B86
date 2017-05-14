@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(revealjs)\nslides=list.files(\"pres\",\"*.Rmd\",full.names=TRUE)\n\nfor (f in slides) render(f,output_dir = \"docs\",\n                output_format = revealjs::revealjs_presentation(\n                  theme = \"lockedata\",\n                  reveal_options = list(height=\"1080\",\n                                        width=\"1920\",\n                                        margin=\"0.05\")\n                  )\n)\n",
+    "created" : 1494780074863.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3759349059",
+    "id" : "98D8B86",
+    "lastKnownWriteTime" : 1494780222,
+    "last_content_update" : 1494780222831,
+    "path" : "C:/Users/steph/Dropbox/Locke Data/Presentations/pres-stub/buildpres.R",
+    "project_path" : "buildpres.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
