@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "#!/bin/bash\nAUTHORNAME=\"Steph\"\nAUTHOREMAIL=\"Steph@itsalocke.com\"\nGITURL=\"https://$GITHUB_PAT@github.com/$TRAVIS_REPO_SLUG.git\"\n\ngit remote set-url origin $GITURL\n\nR CMD BATCH './buildpres.R'\n\ncp buildpres.Rout docs\n\ngit add .\ngit commit -am \"[ci skip] Documents produced in clean environment via Travis $TRAVIS_BUILD_NUMBER\"\ngit push -u  --quiet origin master\n",
+    "contents" : "#!/bin/bash\nAUTHORNAME=\"Steph\"\nAUTHOREMAIL=\"Steph@itsalocke.com\"\nGITURL=\"https://$GITHUB_PAT@github.com/$TRAVIS_REPO_SLUG.git\"\n\ngit remote set-url origin $GITURL\ngit config --global user.name $AUTHORNAME\ngit config --global user.email $AUTHOREMAIL\n\nR CMD BATCH './buildpres.R'\n\ncp buildpres.Rout docs\n\ngit add .\ngit commit -am \"[ci skip] Documents produced in clean environment via Travis $TRAVIS_BUILD_NUMBER\"\ngit push -u  --quiet origin master\n",
     "created" : 1494780230146.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1820994991",
+    "hash" : "4097073850",
     "id" : "A3F5CF40",
-    "lastKnownWriteTime" : 1494780295,
-    "last_content_update" : 1494780295746,
+    "lastKnownWriteTime" : 1494783976,
+    "last_content_update" : 1494783976744,
     "path" : "C:/Users/steph/Dropbox/Locke Data/Presentations/pres-stub/buildpres.sh",
     "project_path" : "buildpres.sh",
     "properties" : {
