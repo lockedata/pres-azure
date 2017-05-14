@@ -3,6 +3,7 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^buildpres\.sh$
+^buildpres\.R$
 docs
 ^README\.Rmd$
 ^README-.*\.png$
