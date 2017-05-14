@@ -1,0 +1,10 @@
+^data-raw$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^buildpres\.sh$
+docs
+^README\.Rmd$
+^README-.*\.png$
+pres
+demo

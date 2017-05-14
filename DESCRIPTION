@@ -1,0 +1,19 @@
+Package: presstub
+Title: Presentation stub
+Version: 0.1.0
+Authors@R: person("Steph", "Locke",   email="steph@itsalocke.com", role = c("aut", "cre"))
+Description: Basic repo template for presentations.
+Depends:
+    R (>= 3.1.2)
+Imports: 
+    revealjs
+Suggests:
+    knitr
+Remotes: 
+    lockedata/revealjs
+License: CC-BY-SA-4.0 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
