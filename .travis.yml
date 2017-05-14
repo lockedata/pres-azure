@@ -3,6 +3,7 @@ cache: packages
 latex: false
 warnings_are_errors: false
 install: 
+  - R 'install.packages("devtools")
   - R -e 'devtools::install_deps(dep = T)'
   - R CMD build .
   - R CMD check *tar.gz
