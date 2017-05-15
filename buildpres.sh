@@ -11,7 +11,7 @@ git config --global user.email $AUTHOREMAIL
 
 R CMD BATCH './buildpres.R'
 
-cp buildpres.Rout docs
+cp buildpres.Rout docs/
 
 git add docs
 git commit -am "[ci skip] Documents produced in clean environment via Travis $TRAVIS_BUILD_NUMBER"
