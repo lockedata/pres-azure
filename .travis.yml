@@ -4,6 +4,7 @@ latex: false
 addons:
   apt:
     packages:
+      - clang-format-3.9
       - unixodbc-dev
 warnings_are_errors: false
 install:
