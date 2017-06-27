@@ -12,7 +12,7 @@ addons:
 warnings_are_errors: false
 before_install:
   - chmod +x ./odbcinstall.sh
-  -./odbcinstall.sh
+  - ./odbcinstall.sh
   - odbcinst -q -d
 install:
   - R -e 'install.packages("devtools")'
