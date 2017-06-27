@@ -1,8 +1,12 @@
 language: r
 cache: packages
 latex: false
+addons:
+  apt:
+    packages:
+      - unixodbc-dev
 warnings_are_errors: false
-install: 
+install:
   - R -e 'install.packages("devtools")'
   - R -e 'devtools::install_deps(dep = T)'
   - R CMD build --no-build-vignettes --no-manual .

@@ -1,9 +1,7 @@
 ---
 title: 'R & SQL Server for real-time predictions'
-author: "Steph Locke (@SteffLocke)"
+author: "Steph Locke\n@SteffLocke\nLocke Data"
 date: '`r Sys.Date()`'
-output:
-  stephStyle::stephRevealSlideStyle
 ---
 
 ```{r setup, include=FALSE}

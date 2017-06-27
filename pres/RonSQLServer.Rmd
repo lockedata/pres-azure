@@ -2,8 +2,6 @@
 title: 'Microsoft SQL Server and R Services'
 author: "Steph Locke (@SteffLocke)"
 date: '`r Sys.Date()`'
-output:
-  stephStyle::stephRevealSlideStyle
 ---
 
 ```{r setup, include=FALSE}
