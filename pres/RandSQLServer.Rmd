@@ -1,5 +1,5 @@
 ---
-title: 'Microsoft SQL Server and R Services'
+title: 'R & SQL Server for real-time predictions'
 author: "Steph Locke (@SteffLocke)"
 date: '`r Sys.Date()`'
 output:
