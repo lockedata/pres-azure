@@ -6,6 +6,8 @@ date: '`r Sys.Date()`'
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+do_eval<-FALSE
 ```
 
 ```{r autodoc, child='AboutMeTech.Rmd', eval=TRUE}
@@ -67,13 +69,29 @@ ggplot2::qplot(mpg, wt, data = mtcars, colour = cyl)
 - Call R through SQL Server
 
 ## What's it look like?
+```{r include=FALSE}
+library(DBI)
+library(odbc)
+library(RODBCext)
+dbConn<-dbConnect(odbc(),
+          driver="ODBC Driver 13 for SQL Server",
+          server="51.140.63.137",
+          database="rsqldemo1",
+          uid="rsqldemo",
+          pwd="oO)sqldemooO)sqldemoO)")
+
+dbstring<-'Driver={ODBC Driver 13 for SQL Server};Server=51.140.63.137;Database=rsqldemo1;Uid=rsqldemo;Pwd=oO)sqldemooO)sqldemoO)'
+dbconn<-RODBC::odbcDriverConnect(dbstring)
 ```
-EXECUTE   sp_execute_external_script
-                @language = N'R'
-              , @script = N'OutputDataSet <- df<-as.data.frame(installed.packages()[,1])'
-              , @input_data_1 = N'SELECT 1 as Col'
+
+```{sql, connection=dbConn}
+EXECUTE sp_execute_external_script
+        @language = N'R'
+        ,@script = N'OutputDataSet <- InputDataSet'
+        ,@input_data_1 = N'SELECT 1 as Col'
  WITH RESULT SETS ((col varchar(50) not null))        
 ```
+
 
 ## 2016 Editions
 - Express - R Open or base R
@@ -92,6 +110,107 @@ EXECUTE   sp_execute_external_script
 ## Next steps
 - [Tomaz Kastrun blog](https://tomaztsql.wordpress.com/)
 - [BOL](https://msdn.microsoft.com/en-us/library/mt604845.aspx)
+
+# DEMO
+
+## Add some data
+```{r}
+dbWriteTable(dbConn, "iris", iris, overwrite=TRUE)
+```
+
+
+
+## Setup model storage area
+```{sql, connection=dbConn, eval=do_eval}
+CREATE TABLE [companyModels]    (  
+  [id] int NOT NULL PRIMARY KEY IDENTITY (1,1)   
+, [name] varchar(200) NOT NULL      
+, [modelObj] varbinary(max)    
+, [ValidFrom] datetime2 (2) GENERATED ALWAYS AS ROW START  
+, [ValidTo] datetime2 (2) GENERATED ALWAYS AS ROW END  
+, PERIOD FOR SYSTEM_TIME (ValidFrom, ValidTo)  
+, CONSTRAINT unique_modelname UNIQUE ([name]))
+WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.companyModelsHistory));  
+```
+
+## Model UPSERT stored procedure
+```{sql, connection=dbConn, eval=do_eval}
+CREATE PROCEDURE modelUpsert
+@modelname  varchar(200) , 
+@modelobj varbinary(max) 
+AS
+WITH MySource as (
+    select @modelname as [name], @modelobj as [modelObj]
+)
+MERGE companymodels AS MyTarget
+USING MySource
+     ON MySource.[name] = MyTarget.[name]
+WHEN MATCHED THEN UPDATE SET 
+    modelObj = MySource.[modelObj]
+WHEN NOT MATCHED THEN INSERT
+    (
+        [name], 
+        modelObj
+    )
+    VALUES (
+        MySource.[name], 
+        MySource.modelObj
+    );
+```
+
+
+## Produce a basic model
+```{sql, connection=dbConn, error=TRUE}
+EXECUTE sp_execute_external_script
+        @language = N'R'
+        ,@script = N'
+        irisLM<-lm(Sepal.Width~., InputDataSet)
+        OutputDataSet<-data.frame(modelname="irisLM",
+                      modelobj=paste0(
+                              serialize(irisLM,NULL)
+                              ,collapse = "")
+                      )
+        '
+        ,@input_data_1 = N'SELECT * FROM iris'
+```
+
+## Produce a basic model
+```{r}
+irisLM<-lm(Sepal.Width~., iris)
+modelobj<-paste0(serialize(irisLM,NULL),
+                collapse = "")
+```
+
+## Store a model
+```{r}
+RODBCext::sqlExecute(dbconn, "exec modelUpsert @modelname=? , @modelobj=?",
+                     data = data.frame("irisLM",modelobj))
+```
+
+## Use a model
+```{sql, connection=dbConn}
+DECLARE @mymodel VARBINARY(MAX)=(SELECT modelobj 
+                FROM companymodels 
+                WHERE [name]='irisLM'
+                );
+EXEC sp_execute_external_script
+@language = N'R',  
+@script = N'
+OutputDataSet<-cbind( predict(unserialize(as.raw(model)), InputDataSet),
+InputDataSet
+    )
+',
+@input_data_1 = N'SELECT [Sepal.Width],[Sepal.Length], [Petal.Width], [Petal.Length], Species from iris',  
+@params = N'@model varbinary(max)',  
+@model =  @mymodel 
+WITH RESULT SETS ((
+    [Sepal.Width.Pred]  FLOAT (53)    NULL,
+    [Sepal.Width]  FLOAT (53)    NULL,
+   [Sepal.Length] FLOAT (53)    NULL,
+    [Petal.Length] FLOAT (53)    NULL,
+    [Petal.Width]  FLOAT (53)    NULL,
+    [Species]      VARCHAR (255) NULL))
+```
 
 # Deploying SQL Server & R Services
 
@@ -136,5 +255,5 @@ EXECUTE   sp_execute_external_script
 # Wrapup
 ## Wrapup
 - Thank you
-- Check out the Next Steps
+- Get the slides via [lockedata.uk](http://lockedata.uk)
 - Get in touch! [T: SteffLocke](https://twitter.com/stefflocke)

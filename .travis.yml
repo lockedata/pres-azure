@@ -1,6 +1,7 @@
 language: r
 cache: packages
 dist: trusty
+sudo: true
 latex: false
 addons:
   apt:
