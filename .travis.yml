@@ -9,6 +9,8 @@ addons:
     packages:
       - clang-format-3.9
       - unixodbc-dev
+      - apt-transport-https
+      - gnupg
 warnings_are_errors: false
 before_install:
   - chmod +x ./odbcinstall.sh
