@@ -1,0 +1,14 @@
+## Steph Locke {data-background="credentials.png"}
+- Founder of Locke Data
+- Microsoft Data Platform MVP
+- International speaker
+- Community leader
+
+[itsalocke.com](http://itsalocke.com) | [T: lockedata](https://twitter.com/lockedata) | [E: steph\@itsalocke.com](mailto://steph@itsalocke.com)
+
+## Locke Data {data-background="business.png"}
+We help organisations start with data science.
+
+- Consultancy
+- Training
+- Audit
