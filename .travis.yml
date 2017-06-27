@@ -3,6 +3,8 @@ cache: packages
 latex: false
 addons:
   apt:
+    sources:
+      - llvm-toolchain-trusty-3.9
     packages:
       - clang-format-3.9
       - unixodbc-dev
