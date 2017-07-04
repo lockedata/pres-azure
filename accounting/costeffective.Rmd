@@ -1,0 +1,137 @@
+---
+title: "Is the cloud cost effective?"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(shiny)
+library(DT)
+library(flexdashboard)
+library(ggplot2)
+createflow<-function(x,pos,len){
+  basis<-vector(mode = "numeric", len)
+  basis[pos]<-x
+  return(basis)
+}
+
+cashflows<-function(
+         servercost=35000, 
+         licencecost=40000,
+         months=36, 
+         cloudcost=1000, 
+         cloudincreaserate=0.02,
+         interestrate=0.05/12,
+         depreciationrate=1-.5^(1/12)){
+  
+  startbalance<-servercost+licencecost
+  t<-0:months
+  
+  stub<-tibble::tibble(t,
+                       credit=0,debit=0,
+                       balance=startbalance,
+                       asset=0,
+                       totalval=startbalance)
+  
+ 
+  stub %>% 
+    mutate(credit=createflow(startbalance, 1, months+1),
+           debit=createflow(-startbalance, 2, months+1)) %>%
+    mutate(asset=pmax(0,
+                      ifelse(t<1, 0,  servercost*(1-depreciationrate)^(t-1)))) %>% 
+    mutate(balance=cumsum(credit+debit))  %>% 
+    mutate(totalval=balance+asset) %>% 
+    mutate_if(is.double, round, digits=2)->
+    onprem
+  
+  stub %>% 
+    mutate(credit=createflow(startbalance, 1, months+1)) %>% 
+    mutate(debit=ifelse(t<1,0, -cloudcost*(1+cloudincreaserate)^t-1)) %>% 
+    mutate(credit=ifelse(t<1,startbalance, cumsum(credit+debit)*interestrate)) %>% 
+    mutate(balance=cumsum(credit+debit))  %>% 
+    mutate(totalval=balance+asset) %>% 
+    mutate_if(is.double, round, digits=2) ->
+    cloud
+  
+  return(list(onprem=onprem, cloud=cloud))
+}
+```
+
+
+Parameters {.sidebar}
+=====================================
+
+```{r}
+sliderInput("server","Server cost", 4e4,
+             min=0,max=1e6,step = 5e3)
+sliderInput("licence","Licence cost", 4e4,
+             min=0,max=1e6,step = 2e3)
+sliderInput("time","Server lifespan", 36,
+             min=12, max=120,step = 6)
+sliderInput("cloud","Starting cloud bill p/m", 1e3,
+             min=0,max=1e5,step = 1e2)
+sliderInput("inc","Estimated cost increase p/m", .02,
+             min=0,max=1,step = .005)
+sliderInput("int","Investment interest rate p/m", .01,
+             min=0,max=1,step = .005)
+sliderInput("dep","Depreciation rate p/m", .05,
+             min=0,max=1,step = .005)
+```
+
+
+
+```{r}
+results<-reactive(cashflows(input$server, input$licence, 
+                  input$time, input$cloud, input$inc,
+                  input$int, input$dep))
+
+ub<-reactive(input$server + input$licence)
+lb<-reactive(pmin(0, min(results()$onprem$totalval),
+                     min(results()$cloud$totalval)))
+```
+
+
+Overview
+=====================================  
+
+On-premises 
+-----------------------------------------------------------------------
+### On-prem
+
+```{r}
+renderPlot({
+ggplot(results()$onprem, aes(x=t, y=totalval))+
+  geom_line()+
+  scale_y_continuous(limits=c(lb(),ub()))
+})
+```
+
+
+Cloud
+-----------------------------------------------------------------------
+### Cloud
+```{r}
+renderPlot({
+ggplot(results()$cloud, aes(x=t, y=totalval))+
+  geom_line()+
+  scale_y_continuous(limits=c(lb(),ub()))
+})
+```
+
+
+Data
+=====================================  
+
+### On-prem data
+```{r}
+renderDataTable(results()$onprem)
+```
+
+### Cloud data
+```{r}
+renderDataTable(results()$cloud)
+```
