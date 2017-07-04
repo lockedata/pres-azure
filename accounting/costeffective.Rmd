@@ -13,6 +13,10 @@ library(shiny)
 library(DT)
 library(flexdashboard)
 library(ggplot2)
+library(ggthemes)
+library(optiRum)
+library(hrbrthemes)
+
 createflow<-function(x,pos,len){
   basis<-vector(mode = "numeric", len)
   basis[pos]<-x
@@ -59,6 +63,8 @@ cashflows<-function(
   
   return(list(onprem=onprem, cloud=cloud))
 }
+
+
 ```
 
 
@@ -89,9 +95,9 @@ results<-reactive(cashflows(input$server, input$licence,
                   input$time, input$cloud, input$inc,
                   input$int, input$dep))
 
-ub<-reactive(input$server + input$licence)
-lb<-reactive(pmin(0, min(results()$onprem$totalval),
-                     min(results()$cloud$totalval)))
+ub<-reactive((input$server + input$licence)*1.05 )
+lb<-reactive(pmin(0, min(results()$onprem$totalval)*1.05,
+                     min(results()$cloud$totalval)*1.05))
 ```
 
 
@@ -105,8 +111,13 @@ On-premises
 ```{r}
 renderPlot({
 ggplot(results()$onprem, aes(x=t, y=totalval))+
-  geom_line()+
-  scale_y_continuous(limits=c(lb(),ub()))
+  geom_line(size=3, colour="#2165B6")+
+  scale_y_comma(limits=c(lb(),ub()))+
+    hrbrthemes::theme_ipsum(base_size=18,axis_title_size = 24, grid = FALSE, axis = FALSE)+
+    labs(x="Months", y="Balance + Assets",
+         title="The cost of buying a server over time")+
+    geom_hline(aes(yintercept=0), colour="#E8830C")+
+    geom_text(data=results()$onprem[input$time+1,],aes(y=totalval*.95,label=optiRum::thousands(totalval)), size=12)
 })
 ```
 
@@ -117,8 +128,13 @@ Cloud
 ```{r}
 renderPlot({
 ggplot(results()$cloud, aes(x=t, y=totalval))+
-  geom_line()+
-  scale_y_continuous(limits=c(lb(),ub()))
+  geom_line(size=3, colour="#2165B6")+
+  scale_y_comma(limits=c(lb(),ub()))+
+    hrbrthemes::theme_ipsum(base_size=18,axis_title_size = 24, grid = FALSE, axis = FALSE)+
+    labs(x="Months", y="Balance + Assets",
+         title="The cost of using the cloud over time")+
+    geom_hline(aes(yintercept=0), colour="#E8830C")+
+    geom_text(data=results()$cloud[input$time+1,],aes(y=totalval*.95,label=optiRum::thousands(totalval)), size=12)
 })
 ```
 
