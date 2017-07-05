@@ -25,17 +25,19 @@ createflow <- function(x, pos, len) {
 
 cashflows <- function(servercost = 35000,
                       licencecost = 40000,
-                      onpremcost = 30000,
+                      onpremdevcost = 30000,
                       months = 36,
-                      cloudcost = 1000,
+                      residualvalue=.1,
                       clouddevcost = 30000,
+                      cloudcost = 1000,
                       cloudincreaserate = 0.02,
                       interestrate = 0.05 / 12) {
-  startbalance <- servercost + licencecost + onpremcost
+  startbalance <- servercost + licencecost + pmax(onpremdevcost,clouddevcost)
+  monthdepreciation<-(1-residualvalue)/months
   t <- 0:months
   
   stub <- tibble::tibble(
-    t,
+    per=t,
     credit = 0,
     debit = 0,
     balance = startbalance,
@@ -49,9 +51,7 @@ cashflows <- function(servercost = 35000,
       credit = createflow(startbalance, 1, months + 1),
       debit = createflow(-startbalance, 2, months + 1)
     ) %>%
-    mutate(asset = ifelse(t < 1, 0,  servercost * pmax(.01, (1 - (
-      t / months
-    ))))) %>%
+    mutate(asset =  (t>0)*(1-t*monthdepreciation)*servercost ) %>%
     mutate(balance = cumsum(credit + debit))  %>%
     mutate(totalval = balance + asset) %>%
     mutate_if(is.double, round, digits = 2) ->
@@ -59,9 +59,9 @@ cashflows <- function(servercost = 35000,
   
   stub %>%
     mutate(credit = createflow(startbalance, 1, months + 1)) %>%
-    mutate(debit = ifelse(t < 1, clouddevcost, -cloudcost * (1 + cloudincreaserate) ^
-                            t - 1)) %>%
-    mutate(credit = ifelse(t < 1, startbalance, cumsum(credit + debit) *
+    mutate(debit = ifelse(per < 1, 0, -cloudcost * (1 + cloudincreaserate) ^ per - 1)) %>%
+    mutate(debit=ifelse(per==1,debit-clouddevcost,debit)) %>% 
+    mutate(credit = ifelse(per < 1, startbalance, cumsum(credit + debit) *
                              interestrate)) %>%
     mutate(balance = cumsum(credit + debit))  %>%
     mutate(totalval = balance + asset) %>%
@@ -111,6 +111,14 @@ sliderInput(
   step = 6
 )
 sliderInput(
+  "finalval",
+  "Residual value",
+  .1,
+  min = 0,
+  max = 1,
+  step = .01
+)
+sliderInput(
   "clouddevcost",
   "Cloud dev cost",
   4e4,
@@ -149,18 +157,19 @@ sliderInput(
 ```{r}
 results <- reactive(
   cashflows(
-    input$server,
-    input$licence,
-    input$onpremdev,
-    input$time,
-    input$cloud,
-    input$clouddevcost,
-    input$inc,
-    input$int
+    servercost = input$server,
+    licencecost = input$licence,
+    onpremdevcost = input$onpremdev,
+    months=input$time,
+    residualvalue = input$finalval,
+    cloudcost = input$cloud,
+    clouddevcost = input$clouddevcost,
+    cloudincreaserate = input$inc,
+    interestrate = input$int
   )
 )
 
-ub <- reactive((input$server + input$licence) * 1.05)
+ub <- reactive((input$server + input$licence + pmax(input$onpremdev, input$clouddevcost)) * 1.05)
 lb <- reactive(pmin(
   0,
   min(results()$onprem$totalval) * 1.05,
@@ -178,7 +187,7 @@ On-premises
 
 ```{r}
 renderPlot({
-  ggplot(results()$onprem, aes(x = t, y = totalval)) +
+  ggplot(results()$onprem, aes(x = per, y = totalval)) +
     geom_line(size = 3, colour = "#2165B6") +
     scale_y_comma(limits = c(lb(), ub())) +
     hrbrthemes::theme_ipsum(
@@ -205,7 +214,7 @@ Cloud
 ### Cloud
 ```{r}
 renderPlot({
-  ggplot(results()$cloud, aes(x = t, y = totalval)) +
+  ggplot(results()$cloud, aes(x = per, y = totalval)) +
     geom_line(size = 3, colour = "#2165B6") +
     scale_y_comma(limits = c(lb(), ub())) +
     hrbrthemes::theme_ipsum(
