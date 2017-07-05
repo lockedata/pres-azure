@@ -1,0 +1,187 @@
+---
+title: "The cost of coffee"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: row
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(shiny)
+library(DT)
+library(flexdashboard)
+library(ggplot2)
+library(ggthemes)
+library(optiRum)
+library(hrbrthemes)
+library(purrr)
+
+totalvalue <-function(start, per, rate){
+  start * (1+rate)^per
+}
+totalinterest<-function(start, per, rate){
+  totalvalue(start, per, rate) - start
+}
+
+coffeecosts<-function(coffeeprice, coffeeperweekfreq, yearstoretirement, annualinterestrate){
+  
+  maxm <- yearstoretirement*12
+  monthint<-annualinterestrate/12
+  coffeemonth<-coffeeprice*coffeeperweekfreq*4
+  
+  coffeebill<-rep(coffeemonth,maxm)
+  
+  outgoings<-data_frame(coffeebill)
+  
+  outgoings %>% 
+    mutate(month=row_number()) %>% 
+    mutate(interestovertime= totalinterest(coffeebill, max(month)-month, monthint)) -> 
+    outgoings
+  
+  list( per=1:maxm, fper=1:maxm) %>% 
+    cross_n(~.x>.y)  %>% 
+    bind_rows() %>% 
+    mutate(compoundval=totalvalue(coffeemonth,fper-per,monthint))->
+    flows
+  
+  flows %>% 
+    group_by(fper) %>% 
+    summarise(totalcost=sum(compoundval)) ->
+    monthlygrowth
+  
+  return(list(outgoings=outgoings, flows=flows, growth=monthlygrowth))
+}
+```
+
+Parameters {.sidebar}
+=====================================
+
+```{r}
+
+sliderInput(
+  "cost",
+  "Typical cost per coffee",
+  5,
+  min = 0,
+  max = 15,
+  step = .5
+)
+sliderInput(
+  "freq",
+  "Typical number of coffees bought per week",
+  2,
+  min = 0,
+  max = 35,
+  step = 1
+)
+sliderInput(
+  "years",
+  "Years til you retire",
+  30,
+  min = 0,
+  max = 70,
+  step = 1
+)
+sliderInput(
+  "int",
+  "Investment interest rate",
+  0.05,
+  min = 0,
+  max = 0.5,
+  step = .01
+)
+```
+
+```{r}
+results<-reactive(coffeecosts(input$cost, input$freq, input$years, input$int))
+coffeetotalint<-reactive(results()$outgoings)
+coffeeflows<-reactive(results()$flows)
+coffeebill<-reactive(results()$growth)
+acoffee<-reactive(data_frame(per=1:input$years*12, cost=totalvalue(input$cost,1:input$years*12, input$int/12)))
+```
+
+Overview
+=====================================  
+Highlevel
+----------------------------------------------------------------------- 
+
+### Coffees
+```{r}
+renderValueBox({
+  counts<-input$freq*12*input$years
+  valueBox(counts,caption = "Coffees", icon="fa-hashtag")
+})
+```
+
+### Cost
+```{r}
+renderValueBox({
+  costs<-format(input$freq*12*input$years*input$cost,nsmall = 0, big.mark = ",")
+valueBox(costs,caption = "Cost", icon="fa-money")
+})
+```
+
+### If invested
+```{r}
+renderValueBox({
+  totalval<-format(max(coffeebill()$totalcost),nsmall = 0, big.mark = ",")
+valueBox(totalval, caption = "If invested", icon="fa-line-chart")
+})
+```
+
+Scary
+-----------------------------------------------------------------------
+### Total cost
+```{r}
+renderPlot({
+  ggplot(coffeebill(),aes(y=totalcost, x=fper))+
+    geom_area( fill = "#2165B6") +
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    geom_abline(slope=input$cost*input$freq, intercept=0, colour="#E8830C")+
+    labs(x = "Months", y = "Value if invested",
+         title = "The combined cost buying coffee")
+})
+```
+
+
+Value
+-----------------------------------------------------------------------
+### A single coffee
+```{r}
+renderPlot({
+  ggplot(acoffee(),aes(y=cost, x=per))+
+    geom_line(size = 3, colour = "#2165B6") +
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Months", y = "Value if invested",
+         title = "The cost of buying a coffee over time")
+})
+```
+
+### Values of coffees
+```{r}
+renderPlot({
+  ggplot(coffeetotalint(),aes(y=coffeebill+interestovertime, x=month))+
+    geom_area( fill = "#2165B6") +
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Months", y = "Value if invested",
+         title = "The cost by month of buying coffee")
+})
+```
+

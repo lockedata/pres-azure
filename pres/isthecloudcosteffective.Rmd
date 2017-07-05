@@ -1,0 +1,86 @@
+---
+title: 'Is the cloud cost-effective?'
+author: "Steph Locke (@SteffLocke)"
+date: '`r Sys.Date()`'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r autodoc, child='AboutMeTech.Rmd', eval=TRUE}
+```
+
+## Agenda
+- Useful concepts
+- Costs of being on-prem
+- Costs of being in the cloud
+- Building a financial case
+
+
+# Useful concepts
+
+## Compound interest
+
+## Depreciation
+
+## Opportunity costs
+
+# Costs of being on-prem
+## On-prem new
+- Device
+- Software
+- Implementation time
+- Ongoing costs
+   + Power / datacentre costs
+   + Staff
+   + Support agreements
+   + Backups
+
+## On-prem upgrade
+- Device
+- Software
+- Migration time
+- Ongoing costs
+   + Power / datacentre costs
+   + Staff
+   + Support agreements
+   + Backups
+
+# Costs of being in the cloud
+## Cloud new
+- Ongoing cost
+- Implementation time
+
+## Cloud migration
+- Ongoing cost
+- Migration time
+
+# Building a financial case
+## Cost of development
+- How many days to upgrade?
+- How many days to convert?
+- How many days to do like-for-like migration?
+- What are the typical costs?
+- What won't we be able to do whilst we're doing the development?
+
+## Physical costs
+- What are the costs for hardware?
+- How long will the hardware be in use?
+- Are we fitting to current requirements or requirements towards EOL?
+- What are the licence costs?
+- What are the ongoing costs of maintaining the server?
+
+## Cloud costs
+- What are the costs currently?
+- What are the growth assumptions?
+- Are there change points in cost that will be encountered?
+
+## Demo
+[App](https://stef.shinyapps.io/is_the_cloud_cost_effective/)
+
+# Wrapup
+## Wrapup
+- Thank you
+- Get the stuff
+- Get in touch! [T: SteffLocke](https://twitter.com/stefflocke)

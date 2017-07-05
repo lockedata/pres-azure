@@ -17,54 +17,59 @@ library(ggthemes)
 library(optiRum)
 library(hrbrthemes)
 
-createflow<-function(x,pos,len){
-  basis<-vector(mode = "numeric", len)
-  basis[pos]<-x
+createflow <- function(x, pos, len) {
+  basis <- vector(mode = "numeric", len)
+  basis[pos] <- x
   return(basis)
 }
 
-cashflows<-function(
-         servercost=35000, 
-         licencecost=40000,
-         months=36, 
-         cloudcost=1000, 
-         cloudincreaserate=0.02,
-         interestrate=0.05/12,
-         depreciationrate=1-.5^(1/12)){
+cashflows <- function(servercost = 35000,
+                      licencecost = 40000,
+                      onpremcost = 30000,
+                      months = 36,
+                      cloudcost = 1000,
+                      clouddevcost = 30000,
+                      cloudincreaserate = 0.02,
+                      interestrate = 0.05 / 12) {
+  startbalance <- servercost + licencecost + onpremcost
+  t <- 0:months
   
-  startbalance<-servercost+licencecost
-  t<-0:months
+  stub <- tibble::tibble(
+    t,
+    credit = 0,
+    debit = 0,
+    balance = startbalance,
+    asset = 0,
+    totalval = startbalance
+  )
   
-  stub<-tibble::tibble(t,
-                       credit=0,debit=0,
-                       balance=startbalance,
-                       asset=0,
-                       totalval=startbalance)
   
- 
-  stub %>% 
-    mutate(credit=createflow(startbalance, 1, months+1),
-           debit=createflow(-startbalance, 2, months+1)) %>%
-    mutate(asset=pmax(0,
-                      ifelse(t<1, 0,  servercost*(1-depreciationrate)^(t-1)))) %>% 
-    mutate(balance=cumsum(credit+debit))  %>% 
-    mutate(totalval=balance+asset) %>% 
-    mutate_if(is.double, round, digits=2)->
+  stub %>%
+    mutate(
+      credit = createflow(startbalance, 1, months + 1),
+      debit = createflow(-startbalance, 2, months + 1)
+    ) %>%
+    mutate(asset = ifelse(t < 1, 0,  servercost * pmax(.01, (1 - (
+      t / months
+    ))))) %>%
+    mutate(balance = cumsum(credit + debit))  %>%
+    mutate(totalval = balance + asset) %>%
+    mutate_if(is.double, round, digits = 2) ->
     onprem
   
-  stub %>% 
-    mutate(credit=createflow(startbalance, 1, months+1)) %>% 
-    mutate(debit=ifelse(t<1,0, -cloudcost*(1+cloudincreaserate)^t-1)) %>% 
-    mutate(credit=ifelse(t<1,startbalance, cumsum(credit+debit)*interestrate)) %>% 
-    mutate(balance=cumsum(credit+debit))  %>% 
-    mutate(totalval=balance+asset) %>% 
-    mutate_if(is.double, round, digits=2) ->
+  stub %>%
+    mutate(credit = createflow(startbalance, 1, months + 1)) %>%
+    mutate(debit = ifelse(t < 1, clouddevcost, -cloudcost * (1 + cloudincreaserate) ^
+                            t - 1)) %>%
+    mutate(credit = ifelse(t < 1, startbalance, cumsum(credit + debit) *
+                             interestrate)) %>%
+    mutate(balance = cumsum(credit + debit))  %>%
+    mutate(totalval = balance + asset) %>%
+    mutate_if(is.double, round, digits = 2) ->
     cloud
   
-  return(list(onprem=onprem, cloud=cloud))
+  return(list(onprem = onprem, cloud = cloud))
 }
-
-
 ```
 
 
@@ -72,32 +77,95 @@ Parameters {.sidebar}
 =====================================
 
 ```{r}
-sliderInput("server","Server cost", 4e4,
-             min=0,max=1e6,step = 5e3)
-sliderInput("licence","Licence cost", 4e4,
-             min=0,max=1e6,step = 2e3)
-sliderInput("time","Server lifespan", 36,
-             min=12, max=120,step = 6)
-sliderInput("cloud","Starting cloud bill p/m", 1e3,
-             min=0,max=1e5,step = 1e2)
-sliderInput("inc","Estimated cost increase p/m", .02,
-             min=0,max=1,step = .005)
-sliderInput("int","Investment interest rate p/m", .01,
-             min=0,max=1,step = .005)
-sliderInput("dep","Depreciation rate p/m", .05,
-             min=0,max=1,step = .005)
+sliderInput(
+  "server",
+  "Server cost",
+  4e4,
+  min = 0,
+  max = 1e6,
+  step = 5e3
+)
+sliderInput(
+  "licence",
+  "Licence cost",
+  4e4,
+  min = 0,
+  max = 1e6,
+  step = 2e3
+)
+
+sliderInput(
+  "onpremdev",
+  "On-prem dev cost",
+  2e4,
+  min = 0,
+  max = 1e6,
+  step = 2e3
+)
+sliderInput(
+  "time",
+  "Server lifespan",
+  36,
+  min = 12,
+  max = 120,
+  step = 6
+)
+sliderInput(
+  "clouddevcost",
+  "Cloud dev cost",
+  4e4,
+  min = 0,
+  max = 1e6,
+  step = 2e3
+)
+sliderInput(
+  "cloud",
+  "Starting cloud bill p/m",
+  1e3,
+  min = 0,
+  max = 1e4,
+  step = 1e1
+)
+sliderInput(
+  "inc",
+  "Estimated cost increase p/m",
+  .02,
+  min = 0,
+  max = .5,
+  step = .005
+)
+sliderInput(
+  "int",
+  "Investment interest rate p/m",
+  .01,
+  min = 0,
+  max = .5,
+  step = .005
+)
 ```
 
 
 
 ```{r}
-results<-reactive(cashflows(input$server, input$licence, 
-                  input$time, input$cloud, input$inc,
-                  input$int, input$dep))
+results <- reactive(
+  cashflows(
+    input$server,
+    input$licence,
+    input$onpremdev,
+    input$time,
+    input$cloud,
+    input$clouddevcost,
+    input$inc,
+    input$int
+  )
+)
 
-ub<-reactive((input$server + input$licence)*1.05 )
-lb<-reactive(pmin(0, min(results()$onprem$totalval)*1.05,
-                     min(results()$cloud$totalval)*1.05))
+ub <- reactive((input$server + input$licence) * 1.05)
+lb <- reactive(pmin(
+  0,
+  min(results()$onprem$totalval) * 1.05,
+  min(results()$cloud$totalval) * 1.05
+))
 ```
 
 
@@ -110,14 +178,24 @@ On-premises
 
 ```{r}
 renderPlot({
-ggplot(results()$onprem, aes(x=t, y=totalval))+
-  geom_line(size=3, colour="#2165B6")+
-  scale_y_comma(limits=c(lb(),ub()))+
-    hrbrthemes::theme_ipsum(base_size=18,axis_title_size = 24, grid = FALSE, axis = FALSE)+
-    labs(x="Months", y="Balance + Assets",
-         title="The cost of buying a server over time")+
-    geom_hline(aes(yintercept=0), colour="#E8830C")+
-    geom_text(data=results()$onprem[input$time+1,],aes(y=totalval*.95,label=optiRum::thousands(totalval)), size=12)
+  ggplot(results()$onprem, aes(x = t, y = totalval)) +
+    geom_line(size = 3, colour = "#2165B6") +
+    scale_y_comma(limits = c(lb(), ub())) +
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Months", y = "Balance + Assets",
+         title = "The cost of buying a server over time") +
+    geom_hline(aes(yintercept = 0), colour = "#E8830C") +
+    geom_text(
+      data = results()$onprem[input$time + 1, ],
+      aes(y = totalval * .95, label = optiRum::thousands(totalval)),
+      size = 12,
+      colour = "#E8830C"
+    )
 })
 ```
 
@@ -127,14 +205,24 @@ Cloud
 ### Cloud
 ```{r}
 renderPlot({
-ggplot(results()$cloud, aes(x=t, y=totalval))+
-  geom_line(size=3, colour="#2165B6")+
-  scale_y_comma(limits=c(lb(),ub()))+
-    hrbrthemes::theme_ipsum(base_size=18,axis_title_size = 24, grid = FALSE, axis = FALSE)+
-    labs(x="Months", y="Balance + Assets",
-         title="The cost of using the cloud over time")+
-    geom_hline(aes(yintercept=0), colour="#E8830C")+
-    geom_text(data=results()$cloud[input$time+1,],aes(y=totalval*.95,label=optiRum::thousands(totalval)), size=12)
+  ggplot(results()$cloud, aes(x = t, y = totalval)) +
+    geom_line(size = 3, colour = "#2165B6") +
+    scale_y_comma(limits = c(lb(), ub())) +
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    ) +
+    labs(x = "Months", y = "Balance + Assets",
+         title = "The cost of using the cloud over time") +
+    geom_hline(aes(yintercept = 0), colour = "#E8830C") +
+    geom_text(
+      data = results()$cloud[input$time + 1, ],
+      aes(y = totalval * .95, label = optiRum::thousands(totalval)),
+      size = 12,
+      colour = "#E8830C"
+    )
 })
 ```
 
