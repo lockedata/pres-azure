@@ -3,11 +3,15 @@ AUTHORNAME="Steph"
 AUTHOREMAIL="Steph@itsalocke.com"
 GITURL="https://$GITHUB_PAT@github.com/$TRAVIS_REPO_SLUG.git"
 
-git remote set-url origin $GITURL
-git pull
-git checkout master
 git config --global user.name $AUTHORNAME
 git config --global user.email $AUTHOREMAIL
+
+cd pres-azure
+R -e 'install.packages("devtools")'
+R -e 'devtools::install_deps(dep = T)'
+R CMD build --no-build-vignettes --no-manual .
+R CMD check --no-build-vignettes --no-manual  *tar.gz
+Rscript -e 'devtools::install(pkg = ".")'
 
 R CMD BATCH './buildpres.R'
 

@@ -1,28 +1,10 @@
-language: r
-cache: packages
-dist: trusty
-sudo: true
-latex: false
-addons:
-  apt:
-    sources:
-      - llvm-toolchain-trusty-3.9
-    packages:
-      - clang-format-3.9
-      - unixodbc-dev
-      - apt-transport-https
-      - gnupg
-warnings_are_errors: false
-before_install:
-  - chmod +x ./odbcinstall.sh
-  - ./odbcinstall.sh
-  - env | grep 'ODBC'
-  - odbcinst -q -d
+sudo: required
+
+services:
+  - docker
+
 install:
-  - R -e 'install.packages("devtools")'
-  - R -e 'devtools::install_deps(dep = T)'
-  - R CMD build --no-build-vignettes --no-manual .
-  - R CMD check --no-build-vignettes --no-manual  *tar.gz
-  - Rscript -e 'devtools::install(pkg = ".")'
+  - docker build -t lockedata/pres-azure .
+
 script:
-  - ./buildpres.sh
+  - docker run -e GITHUB_PAT lockedata/pres-azure /bin/sh -c "./pres-azure/buildpres.sh"
