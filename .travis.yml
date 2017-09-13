@@ -17,6 +17,7 @@ before_install:
   - chmod +x ./odbcinstall.sh
   - ./odbcinstall.sh
   - odbcinst -q -d
+  - env | grep 'ODBC'
 install:
   - R -e 'install.packages("devtools")'
   - R -e 'devtools::install_deps(dep = T)'
