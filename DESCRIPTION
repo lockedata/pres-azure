@@ -1,5 +1,5 @@
-Package: presstub
-Title: Presentation stub
+Package: presazure
+Title: Azure presentations
 Version: 0.1.0
 Authors@R: person("Steph", "Locke",   email="steph@itsalocke.com", role = c("aut", "cre"))
 Description: Basic repo template for presentations.
@@ -9,11 +9,10 @@ Imports:
     revealjs,
     odbc,
     DBI,
+    RODBCext,
     ggplot2
 Suggests:
     knitr
-Remotes:
-    lockedata/revealjs
 License: CC-BY-SA-4.0 + file LICENSE
 Encoding: UTF-8
 LazyData: true

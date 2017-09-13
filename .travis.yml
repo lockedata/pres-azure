@@ -23,6 +23,5 @@ install:
   - R CMD build --no-build-vignettes --no-manual .
   - R CMD check --no-build-vignettes --no-manual  *tar.gz
   - Rscript -e 'devtools::install(pkg = ".")'
-before_script:
 script:
   - ./buildpres.sh
