@@ -16,8 +16,8 @@ warnings_are_errors: false
 before_install:
   - chmod +x ./odbcinstall.sh
   - ./odbcinstall.sh
-  - odbcinst -q -d
   - env | grep 'ODBC'
+  - odbcinst -q -d
 install:
   - R -e 'install.packages("devtools")'
   - R -e 'devtools::install_deps(dep = T)'
