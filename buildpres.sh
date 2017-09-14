@@ -7,6 +7,10 @@ git config --global user.name $AUTHORNAME
 git config --global user.email $AUTHOREMAIL
 
 cd pres-azure
+git remote set-url origin $GITURL
+git pull
+git checkout master
+
 R -e 'install.packages("devtools")'
 R -e 'devtools::install_deps(dep = T)'
 R CMD build --no-build-vignettes --no-manual .
