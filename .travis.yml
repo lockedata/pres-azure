@@ -7,4 +7,4 @@ install:
   - docker build -t lockedata/pres-azure .
 
 script:
-  - docker run -e GITHUB_PAT lockedata/pres-azure /bin/sh -c "./pres-azure/buildpres.sh"
+  - docker run -e GITHUB_PAT -e TRAVIS_REPO_SLUG lockedata/pres-azure /bin/sh -c "./pres-azure/buildpres.sh"
