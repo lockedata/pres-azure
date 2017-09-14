@@ -1,5 +1,8 @@
 revealjs::revealjs_presentation:
-  theme: "lockedata"
+  self_contained: false
+  theme: default
+  css: lockedata.css
+  revealjs_path: https://itsalocke.com/js/revealjs
   reveal_options:
     height: "1080"
     width: "1920"
