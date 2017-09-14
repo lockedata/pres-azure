@@ -69,7 +69,7 @@ ggplot2::qplot(mpg, wt, data = mtcars, colour = cyl)
 - Call R through SQL Server
 
 ## What's it look like?
-```{r include=FALSE}
+```{r include=FALSE, eval=do_eval}
 library(DBI)
 library(odbc)
 library(RODBCext)
@@ -84,7 +84,7 @@ dbstring<-'Driver={ODBC Driver 13 for SQL Server};Server=51.140.63.137;Database=
 dbconn<-RODBC::odbcDriverConnect(dbstring)
 ```
 
-```{sql, connection=dbConn}
+```{sql, connection=dbConn, eval=do_eval}
 EXECUTE sp_execute_external_script
         @language = N'R'
         ,@script = N'OutputDataSet <- InputDataSet'
@@ -114,7 +114,7 @@ EXECUTE sp_execute_external_script
 # DEMO
 
 ## Add some data
-```{r}
+```{r, eval=do_eval}
 dbWriteTable(dbConn, "iris", iris, overwrite=TRUE)
 ```
 
