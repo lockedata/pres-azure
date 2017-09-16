@@ -28,14 +28,22 @@ QnAMaker provides a knowledge base system for Q&As.
 - Basic processing
 - Active Learning
 
+[qnamaker.ai](//qnamaker.ai)
+
 ## Bot Builder SDKs
 Code in C# and node.js for working with bots
+
+[gh:microsoft/botbuilder](//github.com/Microsoft/BotBuilder)
 
 ## Bot Services
 Function based platform for making bot APIs
 
+[docs.microsoft.com](//docs.microsoft.com/en-gb/bot-framework/azure-bot-service-overview)
+
 ## Bot Framework
 Bot management area
+
+[botframework.com](//botframework.com)
 
 ## Channels
 Ways people can consume your bots
@@ -43,13 +51,15 @@ Ways people can consume your bots
 ## LUIS
 LUIS allows you to manage concepts and decode people's text
 
+[luis.ai](//luis.ai)
+
 # Recommended resources
 
 ## Recommended resources
-- Botcamp
+- [Botscamp](//www.botscamp.co)
 - GitHub
-- Videos of demo
-- Channel 9
+- [Videos of demo](//youtube.com/playlist?list=PL1ROw3K8pbB2nogCjfQYSMNzTwn_fReWc)
+- [Channel 9](//channel9.msdn.com/Search?term=bot#ch9Search&lang-en=en&pubDate=year)
 
 # Wrapup
 ## Wrapup
