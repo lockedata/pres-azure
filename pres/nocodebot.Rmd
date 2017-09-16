@@ -1,0 +1,58 @@
+---
+title: 'Your first bot - no code required!'
+author: "Steph Locke (@SteffLocke)"
+date: '`r Sys.Date()`'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r autodoc, child='AboutMeTech.Rmd', eval=TRUE}
+```
+
+## Agenda
+- Aim
+- Demo
+- Theory
+- Recommended resources
+
+# Build a bot without writing code {.quote}
+
+# Demo time! {.quote}
+
+# Theory
+## QnAMaker.ai
+QnAMaker provides a knowledge base system for Q&As.
+
+- Basic processing
+- Active Learning
+
+## Bot Builder SDKs
+Code in C# and node.js for working with bots
+
+## Bot Services
+Function based platform for making bot APIs
+
+## Bot Framework
+Bot management area
+
+## Channels
+Ways people can consume your bots
+
+## LUIS
+LUIS allows you to manage concepts and decode people's text
+
+# Recommended resources
+
+## Recommended resources
+- Botcamp
+- GitHub
+- Videos of demo
+- Channel 9
+
+# Wrapup
+## Wrapup
+- Thank you for attending
+- Thank you to the folks who made this happen
+- Get in touch [\@SteffLocke](https://twitter.com/stefflocke)
