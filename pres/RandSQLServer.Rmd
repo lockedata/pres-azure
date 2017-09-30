@@ -5,7 +5,7 @@ date: '`r Sys.Date()`'
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, tidy=TRUE, size="large", tidy.opts=list( width.cutoff=60))
 
 do_eval<-FALSE
 ```
@@ -13,21 +13,7 @@ do_eval<-FALSE
 ```{r autodoc, child='AboutMeTech.Rmd', eval=TRUE}
 ```
 
-# SQL Server
 
-## Overview
-- RDBMS
-- Use on physical or virtual machines
-
-## Key things to manage
-- Data
-- Code
-- Permissions
-- Licences
-
-## Next steps
-- [Books Online](https://msdn.microsoft.com/en-us/library/ms130214.aspx)
-- [SQL Server Central](http://www.sqlservercentral.com/)
 
 
 # R
@@ -50,7 +36,7 @@ ggplot2::qplot(mpg, wt, data = mtcars, colour = cyl)
 ## Versions
 - ["Standard" R](https://r-project.org)
 - [Microsoft R Open](https://mran.revolutionanalytics.com/download/)
-- [Microsoft R Server](https://msdn.microsoft.com/en-us/library/mt674876.aspx)
+- [Microsoft ML Server](https://msdn.microsoft.com/en-us/library/mt674876.aspx)
 - [TERR](https://docs.tibco.com/products/tibco-enterprise-runtime-for-r)
 - [Oracle R](http://www.oracle.com/technetwork/database/database-technologies/r/r-distribution/overview/index.html)
 
@@ -61,44 +47,21 @@ ggplot2::qplot(mpg, wt, data = mtcars, colour = cyl)
 
 ## Next steps
 - [Learn R](https://datacamp.com)
-- [Check out some of my other intros to R](http://stephlocke.info/Rtraining)
+- [Check out some of my other intros to R](http://itsalocke.com/talks)
 
 # SQL Server + R Services
 
 ## Overview
-- Call R through SQL Server
+- Use `sp_execute_external_script` to call R from SQL
+- Store model objects in SQL Server
+- Use certain models in a native PREDICT function
 
-## What's it look like?
-```{r include=FALSE, eval=do_eval}
-library(DBI)
-library(odbc)
-library(RODBCext)
-dbConn<-dbConnect(odbc(),
-          driver="ODBC Driver 13 for SQL Server",
-          server="51.140.63.137",
-          database="rsqldemo1",
-          uid="rsqldemo",
-          pwd="oO)sqldemooO)sqldemoO)")
-
-dbstring<-'Driver={ODBC Driver 13 for SQL Server};Server=51.140.63.137;Database=rsqldemo1;Uid=rsqldemo;Pwd=oO)sqldemooO)sqldemoO)'
-dbconn<-RODBC::odbcDriverConnect(dbstring)
-```
-
-```{sql, connection=dbConn, eval=do_eval}
-EXECUTE sp_execute_external_script
-        @language = N'R'
-        ,@script = N'OutputDataSet <- InputDataSet'
-        ,@input_data_1 = N'SELECT 1 as Col'
- WITH RESULT SETS ((col varchar(50) not null))        
-```
-
-
-## 2016 Editions
-- Express - R Open or base R
+## 2016/2017 Editions
+- Express (w/ Advanced tools) - R Open or base R
 - Standard - R Open or base R
-- Enterprise - R Server
+- Enterprise - ML Server
 
-[SQL Server feature comparison](https://www.microsoft.com/en-ie/sql-server/sql-server-editions)
+[SQL Server feature comparison](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017#Programmability)
 
 
 ## Key things to manage
@@ -111,17 +74,45 @@ EXECUTE sp_execute_external_script
 - [Tomaz Kastrun blog](https://tomaztsql.wordpress.com/)
 - [BOL](https://msdn.microsoft.com/en-us/library/mt604845.aspx)
 
-# DEMO
+## Connecting to our demo env
+```{r eval=TRUE}
+library(DBI)
+library(odbc)
 
-## Add some data
-```{r, eval=do_eval}
-dbWriteTable(dbConn, "iris", iris, overwrite=TRUE)
+driver   = "ODBC Driver 13 for SQL Server"
+server   = "sqlsat666.database.windows.net"
+database = "sqlsat66"
+uid      = "lockedata"
+pwd      = "zll+.?=g8JA11111"
+
+dbConn<-dbConnect(odbc(),
+          driver=driver, server=server,
+          database=database, uid=uid,
+          pwd=pwd)
 ```
 
+## Connecting to our demo env (extra)
+```{r eval=TRUE}
+library(RODBCext)
 
+dbstring <- glue::glue('Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}')
+dbconn <- RODBC::odbcDriverConnect(dbstring)
+```
+
+## A basic execution
+```{sql connection=dbConn, eval=do_eval}
+EXECUTE sp_execute_external_script
+        @language = N'R'
+        ,@script = N'OutputDataSet <- InputDataSet'
+        ,@input_data_1 = N'SELECT 1 as Col'
+ WITH RESULT SETS ((col varchar(50) not null))        
+```
+
+# DEMO PREP 
 
 ## Setup model storage area
-```{sql, connection=dbConn, eval=do_eval}
+
+```{sql, connection=dbConn, eval=do_eval, error=TRUE}
 CREATE TABLE [companyModels]    (  
   [id] int NOT NULL PRIMARY KEY IDENTITY (1,1)   
 , [name] varchar(200) NOT NULL      
@@ -134,6 +125,10 @@ WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.companyModelsHistory));
 ```
 
 ## Model UPSERT stored procedure
+```{sql, connection=dbConn, eval=do_eval, echo=FALSE, result="hide"}
+DROP PROCEDURE IF EXISTS modelUpsert
+```
+
 ```{sql, connection=dbConn, eval=do_eval}
 CREATE PROCEDURE modelUpsert
 @modelname  varchar(200) , 
@@ -158,58 +153,153 @@ WHEN NOT MATCHED THEN INSERT
     );
 ```
 
-
-## Produce a basic model
-```{sql, connection=dbConn, error=TRUE}
-EXECUTE sp_execute_external_script
-        @language = N'R'
-        ,@script = N'
-        irisLM<-lm(Sepal.Width~., InputDataSet)
-        OutputDataSet<-data.frame(modelname="irisLM",
-                      modelobj=paste0(
-                              serialize(irisLM,NULL)
-                              ,collapse = "")
-                      )
-        '
-        ,@input_data_1 = N'SELECT * FROM iris'
+## Add some data
+```{r, echo=FALSE}
+dbWriteTable(dbConn, "flights", nycflights13::flights[1:5000,], overwrite=TRUE)
 ```
+
+```{r, eval=FALSE}
+dbWriteTable(dbConn, "flights", nycflights13::flights, overwrite=TRUE)
+```
+
+
+# R DEMO 
 
 ## Produce a basic model
 ```{r}
-irisLM<-lm(Sepal.Width~., iris)
-modelobj<-paste0(serialize(irisLM,NULL),
-                collapse = "")
+library(nycflights13)
+flightLM<- lm(arr_delay ~ month + day +  hour, data=flights, model = FALSE)
+
+flightLM
+```
+
+## Use model in R
+```{r}
+sample_flights<- flights[1:5,]
+predict(flightLM, sample_flights)
+```
+
+## Publish model to Microsoft ML Server
+[mrsdeploy](https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r)
+
+```{r eval=FALSE}
+publishService(
+  "basicFlightsLM",
+  code = NULL,
+  # --- `model` is required for web service with serviceType `Realtime` --- #
+  model = "model = flightsLM",
+  # --- `serviceType` is required for this web service --- #
+  serviceType = "Realtime"
+)
 ```
 
 ## Store a model
-```{r}
+```{r eval=do_eval}
 RODBCext::sqlExecute(dbconn, "exec modelUpsert @modelname=? , @modelobj=?",
-                     data = data.frame("irisLM",modelobj))
+                     data = data.frame("modelFromR", paste0( serialize(flightLM,NULL)
+       ,collapse = "")))
 ```
 
-## Use a model
-```{sql, connection=dbConn}
+# IN-SQL DEMO - ANY MODEL 
+
+## Produce a basic model
+```{sql, connection=dbConn, eval=do_eval, echo=FALSE, result="hide"}
+DROP PROCEDURE IF EXISTS generate_flightlm
+```
+
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+CREATE PROCEDURE generate_flightlm
+AS
+BEGIN
+EXECUTE sp_execute_external_script
+        @language = N'R'
+        ,@script = N'
+        flightLM<-lm(arr_delay ~ month + day +  hour, data=InputDataSet, model=FALSE)
+        OutputDataSet<-data.frame(modelname="modelFromInSQL",
+        modelobj=paste0(                              serialize(flightLM,NULL)
+       ,collapse = "") )
+        '
+        ,@input_data_1 = N'SELECT * FROM flights'
+       WITH RESULT SETS (([name] varchar(200) NOT NULL   
+, [modelObj] varbinary(max) ))
+END
+```
+
+## Produce a basic model
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+INSERT INTO companyModels(name, modelObj)
+EXEC generate_flightlm
+```
+
+## Use model in SQL
+```{sql, connection=dbConn, eval=do_eval}
 DECLARE @mymodel VARBINARY(MAX)=(SELECT modelobj 
                 FROM companymodels 
-                WHERE [name]='irisLM'
+                WHERE [name]='modelFromR'
                 );
 EXEC sp_execute_external_script
 @language = N'R',  
 @script = N'
-OutputDataSet<-cbind( predict(unserialize(as.raw(model)), InputDataSet),
-InputDataSet
+OutputDataSet<-data.frame( predict(unserialize(as.raw(model)), InputDataSet),
+InputDataSet[,"arr_delay"]
     )
 ',
-@input_data_1 = N'SELECT [Sepal.Width],[Sepal.Length], [Petal.Width], [Petal.Length], Species from iris',  
+@input_data_1 = N'SELECT TOP 5 * from flights',  
 @params = N'@model varbinary(max)',  
 @model =  @mymodel 
 WITH RESULT SETS ((
-    [Sepal.Width.Pred]  FLOAT (53)    NULL,
-    [Sepal.Width]  FLOAT (53)    NULL,
-   [Sepal.Length] FLOAT (53)    NULL,
-    [Petal.Length] FLOAT (53)    NULL,
-    [Petal.Width]  FLOAT (53)    NULL,
-    [Species]      VARCHAR (255) NULL))
+    [arr_delay.Pred]  FLOAT (53)    NULL,
+    [arr_delay]  FLOAT (53)    NULL))
+```
+
+# NATIVE SQL DEMO 
+## Produce a basic model
+```{sql, connection=dbConn, eval=do_eval, echo=FALSE, result="hide"}
+DROP PROCEDURE IF EXISTS generate_flightlm2
+```
+
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+CREATE PROCEDURE generate_flightlm2
+AS
+BEGIN
+EXECUTE sp_execute_external_script
+        @language = N'R'
+        ,@script = N'
+        flightLM<-rxLinMod(arr_delay ~ month + day +  hour, data=InputDataSet)
+        OutputDataSet<-data.frame(modelname="modelFromRevo",
+        modelobj= rxSerializeModel(flightLM, realtimeScoringOnly = TRUE) )
+        '
+        ,@input_data_1 = N'SELECT * FROM flights'
+END
+```
+
+## Produce a basic model
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+INSERT INTO companyModels([name],[modelobj])
+EXEC generate_flightlm2
+```
+
+## Use model in SQL
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+DECLARE @model varbinary(max) = (
+  SELECT modelobj
+  FROM companyModels
+  WHERE [name] = 'modelFromRevo');
+SELECT TOP 10 d.*, p.*
+  FROM PREDICT(MODEL = @model, DATA = flights as d)
+  WITH(Pred float) as p;
+```
+
+## Use model in SQL
+```{sql, connection=dbConn, error=TRUE, eval=do_eval}
+DECLARE @model varbinary(max) = (
+  SELECT modelobj
+  FROM companyModels
+  WHERE [name] = 'modelFromRevo');
+
+EXEC sp_rxPredict
+@model = @model,
+@inputData = N'SELECT TOP 10 * FROM flights'
 ```
 
 # Deploying SQL Server & R Services
@@ -253,7 +343,12 @@ WITH RESULT SETS ((
 - R graphics
 
 # Wrapup
+## Microsoft resources
+- https://docs.microsoft.com/en-us/sql/advanced-analytics/r/sql-server-r-services
+- https://docs.microsoft.com/en-us/sql/advanced-analytics/r/how-to-do-realtime-scoring#native-scoring-with-predict
+- https://blogs.msdn.microsoft.com/sqlserverstorageengine/2017/09/25/announcing-preview-of-machine-learning-services-with-r-support-in-azure-sql-database/
+
 ## Wrapup
 - Thank you
-- Get the slides via [lockedata.uk](http://lockedata.uk)
-- Get in touch! [T: SteffLocke](https://twitter.com/stefflocke)
+- Get the slides via [itsalocke.com](http://itsalocke.com/talks)
+- Get in touch! [\@SteffLocke](https://twitter.com/stefflocke)

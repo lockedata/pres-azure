@@ -10,7 +10,9 @@ Imports:
     odbc,
     DBI,
     RODBCext,
-    ggplot2
+    ggplot2,
+    glue,
+    nycflights13
 Suggests:
     knitr
 License: CC-BY-SA-4.0 + file LICENSE
