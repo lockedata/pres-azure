@@ -75,13 +75,13 @@ ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
 - [BOL](https://msdn.microsoft.com/en-us/library/mt604845.aspx)
 
 ## Connecting to our demo env
-```{r eval=do_eval}
+```{r eval=TRUE}
 library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
-server   = "sqlsat666.database.windows.net"
-database = "sqlsat666"
+server   = "advr.database.windows.net"
+database = "advr"
 uid      = "lockedata"
 pwd      = "zll+.?=g8JA11111"
 
@@ -119,6 +119,11 @@ EXECUTE sp_execute_external_script
 # DEMO PREP 
 
 ## Setup model storage area
+```{sql, connection=dbConn, eval=do_eval, echo=FALSE}
+ALTER TABLE dbo.companyModels SET ( SYSTEM_VERSIONING = OFF)
+DROP TABLE IF EXISTS dbo.companyModelsHistory;
+DROP TABLE IF EXISTS dbo.companyModels
+```
 
 ```{sql, connection=dbConn, eval=do_eval, error=TRUE}
 CREATE TABLE [companyModels]    (  
@@ -163,7 +168,9 @@ WHEN NOT MATCHED THEN INSERT
 
 ## Add some data
 ```{r, echo=FALSE}
-dbWriteTable(dbConn, "flights", nycflights13::flights[1:5000,], overwrite=TRUE)
+if(!("flights" %in% dbListTables(dbConn))){
+dbWriteTable(dbConn, "flights", nycflights13::flights, overwrite=TRUE)
+}
 ```
 
 ```{r, eval=FALSE}
@@ -219,6 +226,12 @@ DROP PROCEDURE IF EXISTS generate_flightlm
 CREATE PROCEDURE generate_flightlm
 AS
 BEGIN
+CREATE TABLE #varcha
+([name] varchar(200),
+    [modelobj] VARCHAR(MAX)
+)
+
+INSERT INTO #varcha
 EXECUTE sp_execute_external_script
         @language = N'R'
         ,@script = N'
@@ -228,14 +241,16 @@ EXECUTE sp_execute_external_script
        ,collapse = "") )
         '
         ,@input_data_1 = N'SELECT * FROM flights'
-       WITH RESULT SETS (([name] varchar(200) NOT NULL   
-, [modelObj] varbinary(max) ))
+		 ;
+INSERT INTO companyModels(name, modelObj) 
+SELECT [name], CONVERT(VARBINARY(MAX), modelObj, 2) 
+FROM #varcha
+
 END
 ```
 
 ## Produce a basic model
 ```{sql, connection=dbConn, error=TRUE, eval=do_eval}
-INSERT INTO companyModels(name, modelObj)
 EXEC generate_flightlm
 ```
 
@@ -243,7 +258,7 @@ EXEC generate_flightlm
 ```{sql, connection=dbConn, eval=do_eval}
 DECLARE @mymodel VARBINARY(MAX)=(SELECT modelobj 
                 FROM companymodels 
-                WHERE [name]='modelFromR'
+                WHERE [name]='modelFromInSQL'
                 );
 EXEC sp_execute_external_script
 @language = N'R',  
@@ -270,20 +285,24 @@ DROP PROCEDURE IF EXISTS generate_flightlm2
 CREATE PROCEDURE generate_flightlm2
 AS
 BEGIN
+DECLARE @model varbinary(max);
 EXECUTE sp_execute_external_script
-        @language = N'R'
-        ,@script = N'
+  @language = N'R'
+  , @script = N'
         flightLM<-rxLinMod(arr_delay ~ month + day +  hour, data=InputDataSet)
-        OutputDataSet<-data.frame(modelname="modelFromRevo",
-        modelobj= rxSerializeModel(flightLM, realtimeScoringOnly = TRUE) )
-        '
-        ,@input_data_1 = N'SELECT * FROM flights'
+    model <- rxSerializeModel(flightLM, realtimeScoringOnly = TRUE)
+    '
+  ,@input_data_1 = N'SELECT * FROM flights'
+  , @params = N'@model varbinary(max) OUTPUT'
+  , @model = @model OUTPUT
+  INSERT [companyModels] ([name], [modelObj])
+  VALUES('modelFromRevo', @model) ;
+
 END
 ```
 
 ## Produce a basic model
 ```{sql, connection=dbConn, error=TRUE, eval=do_eval}
-INSERT INTO companyModels([name],[modelobj])
 EXEC generate_flightlm2
 ```
 
@@ -295,7 +314,7 @@ DECLARE @model varbinary(max) = (
   WHERE [name] = 'modelFromRevo');
 SELECT TOP 10 d.*, p.*
   FROM PREDICT(MODEL = @model, DATA = flights as d)
-  WITH(Pred float) as p;
+  WITH("arr_delay_Pred" float) as p;
 ```
 
 ## Use model in SQL
