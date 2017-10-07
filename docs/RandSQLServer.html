@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Steph Locke @SteffLocke Locke Data" />
-  <meta name="dcterms.date" content="2017-09-30" />
+  <meta name="dcterms.date" content="2017-10-07" />
   <title>R &amp; SQL Server for real-time predictions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -490,7 +490,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">R &amp; SQL Server for real-time predictions</h1>
     <h2 class="author">Steph Locke <span class="citation" data-cites="SteffLocke">@SteffLocke</span> Locke Data</h2>
-    <h3 class="date">2017-09-30</h3>
+    <h3 class="date">2017-10-07</h3>
 </section>
 
 <section id="steph-locke" class="slide level2" data-background="https://itsalocke.com/img/ChibiStephBusiness.svg">
@@ -520,7 +520,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section><section id="whats-it-look-like" class="slide level2">
 <h1>What’s it look like?</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggplot2::<span class="kw">qplot</span>(mpg, wt, <span class="dt">data =</span> mtcars, <span class="dt">colour =</span> cyl)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggplot2::<span class="kw">qplot</span>(mpg, disp, <span class="dt">data =</span> mtcars, <span class="dt">colour =</span> cyl)</code></pre></div>
 <p><img src="RandSQLServer_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" /></p>
 </section><section id="versions" class="slide level2">
 <h1>Versions</h1>
@@ -580,8 +580,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <span class="kw">library</span>(odbc)
 
 driver =<span class="st"> &quot;ODBC Driver 13 for SQL Server&quot;</span>
-server =<span class="st"> &quot;sqlsat666.database.windows.net&quot;</span>
-database =<span class="st"> &quot;sqlsat66&quot;</span>
+server =<span class="st"> &quot;advr.database.windows.net&quot;</span>
+database =<span class="st"> &quot;advr&quot;</span>
 uid =<span class="st"> &quot;lockedata&quot;</span>
 pwd =<span class="st"> &quot;zll+.?=g8JA11111&quot;</span>
 
@@ -589,14 +589,9 @@ dbConn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span cla
     <span class="dt">database =</span> database, <span class="dt">uid =</span> uid, <span class="dt">pwd =</span> pwd)</code></pre></div>
 </section><section id="connecting-to-our-demo-env-extra" class="slide level2">
 <h1>Connecting to our demo env (extra)</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RODBCext)</code></pre></div>
-<pre><code>## Loading required package: RODBC</code></pre>
-<pre><code>## 
-## Attaching package: &#39;RODBCext&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:RODBC&#39;:
-## 
-##     odbcFetchRows, sqlFetchMore</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbstring &lt;-<span class="st"> </span>glue::<span class="kw">glue</span>(<span class="st">&quot;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RODBCext)
+
+dbstring &lt;-<span class="st"> </span>glue::<span class="kw">glue</span>(<span class="st">&quot;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&quot;</span>)
 dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
 </section><section id="a-basic-execution" class="slide level2">
 <h1>A basic execution</h1>
@@ -687,6 +682,12 @@ flightLM</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
+<span class="kw">CREATE</span> <span class="kw">TABLE</span> #varcha
+([name] <span class="dt">varchar</span>(<span class="dv">200</span>),
+    [modelobj] <span class="dt">VARCHAR</span>(<span class="fu">MAX</span>)
+)
+
+<span class="kw">INSERT</span> <span class="kw">INTO</span> #varcha
 <span class="kw">EXECUTE</span> sp_execute_external_script
         @language = N<span class="st">&#39;R&#39;</span>
         ,@script = N<span class="st">&#39;</span>
@@ -696,18 +697,20 @@ flightLM</code></pre></div>
 <span class="st">       ,collapse = &quot;&quot;) )</span>
 <span class="st">        &#39;</span>
         ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span>
-       <span class="kw">WITH</span> RESULT SETS (([name] <span class="dt">varchar</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>   
-, [modelObj] varbinary(<span class="fu">max</span>) ))
+         ;
+<span class="kw">INSERT</span> <span class="kw">INTO</span> companyModels(name, modelObj) 
+<span class="kw">SELECT</span> [name], <span class="fu">CONVERT</span>(VARBINARY(<span class="fu">MAX</span>), modelObj, <span class="dv">2</span>) 
+<span class="kw">FROM</span> #varcha
+
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-basic-model-2" class="slide level2">
 <h1>Produce a basic model</h1>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">INSERT</span> <span class="kw">INTO</span> companyModels(name, modelObj)
-<span class="kw">EXEC</span> generate_flightlm</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm</code></pre></div>
 </section><section id="use-model-in-sql" class="slide level2">
 <h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @mymodel VARBINARY(<span class="fu">MAX</span>)=(<span class="kw">SELECT</span> modelobj 
                 <span class="kw">FROM</span> companymodels 
-                <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromR&#39;</span>
+                <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromInSQL&#39;</span>
                 );
 <span class="kw">EXEC</span> sp_execute_external_script
 <span class="ot">@language = N&#39;R&#39;,  </span>
@@ -728,19 +731,23 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm2
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
+<span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>);
 <span class="kw">EXECUTE</span> sp_execute_external_script
-        @language = N<span class="st">&#39;R&#39;</span>
-        ,@script = N<span class="st">&#39;</span>
+  @language = N<span class="st">&#39;R&#39;</span>
+  , @script = N<span class="st">&#39;</span>
 <span class="st">        flightLM&lt;-rxLinMod(arr_delay ~ month + day +  hour, data=InputDataSet)</span>
-<span class="st">        OutputDataSet&lt;-data.frame(modelname=&quot;modelFromRevo&quot;,</span>
-<span class="st">        modelobj= rxSerializeModel(flightLM, realtimeScoringOnly = TRUE) )</span>
-<span class="st">        &#39;</span>
-        ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span>
+<span class="st">    model &lt;- rxSerializeModel(flightLM, realtimeScoringOnly = TRUE)</span>
+<span class="st">    &#39;</span>
+  ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span>
+  , @params = N<span class="st">&#39;@model varbinary(max) OUTPUT&#39;</span>
+  , @model = @model OUTPUT
+  <span class="kw">INSERT</span> [companyModels] ([name], [modelObj])
+  <span class="kw">VALUES</span>(<span class="st">&#39;modelFromRevo&#39;</span>, @model) ;
+
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-basic-model-4" class="slide level2">
 <h1>Produce a basic model</h1>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">INSERT</span> <span class="kw">INTO</span> companyModels([name],[modelobj])
-<span class="kw">EXEC</span> generate_flightlm2</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm2</code></pre></div>
 </section><section id="use-model-in-sql-1" class="slide level2">
 <h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
@@ -749,7 +756,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
   <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);
 <span class="kw">SELECT</span> TOP <span class="dv">10</span> d.*, p.*
   <span class="kw">FROM</span> PREDICT(MODEL = @model, <span class="kw">DATA</span> = flights <span class="kw">as</span> d)
-  <span class="kw">WITH</span>(Pred <span class="dt">float</span>) <span class="kw">as</span> p;</code></pre></div>
+  <span class="kw">WITH</span>(<span class="ot">&quot;arr_delay_Pred&quot;</span> <span class="dt">float</span>) <span class="kw">as</span> p;</code></pre></div>
 </section><section id="use-model-in-sql-2" class="slide level2">
 <h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
