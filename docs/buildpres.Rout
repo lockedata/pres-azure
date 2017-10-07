@@ -126,10 +126,10 @@ label: setup (with options)
 List of 1
  $ include: logi FALSE
 
-  |                                                                         |....                                                             |   6%
+  |                                                                         |....                                                             |   5%
   ordinary text without R code
 
-  |                                                                         |.....                                                            |   8%
+  |                                                                         |.....                                                            |   7%
 label: autodoc (with options) 
 List of 2
  $ child: chr "AboutMeTech.Rmd"
@@ -147,24 +147,41 @@ processing file: ./AboutMeTech.Rmd
 
   |                                                                         |.......                                                          |  11%
 label: unnamed-chunk-1
-  |                                                                         |.........                                                        |  13%
+  |                                                                         |........                                                         |  13%
   ordinary text without R code
 
-  |                                                                         |..........                                                       |  15%
+  |                                                                         |.........                                                        |  15%
 label: unnamed-chunk-2 (with options) 
 List of 1
- $ eval: symbol do_eval
+ $ eval: logi TRUE
 
-  |                                                                         |...........                                                      |  17%
+  |                                                                         |...........                                                      |  16%
   ordinary text without R code
 
-  |                                                                         |............                                                     |  19%
+  |                                                                         |............                                                     |  18%
 label: unnamed-chunk-3 (with options) 
 List of 1
  $ echo: logi FALSE
 
-Quitting from lines 95-96 (RandSQLServer.Rmd) 
-Error in dbConnect(ANSI()) : could not find function "dbConnect"
-Calls: render ... handle -> withCallingHandlers -> withVisible -> eval -> eval
+  |                                                                         |.............                                                    |  20%
+  ordinary text without R code
+
+  |                                                                         |..............                                                   |  22%
+label: unnamed-chunk-4 (with options) 
+List of 1
+ $ eval: symbol do_eval
+
+  |                                                                         |...............                                                  |  24%
+  ordinary text without R code
+
+  |                                                                         |.................                                                |  25%
+label: unnamed-chunk-5 (with options) 
+List of 1
+ $ echo: logi FALSE
+
+Quitting from lines 107-108 (RandSQLServer.Rmd) 
+Error in (function (classes, fdef, mtable)  : 
+  unable to find an inherited method for function 'dbConnect' for signature '"AnsiConnection"'
+Calls: render ... withVisible -> eval -> eval -> dbConnect -> <Anonymous>
 
 Execution halted
