@@ -91,9 +91,6 @@ dbConn<-dbConnect(odbc(),
           pwd=pwd)
 ```
 
-```{r echo=FALSE}
-if(!exists("dbConn")) dbConn<-dbConnect(ANSI())
-```
 
 ## Connecting to our demo env (extra)
 ```{r eval=do_eval}
@@ -103,9 +100,6 @@ dbstring <- glue::glue('Driver={driver};Server={server};Database={database};Uid=
 dbconn <- RODBC::odbcDriverConnect(dbstring)
 ```
 
-```{r echo=FALSE}
-if(!exists("dbconn")) dbconn<-dbConnect(ANSI())
-```
 
 ## A basic execution
 ```{sql connection=dbConn, eval=do_eval}
