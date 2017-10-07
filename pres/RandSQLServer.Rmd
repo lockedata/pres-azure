@@ -30,7 +30,7 @@ do_eval<-FALSE
 
 ## What's it look like?
 ```{r}
-ggplot2::qplot(mpg, wt, data = mtcars, colour = cyl)
+ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
 ```
 
 ## Versions
