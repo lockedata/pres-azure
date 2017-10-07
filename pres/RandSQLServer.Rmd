@@ -96,7 +96,7 @@ if(!exists("dbConn")) dbConn<-dbConnect(ANSI())
 ```
 
 ## Connecting to our demo env (extra)
-```{r eval=TRUE}
+```{r eval=do_eval}
 library(RODBCext)
 
 dbstring <- glue::glue('Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}')
