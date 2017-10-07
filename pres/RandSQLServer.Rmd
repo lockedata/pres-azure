@@ -75,13 +75,13 @@ ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
 - [BOL](https://msdn.microsoft.com/en-us/library/mt604845.aspx)
 
 ## Connecting to our demo env
-```{r eval=TRUE}
+```{r eval=do_eval}
 library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
 server   = "sqlsat666.database.windows.net"
-database = "sqlsat66"
+database = "sqlsat666"
 uid      = "lockedata"
 pwd      = "zll+.?=g8JA11111"
 
@@ -91,12 +91,20 @@ dbConn<-dbConnect(odbc(),
           pwd=pwd)
 ```
 
+```{r echo=FALSE}
+if(!exists("dbConn")) dbConn<-dbConnect(ANSI())
+```
+
 ## Connecting to our demo env (extra)
 ```{r eval=TRUE}
 library(RODBCext)
 
 dbstring <- glue::glue('Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}')
 dbconn <- RODBC::odbcDriverConnect(dbstring)
+```
+
+```{r echo=FALSE}
+if(!exists("dbconn")) dbconn<-dbConnect(ANSI())
 ```
 
 ## A basic execution
