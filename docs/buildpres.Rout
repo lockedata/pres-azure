@@ -85,15 +85,15 @@ processing file: microsoftmlserver.Rmd
   |                                                                         |                                                                 |   0%  |                                                                         |.                                                                |   1%
    inline R code fragments
 
-  |                                                                         |.                                                                |   2%
+  |                                                                         |..                                                               |   2%
 label: setup (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                         |..                                                               |   3%
+  |                                                                         |..                                                               |   4%
   ordinary text without R code
 
-  |                                                                         |...                                                              |   4%
+  |                                                                         |...                                                              |   5%
 label: autodoc (with options) 
 List of 2
  $ child: chr "AboutMeBusiness.Rmd"
@@ -106,10 +106,10 @@ processing file: ./AboutMeBusiness.Rmd
   ordinary text without R code
 
 
-  |                                                                         |....                                                             |   5%
+  |                                                                         |....                                                             |   6%
   ordinary text without R code
 
-  |                                                                         |....                                                             |   7%
+  |                                                                         |.....                                                            |   7%
 label: unnamed-chunk-1 (with options) 
 List of 1
  $ eval: symbol do_eval
@@ -122,59 +122,51 @@ label: unnamed-chunk-2 (with options)
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |......                                                           |  10%
+  |                                                                         |.......                                                          |  11%
   ordinary text without R code
 
-  |                                                                         |.......                                                          |  11%
+  |                                                                         |........                                                         |  12%
 label: unnamed-chunk-3 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |........                                                         |  12%
+  |                                                                         |........                                                         |  13%
   ordinary text without R code
-
-  |                                                                         |.........                                                        |  13%
-label: unnamed-chunk-4 (with options) 
-List of 1
- $ eval: logi FALSE
 
   |                                                                         |.........                                                        |  14%
-  ordinary text without R code
+label: unnamed-chunk-4 (with options) 
+List of 1
+ $ eval: symbol do_eval
 
   |                                                                         |..........                                                       |  15%
+  ordinary text without R code
+
+  |                                                                         |...........                                                      |  16%
 label: unnamed-chunk-5 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |...........                                                      |  16%
+  |                                                                         |...........                                                      |  18%
   ordinary text without R code
 
-  |                                                                         |...........                                                      |  18%
+  |                                                                         |............                                                     |  19%
 label: unnamed-chunk-6 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |............                                                     |  19%
+  |                                                                         |.............                                                    |  20%
   ordinary text without R code
 
-  |                                                                         |.............                                                    |  20%
+  |                                                                         |..............                                                   |  21%
 label: unnamed-chunk-7 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |..............                                                   |  21%
+  |                                                                         |...............                                                  |  22%
   ordinary text without R code
 
-  |                                                                         |..............                                                   |  22%
+  |                                                                         |...............                                                  |  24%
 label: unnamed-chunk-8 (with options) 
-List of 1
- $ eval: symbol do_eval
-
-  |                                                                         |...............                                                  |  23%
-  ordinary text without R code
-
-  |                                                                         |................                                                 |  24%
-label: unnamed-chunk-9 (with options) 
 List of 1
  $ eval: symbol do_eval
 
@@ -182,23 +174,23 @@ List of 1
   ordinary text without R code
 
   |                                                                         |.................                                                |  26%
-label: unnamed-chunk-10 (with options) 
+label: unnamed-chunk-9 (with options) 
 List of 1
  $ eval: symbol do_eval
 
   |                                                                         |..................                                               |  27%
   ordinary text without R code
 
-  |                                                                         |...................                                              |  29%
-label: unnamed-chunk-11 (with options) 
+  |                                                                         |..................                                               |  28%
+label: unnamed-chunk-10 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |...................                                              |  30%
+  |                                                                         |...................                                              |  29%
   ordinary text without R code
 
   |                                                                         |....................                                             |  31%
-label: unnamed-chunk-12 (with options) 
+label: unnamed-chunk-11 (with options) 
 List of 1
  $ eval: symbol do_eval
 
@@ -206,7 +198,7 @@ List of 1
   ordinary text without R code
 
   |                                                                         |.....................                                            |  33%
-label: unnamed-chunk-13 (with options) 
+label: unnamed-chunk-12 (with options) 
 List of 1
  $ eval: symbol do_eval
 
@@ -214,190 +206,174 @@ List of 1
   ordinary text without R code
 
   |                                                                         |.......................                                          |  35%
-label: unnamed-chunk-14 (with options) 
+label: unnamed-chunk-13 (with options) 
 List of 1
- $ eval: symbol do_eval
+ $ eval: logi FALSE
 
   |                                                                         |........................                                         |  36%
   ordinary text without R code
 
-  |                                                                         |........................                                         |  37%
+  |                                                                         |........................                                         |  38%
+label: unnamed-chunk-14 (with options) 
+List of 1
+ $ eval: symbol do_eval
+
+  |                                                                         |.........................                                        |  39%
+  ordinary text without R code
+
+  |                                                                         |..........................                                       |  40%
 label: unnamed-chunk-15 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |.........................                                        |  38%
+  |                                                                         |...........................                                      |  41%
   ordinary text without R code
 
-  |                                                                         |..........................                                       |  40%
+  |                                                                         |............................                                     |  42%
 label: unnamed-chunk-16 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |..........................                                       |  41%
+  |                                                                         |............................                                     |  44%
   ordinary text without R code
 
-  |                                                                         |...........................                                      |  42%
+  |                                                                         |.............................                                    |  45%
 label: unnamed-chunk-17 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |............................                                     |  43%
+  |                                                                         |..............................                                   |  46%
   ordinary text without R code
 
-  |                                                                         |.............................                                    |  44%
+  |                                                                         |...............................                                  |  47%
 label: unnamed-chunk-18 (with options) 
 List of 1
- $ eval: logi FALSE
+ $ eval: symbol do_eval
 
-  |                                                                         |.............................                                    |  45%
+  |                                                                         |...............................                                  |  48%
   ordinary text without R code
 
-  |                                                                         |..............................                                   |  46%
+  |                                                                         |................................                                 |  49%
 label: unnamed-chunk-19 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |...............................                                  |  47%
+  |                                                                         |.................................                                |  51%
   ordinary text without R code
 
-  |                                                                         |...............................                                  |  48%
+  |                                                                         |..................................                               |  52%
 label: unnamed-chunk-20 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |................................                                 |  49%
+  |                                                                         |..................................                               |  53%
   ordinary text without R code
 
-  |                                                                         |.................................                                |  51%
+  |                                                                         |...................................                              |  54%
 label: unnamed-chunk-21 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |..................................                               |  52%
+  |                                                                         |....................................                             |  55%
   ordinary text without R code
 
-  |                                                                         |..................................                               |  53%
+  |                                                                         |.....................................                            |  56%
 label: unnamed-chunk-22 (with options) 
 List of 1
- $ eval: symbol do_eval
+ $ eval: logi FALSE
 
-  |                                                                         |...................................                              |  54%
+  |                                                                         |.....................................                            |  58%
   ordinary text without R code
 
-  |                                                                         |....................................                             |  55%
+  |                                                                         |......................................                           |  59%
 label: unnamed-chunk-23 (with options) 
-List of 1
- $ eval: symbol do_eval
-
-  |                                                                         |....................................                             |  56%
-  ordinary text without R code
-
-  |                                                                         |.....................................                            |  57%
-label: unnamed-chunk-24 (with options) 
-List of 1
- $ eval: symbol do_eval
-
-  |                                                                         |......................................                           |  58%
-  ordinary text without R code
-
-  |                                                                         |.......................................                          |  59%
-label: unnamed-chunk-25 (with options) 
 List of 1
  $ eval: symbol do_eval
 
   |                                                                         |.......................................                          |  60%
   ordinary text without R code
 
-  |                                                                         |........................................                         |  62%
-label: unnamed-chunk-26 (with options) 
+  |                                                                         |........................................                         |  61%
+label: unnamed-chunk-24 (with options) 
 List of 1
  $ eval: symbol do_eval
 
-  |                                                                         |.........................................                        |  63%
+  |                                                                         |.........................................                        |  62%
   ordinary text without R code
 
   |                                                                         |.........................................                        |  64%
-label: unnamed-chunk-27 (with options) 
-List of 1
- $ eval: symbol do_eval
+label: unnamed-chunk-25 (with options) 
+List of 3
+ $ connection: symbol dbConn
+ $ eval      : symbol do_eval
+ $ engine    : chr "sql"
 
   |                                                                         |..........................................                       |  65%
   ordinary text without R code
 
   |                                                                         |...........................................                      |  66%
-label: unnamed-chunk-28 (with options) 
-List of 3
+label: unnamed-chunk-26 (with options) 
+List of 4
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
+ $ echo      : logi FALSE
  $ engine    : chr "sql"
 
   |                                                                         |............................................                     |  67%
   ordinary text without R code
 
   |                                                                         |............................................                     |  68%
-label: unnamed-chunk-29 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ echo      : logi FALSE
- $ engine    : chr "sql"
-
-  |                                                                         |.............................................                    |  69%
-  ordinary text without R code
-
-  |                                                                         |..............................................                   |  70%
-label: unnamed-chunk-30 (with options) 
+label: unnamed-chunk-27 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
  $ error     : logi TRUE
  $ engine    : chr "sql"
 
-  |                                                                         |..............................................                   |  71%
+  |                                                                         |.............................................                    |  69%
   ordinary text without R code
 
-  |                                                                         |...............................................                  |  73%
-label: unnamed-chunk-31 (with options) 
+  |                                                                         |..............................................                   |  71%
+label: unnamed-chunk-28 (with options) 
 List of 5
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
  $ echo      : logi FALSE
  $ result    : chr "hide"
+ $ engine    : chr "sql"
+
+  |                                                                         |...............................................                  |  72%
+  ordinary text without R code
+
+  |                                                                         |...............................................                  |  73%
+label: unnamed-chunk-29 (with options) 
+List of 3
+ $ connection: symbol dbConn
+ $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
   |                                                                         |................................................                 |  74%
   ordinary text without R code
 
   |                                                                         |.................................................                |  75%
-label: unnamed-chunk-32 (with options) 
-List of 3
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |.................................................                |  76%
-  ordinary text without R code
-
-  |                                                                         |..................................................               |  77%
-label: unnamed-chunk-33 (with options) 
+label: unnamed-chunk-30 (with options) 
 List of 2
  $ echo: logi FALSE
  $ eval: symbol do_eval
 
-  |                                                                         |...................................................              |  78%
+  |                                                                         |..................................................               |  76%
   ordinary text without R code
 
-  |                                                                         |...................................................              |  79%
-label: unnamed-chunk-34 (with options) 
+  |                                                                         |..................................................               |  78%
+label: unnamed-chunk-31 (with options) 
 List of 1
  $ eval: logi FALSE
 
-  |                                                                         |....................................................             |  80%
+  |                                                                         |...................................................              |  79%
   ordinary text without R code
 
-  |                                                                         |.....................................................            |  81%
-label: unnamed-chunk-35 (with options) 
+  |                                                                         |....................................................             |  80%
+label: unnamed-chunk-32 (with options) 
 List of 5
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
@@ -405,43 +381,43 @@ List of 5
  $ result    : chr "hide"
  $ engine    : chr "sql"
 
-  |                                                                         |......................................................           |  82%
+  |                                                                         |.....................................................            |  81%
   ordinary text without R code
+
+  |                                                                         |......................................................           |  82%
+label: unnamed-chunk-33 (with options) 
+List of 4
+ $ connection: symbol dbConn
+ $ error     : logi TRUE
+ $ eval      : symbol do_eval
+ $ engine    : chr "sql"
 
   |                                                                         |......................................................           |  84%
-label: unnamed-chunk-36 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
+  ordinary text without R code
 
   |                                                                         |.......................................................          |  85%
-  ordinary text without R code
-
-  |                                                                         |........................................................         |  86%
-label: unnamed-chunk-37 (with options) 
+label: unnamed-chunk-34 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ error     : logi TRUE
  $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
-  |                                                                         |........................................................         |  87%
+  |                                                                         |........................................................         |  86%
   ordinary text without R code
 
-  |                                                                         |.........................................................        |  88%
-label: unnamed-chunk-38 (with options) 
+  |                                                                         |.........................................................        |  87%
+label: unnamed-chunk-35 (with options) 
 List of 3
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
-  |                                                                         |..........................................................       |  89%
+  |                                                                         |.........................................................        |  88%
   ordinary text without R code
 
-  |                                                                         |...........................................................      |  90%
-label: unnamed-chunk-39 (with options) 
+  |                                                                         |..........................................................       |  89%
+label: unnamed-chunk-36 (with options) 
 List of 5
  $ connection: symbol dbConn
  $ eval      : symbol do_eval
@@ -453,40 +429,40 @@ List of 5
   ordinary text without R code
 
   |                                                                         |............................................................     |  92%
-label: unnamed-chunk-40 (with options) 
+label: unnamed-chunk-37 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ error     : logi TRUE
  $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
-  |                                                                         |.............................................................    |  93%
+  |                                                                         |............................................................     |  93%
   ordinary text without R code
 
-  |                                                                         |.............................................................    |  95%
-label: unnamed-chunk-41 (with options) 
+  |                                                                         |.............................................................    |  94%
+label: unnamed-chunk-38 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ error     : logi TRUE
  $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
-  |                                                                         |..............................................................   |  96%
+  |                                                                         |..............................................................   |  95%
   ordinary text without R code
 
-  |                                                                         |...............................................................  |  97%
-label: unnamed-chunk-42 (with options) 
+  |                                                                         |...............................................................  |  96%
+label: unnamed-chunk-39 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ error     : logi TRUE
  $ eval      : symbol do_eval
  $ engine    : chr "sql"
 
-  |                                                                         |................................................................ |  98%
+  |                                                                         |...............................................................  |  98%
   ordinary text without R code
 
   |                                                                         |................................................................ |  99%
-label: unnamed-chunk-43 (with options) 
+label: unnamed-chunk-40 (with options) 
 List of 4
  $ connection: symbol dbConn
  $ error     : logi TRUE
