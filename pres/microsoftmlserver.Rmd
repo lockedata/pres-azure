@@ -63,11 +63,9 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 3. Build model
 4. Make model useful later
    + Save model object to disk
-   + Make into an API
    + Save model in DB
 
-## Local with R
-![](img/rtodeployr.png)
+
 
 ## Local with R
 ![](img/rtosql.png)
@@ -82,6 +80,8 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
    + Save model in DB
    
 
+## Local with Microsoft R Client
+![](img/rtodeployr.png)
 
 ## Semi-local
 1. Connect to data using RevoScaleR
@@ -101,52 +101,6 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 
 ## Remote
 ![](img/remoteexec.png)
-
-# Local with R
-
-## Produce a model
-```{r eval=do_eval}
-library(nycflights13)
-flightLM<- lm(arr_delay ~ month + day +  hour, data=flights, model = FALSE)
-
-flightLM
-```
-
-## Use model in R
-```{r eval=do_eval}
-sample_flights<- flights[1:5,]
-predict(flightLM, sample_flights)
-```
-
-## connecting to an environment
-[mrsdeploy](https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r)
-
-```{r eval=do_eval}
-library(mrsdeploy)
-remoteLogin("http://51.140.39.75:12800", 
-            username = "admin", 
-            password = "zll+.?=g8JA11111")
-```
-
-## Publish model to Microsoft ML Server
-```{r eval=FALSE}
-publishService(
-  "basicFlightsLM",
-  code = NULL,
-  # --- `model` is required for web service with serviceType `Realtime` --- #
-  model = "model = flightsLM",
-  # --- `serviceType` is required for this web service --- #
-  serviceType = "Realtime"
-)
-```
-
-
-## Store a model for use in SQL Server
-```{r eval=do_eval}
-RODBCext::sqlExecute(dbconn, "exec modelUpsert @modelname=? , @modelobj=?",
-                     data = data.frame("modelFromR", paste0( serialize(flightLM,NULL)
-       ,collapse = "")))
-```
 
 # Using ML Server / Client
 ## Libraries
@@ -256,7 +210,7 @@ movies_dtree %>%
 
 ## Decision trees
 ```{r eval=do_eval}
-movies_rdtree %>% 
+movies_dtree %>% 
   rxDTreeBestCp() ->
   best_cp
 
@@ -292,16 +246,15 @@ Once you've made predictions you can use R packages to do evaluations.
 
 ```{r eval=do_eval}
 movies_testing %>% 
-  rxPredict(movies_rdtree, .) %>% 
-  summary()
+  rxPredict(movies_dtree, .) 
 ```
 
 ```{r eval=do_eval}
 movies_testing %>% 
-  rxPredict(movies_rdtree, .) ->
+  rxPredict(movies_dtree, .) ->
   movies_testing
 
-plot(movies_testing$rating, movies_testing$rating_Pred)
+plot(movies_testing$Comedy, movies_testing$`0_Pred`)
 ```
 
 ## ROC curves
@@ -327,8 +280,30 @@ movies_dtree %>%
   rxVarImpPlot()
 ```
 
-# SQL Server based execution
+## Connecting to an environment
+[mrsdeploy](https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r)
 
+```{r eval=do_eval}
+library(mrsdeploy)
+remoteLogin("http://51.140.39.75:12800", 
+            username = "admin", 
+            password = "zll+.?=g8JA11111",
+            commandline=FALSE)
+```
+
+## Publish model to Microsoft ML Server
+```{r eval=FALSE}
+publishService(
+  "basicFlightsdtree",
+  code = NULL,
+  # --- `model` is required for web service with serviceType `Realtime` --- #
+  model = movies_dtree,
+  # --- `serviceType` is required for this web service --- #
+  serviceType = "Realtime"
+)
+```
+
+# SQL Server based execution
 
 
 ## Connecting to an environment
