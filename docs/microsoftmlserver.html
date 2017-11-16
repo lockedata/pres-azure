@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="C:\Users\steph\Dropbox\LOCKED~1\hugo\SUPERB~1\PRES-A~1\docs\MICROS~1/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="microsoftmlserver_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
@@ -50,7 +50,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="C:\Users\steph\Dropbox\LOCKED~1\hugo\SUPERB~1\PRES-A~1\docs\MICROS~1/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="microsoftmlserver_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -494,7 +494,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 
 <section id="steph-locke" class="slide level2">
-<h2>Steph Locke</h2>
+<h1>Steph Locke</h1>
 <ul>
 <li>Founder of Locke Data</li>
 <li>Microsoft Data Platform MVP</li>
@@ -505,7 +505,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p><a href="https://twitter.com/stefflocke">T: lockedata</a> | <a href="mailto://steph@itsalocke.com">E: steph@itsalocke.com</a></p>
 </section>
 <section id="locke-data" class="slide level2">
-<h2>Locke Data</h2>
+<h1>Locke Data</h1>
 <p>Locke Data helps organisations get started with data science.</p>
 <ul>
 <li>Skills transfer</li>
@@ -515,7 +515,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p><a href="http://itsalocke.com">itsalocke.com</a> | <a href="https://twitter.com/lockedata">T: lockedata</a></p>
 </section>
 <section><section id="ml-server" class="titleslide slide level1"><h1>ML Server</h1></section><section id="overview" class="slide level2">
-<h2>Overview</h2>
+<h1>Overview</h1>
 <ul>
 <li>Runs R and Python</li>
 <li>Has special sauce packages</li>
@@ -523,20 +523,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Works on Windows and Linux</li>
 </ul>
 </section><section id="names" class="slide level2">
-<h2>Names</h2>
+<h1>Names</h1>
 <ul>
 <li>Revolution R (&lt;2016)</li>
 <li>Microsoft R Server (&lt;2017)</li>
 <li>Microsoft ML Server (2017-?)</li>
 </ul>
 </section><section id="whats-new" class="slide level2">
-<h2>What’s new</h2>
+<h1>What’s new</h1>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/machine-learning-server/whats-new-in-machine-learning-server">ML Server supports Python</a></li>
 <li><a href="https://docs.microsoft.com/en-us/machine-learning-server/whats-new-in-r-server">Extra algorithms and faster variants</a></li>
 </ul>
 </section><section id="editions" class="slide level2">
-<h2>Editions</h2>
+<h1>Editions</h1>
 <ul>
 <li>Machine Learning Server for Hadoop
 <ul>
@@ -551,7 +551,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul></li>
 </ul>
 </section><section id="sql-server-20162017-editions" class="slide level2">
-<h2>SQL Server 2016/2017 Editions</h2>
+<h1>SQL Server 2016/2017 Editions</h1>
 <ul>
 <li>Express (w/ Advanced tools) - R Open or base R</li>
 <li>Standard - R Open or base R</li>
@@ -562,7 +562,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <p>Oo, and Azure SQL now!</p>
 </blockquote>
 </section><section id="sql-server-overview" class="slide level2">
-<h2>SQL Server Overview</h2>
+<h1>SQL Server Overview</h1>
 <ul>
 <li>Use <code>sp_execute_external_script</code> to call R from SQL</li>
 <li>Store model objects in SQL Server</li>
@@ -570,7 +570,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 </section></section>
 <section><section id="typical-workflows" class="titleslide slide level1"><h1>Typical workflows</h1></section><section id="local-with-r" class="slide level2">
-<h2>Local with R</h2>
+<h1>Local with R</h1>
 <ol type="1">
 <li>Collect data with RODBC or something</li>
 <li>Clean up data</li>
@@ -582,7 +582,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Make into an API</li>
 </ul>
 </section><section id="local-with-microsoft-r-client" class="slide level2">
-<h2>Local with Microsoft R Client</h2>
+<h1>Local with Microsoft R Client</h1>
 <ol type="1">
 <li>Collect data with RODBC or something</li>
 <li>Turn into an xdf</li>
@@ -595,7 +595,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Make into an API using <code>mrsdeploy</code></li>
 </ul>
 </section><section id="semi-local" class="slide level2">
-<h2>Semi-local</h2>
+<h1>Semi-local</h1>
 <ol type="1">
 <li>Connect to data using RevoScaleR</li>
 <li>Clean up data with <code>rx*</code> functions</li>
@@ -607,7 +607,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Make into an API using <code>mrsdeploy</code></li>
 </ul>
 </section><section id="remote" class="slide level2">
-<h2>Remote</h2>
+<h1>Remote</h1>
 <ol type="1">
 <li>Write code</li>
 <li>Run locally on a sample</li>
@@ -615,24 +615,24 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ol>
 </section></section>
 <section><section id="local-with-r-1" class="titleslide slide level1"><h1>Local with R</h1></section><section id="produce-a-model" class="slide level2">
-<h2>Produce a model</h2>
+<h1>Produce a model</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
-flightLM&lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>month <span class="op">+</span><span class="st"> </span>day <span class="op">+</span><span class="st">  </span>hour, <span class="dt">data=</span>flights, <span class="dt">model =</span> <span class="ot">FALSE</span>)
+flightLM&lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay ~<span class="st"> </span>month +<span class="st"> </span>day +<span class="st">  </span>hour, <span class="dt">data=</span>flights, <span class="dt">model =</span> <span class="ot">FALSE</span>)
 
 flightLM</code></pre></div>
 </section><section id="use-model-in-r" class="slide level2">
-<h2>Use model in R</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_flights&lt;-<span class="st"> </span>flights[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
+<h1>Use model in R</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_flights&lt;-<span class="st"> </span>flights[<span class="dv">1</span>:<span class="dv">5</span>,]
 <span class="kw">predict</span>(flightLM, sample_flights)</code></pre></div>
 </section><section id="connecting-to-an-environment" class="slide level2">
-<h2>connecting to an environment</h2>
+<h1>connecting to an environment</h1>
 <p><a href="https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r">mrsdeploy</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mrsdeploy)
 <span class="kw">remoteLogin</span>(<span class="st">&quot;http://51.140.39.75:12800&quot;</span>, 
             <span class="dt">username =</span> <span class="st">&quot;admin&quot;</span>, 
             <span class="dt">password =</span> <span class="st">&quot;zll+.?=g8JA11111&quot;</span>)</code></pre></div>
 </section><section id="publish-model-to-microsoft-ml-server" class="slide level2">
-<h2>Publish model to Microsoft ML Server</h2>
+<h1>Publish model to Microsoft ML Server</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">publishService</span>(
   <span class="st">&quot;basicFlightsLM&quot;</span>,
   <span class="dt">code =</span> <span class="ot">NULL</span>,
@@ -642,144 +642,144 @@ flightLM</code></pre></div>
   <span class="dt">serviceType =</span> <span class="st">&quot;Realtime&quot;</span>
 )</code></pre></div>
 </section><section id="store-a-model-for-use-in-sql-server" class="slide level2">
-<h2>Store a model for use in SQL Server</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RODBCext<span class="op">::</span><span class="kw">sqlExecute</span>(dbconn, <span class="st">&quot;exec modelUpsert @modelname=? , @modelobj=?&quot;</span>,
+<h1>Store a model for use in SQL Server</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RODBCext::<span class="kw">sqlExecute</span>(dbconn, <span class="st">&quot;exec modelUpsert @modelname=? , @modelobj=?&quot;</span>,
                      <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="st">&quot;modelFromR&quot;</span>, <span class="kw">paste0</span>( <span class="kw">serialize</span>(flightLM,<span class="ot">NULL</span>)
        ,<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)))</code></pre></div>
 </section></section>
 <section><section id="using-ml-server-client" class="titleslide slide level1"><h1>Using ML Server / Client</h1></section><section id="libraries" class="slide level2">
-<h2>Libraries</h2>
+<h1>Libraries</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
 <span class="kw">library</span>(odbc)
 <span class="kw">library</span>(tidyverse)
 
-<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(dplyrXdf)) devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;RevolutionAnalytics/dplyrXdf&quot;</span>)
+if(!<span class="kw">require</span>(dplyrXdf)) devtools::<span class="kw">install_github</span>(<span class="st">&quot;RevolutionAnalytics/dplyrXdf&quot;</span>)
 <span class="kw">library</span>(dplyrXdf)</code></pre></div>
 <p><a href="http://blog.revolutionanalytics.com/2017/10/announcing-dplyrxdf-10.html">Latest changes</a></p>
 </section><section id="turn-some-data-into-an-xdf" class="slide level2">
-<h2>Turn some data into an xdf</h2>
+<h1>Turn some data into an xdf</h1>
 <p>You can use a conenction to a DB, Hadoop, etc too</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(ggplot2movies)) <span class="kw">install.packages</span>(<span class="st">&quot;ggplot2movies&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if(!<span class="kw">require</span>(ggplot2movies)) <span class="kw">install.packages</span>(<span class="st">&quot;ggplot2movies&quot;</span>)
 <span class="kw">library</span>(ggplot2movies)
 
 imdb_movies &lt;-<span class="st"> </span><span class="kw">rxDataStep</span>(movies, <span class="st">&quot;movies.xdf&quot;</span>, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)
 <span class="kw">rxGetInfo</span>(imdb_movies, <span class="dt">verbose =</span> <span class="dv">1</span>)</code></pre></div>
 </section><section id="prep-data" class="slide level2">
-<h2>Prep data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(Action) <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Prep data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(length &lt;<span class="st"> </span><span class="dv">60</span>*<span class="dv">5</span> ) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Action) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(rating)) -&gt;
 <span class="st">  </span>action_or_not
 
 <span class="kw">head</span>(action_or_not)</code></pre></div>
 </section><section id="produce-charts" class="slide level2">
-<h2>Produce charts</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>RevoScaleR<span class="op">::</span><span class="kw">rxHistogram</span>(<span class="op">~</span>rating <span class="op">|</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance), <span class="dt">data=</span>.)</code></pre></div>
+<h1>Produce charts</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(length &lt;<span class="st"> </span><span class="dv">60</span>*<span class="dv">5</span> ) %&gt;%<span class="st"> </span>
+<span class="st">  </span>RevoScaleR::<span class="kw">rxHistogram</span>(~rating |<span class="st"> </span><span class="kw">F</span>(Action) +<span class="st"> </span><span class="kw">F</span>(Romance), <span class="dt">data=</span>.)</code></pre></div>
 </section><section id="sample-data" class="slide level2">
-<h2>Sample data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Sample data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.7</span>) -&gt;
 <span class="st">  </span>movies_training
 
-imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+imdb_movies %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">anti_join</span>(movies_training) -&gt;
 <span class="st">  </span>movies_testing</code></pre></div>
 </section><section id="feature-reduction" class="slide level2">
-<h2>Feature reduction</h2>
+<h1>Feature reduction</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)
-movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxCor</span>(<span class="op">~</span>votes <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>budget , <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>caret<span class="op">::</span><span class="kw">findCorrelation</span>()</code></pre></div>
+movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxCor</span>(~votes +<span class="st"> </span>length +<span class="st"> </span>budget , <span class="dt">data =</span> .) %&gt;%<span class="st"> </span>
+<span class="st">  </span>caret::<span class="kw">findCorrelation</span>()</code></pre></div>
 </section><section id="feature-reduction-1" class="slide level2">
-<h2>Feature reduction</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">as_data_frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span>caret<span class="op">::</span><span class="kw">nearZeroVar</span>()</code></pre></div>
+<h1>Feature reduction</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>() %&gt;%<span class="st"> </span>
+<span class="st">  </span>caret::<span class="kw">nearZeroVar</span>()</code></pre></div>
 </section><section id="linear-regression" class="slide level2">
-<h2>Linear regression</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxLinMod</span>(rating<span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st">  </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Comedy) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), 
+<h1>Linear regression</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxLinMod</span>(rating~<span class="st"> </span>year +<span class="st">  </span>length +<span class="st"> </span><span class="kw">F</span>(Comedy) +<span class="st"> </span><span class="kw">F</span>(Action) +<span class="st"> </span><span class="kw">F</span>(Romance) +<span class="st"> </span><span class="kw">F</span>(Short) +<span class="st"> </span><span class="kw">F</span>(Documentary) +<span class="st"> </span><span class="kw">F</span>(Animation) +<span class="st"> </span><span class="kw">F</span>(Drama), 
            <span class="dt">data=</span>.
            )</code></pre></div>
 </section><section id="logistic-regression" class="slide level2">
-<h2>Logistic regression</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxLogit</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), 
+<h1>Logistic regression</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxLogit</span>(Comedy~<span class="st"> </span>rating +year +<span class="st"> </span>budget +<span class="st"> </span>length +<span class="st"> </span><span class="kw">F</span>(Action) +<span class="st"> </span><span class="kw">F</span>(Romance) +<span class="st"> </span><span class="kw">F</span>(Short) +<span class="st"> </span><span class="kw">F</span>(Documentary) +<span class="st"> </span><span class="kw">F</span>(Animation) +<span class="st"> </span><span class="kw">F</span>(Drama), 
            <span class="dt">data=</span>.
            ) -&gt;
 <span class="st">  </span>movies_logit
 
 movies_logit</code></pre></div>
 </section><section id="decision-trees" class="slide level2">
-<h2>Decision trees</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxDTree</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, 
+<h1>Decision trees</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxDTree</span>(Comedy~<span class="st"> </span>rating +year +<span class="st"> </span>budget +<span class="st"> </span>length +<span class="st">  </span>Action +<span class="st"> </span>Romance +<span class="st"> </span>Short +<span class="st"> </span>Documentary +<span class="st"> </span>Animation +<span class="st"> </span>Drama, 
            <span class="dt">data=</span>. , <span class="dt">method =</span> <span class="st">&quot;class&quot;</span>
            ) -&gt;
 <span class="st">  </span>movies_dtree</code></pre></div>
 </section><section id="decision-trees-1" class="slide level2">
-<h2>Decision trees</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxAddInheritance</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Decision trees</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxAddInheritance</span>() %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">plotcp</span>()</code></pre></div>
 </section><section id="decision-trees-2" class="slide level2">
-<h2>Decision trees</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_rdtree <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Decision trees</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_rdtree %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rxDTreeBestCp</span>() -&gt;
 <span class="st">  </span>best_cp
 
-movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+movies_dtree %&gt;%<span class="st"> </span>
 <span class="st"> </span><span class="kw">prune</span>(<span class="dt">cp=</span>best_cp) -&gt;
 <span class="st">  </span>movies_dtree</code></pre></div>
 </section><section id="decision-trees-3" class="slide level2">
-<h2>Decision trees</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">createTreeView</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Decision trees</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">createTreeView</span>() %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">plot</span>()</code></pre></div>
 </section><section id="boosted-decision-trees" class="slide level2">
-<h2>Boosted decision trees</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxBTrees</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, 
+<h1>Boosted decision trees</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxBTrees</span>(Comedy~<span class="st"> </span>rating +year +<span class="st"> </span>budget +<span class="st"> </span>length +<span class="st">  </span>Action +<span class="st"> </span>Romance +<span class="st"> </span>Short +<span class="st"> </span>Documentary +<span class="st"> </span>Animation +<span class="st"> </span>Drama, 
            <span class="dt">data=</span>.
            )</code></pre></div>
 </section><section id="clustering" class="slide level2">
-<h2>Clustering</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxKmeans</span>(<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year  <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>Comedy<span class="op">+</span><span class="st"> </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama,
+<h1>Clustering</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxKmeans</span>(~<span class="st"> </span>rating +year  +<span class="st"> </span>length +<span class="st"> </span>Comedy+<span class="st"> </span>Action +<span class="st"> </span>Romance +<span class="st"> </span>Short +<span class="st"> </span>Documentary +<span class="st"> </span>Animation +<span class="st"> </span>Drama,
            <span class="dt">data=</span>.,<span class="dt">numClusters =</span> <span class="dv">10</span>)</code></pre></div>
 </section><section id="predict-on-new-data" class="slide level2">
-<h2>Predict on new data</h2>
+<h1>Predict on new data</h1>
 <p>Once you’ve made predictions you can use R packages to do evaluations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxPredict</span>(movies_rdtree, .) <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxPredict</span>(movies_rdtree, .) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rxPredict</span>(movies_rdtree, .) -&gt;
 <span class="st">  </span>movies_testing
 
-<span class="kw">plot</span>(movies_testing<span class="op">$</span>rating, movies_testing<span class="op">$</span>rating_Pred)</code></pre></div>
+<span class="kw">plot</span>(movies_testing$rating, movies_testing$rating_Pred)</code></pre></div>
 </section><section id="roc-curves" class="slide level2">
-<h2>ROC curves</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>ROC curves</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, <span class="dt">data=</span>., 
             <span class="dt">predVarNames=</span><span class="st">&quot;Comedy_Pred&quot;</span>,
-             <span class="dt">type=</span><span class="st">&quot;vector&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+             <span class="dt">type=</span><span class="st">&quot;vector&quot;</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rxRocCurve</span>(<span class="dt">actualVarName=</span><span class="st">&quot;Comedy&quot;</span>, <span class="dt">predVarNames =</span> <span class="st">&quot;Comedy_Pred&quot;</span>, <span class="dt">data=</span>.)</code></pre></div>
 </section><section id="lorenz-curves" class="slide level2">
-<h2>Lorenz curves</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">rxLorenz</span>(<span class="st">&quot;Comedy_Pred&quot;</span>,<span class="st">&quot;Comedy&quot;</span>, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Lorenz curves</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">rxLorenz</span>(<span class="st">&quot;Comedy_Pred&quot;</span>,<span class="st">&quot;Comedy&quot;</span>, <span class="dt">data=</span>.) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">plot</span>()</code></pre></div>
 </section><section id="variable-importance" class="slide level2">
-<h2>Variable importance</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<h1>Variable importance</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rxVarImpPlot</span>()</code></pre></div>
 </section></section>
 <section><section id="sql-server-based-execution" class="titleslide slide level1"><h1>SQL Server based execution</h1></section><section id="connecting-to-an-environment-1" class="slide level2">
-<h2>Connecting to an environment</h2>
+<h1>Connecting to an environment</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
 <span class="kw">library</span>(odbc)
 
@@ -794,20 +794,20 @@ dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(),
           <span class="dt">database=</span>database, <span class="dt">uid=</span>uid,
           <span class="dt">pwd=</span>pwd)</code></pre></div>
 </section><section id="connecting-to-an-environment-env-extra" class="slide level2">
-<h2>Connecting to an environment env (extra)</h2>
+<h1>Connecting to an environment env (extra)</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RODBCext)
 
-dbstring &lt;-<span class="st"> </span>glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)
-dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
+dbstring &lt;-<span class="st"> </span>glue::<span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)
+dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
 </section><section id="a-basic-execution" class="slide level2">
-<h2>A basic execution</h2>
+<h1>A basic execution</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXECUTE</span> sp_execute_external_script
         @language = N<span class="st">&#39;R&#39;</span>
         ,@script = N<span class="st">&#39;OutputDataSet &lt;- InputDataSet&#39;</span>
         ,@input_data_1 = N<span class="st">&#39;SELECT 1 as Col&#39;</span>
  <span class="kw">WITH</span> RESULT SETS ((col <span class="dt">varchar</span>(<span class="dv">50</span>) <span class="kw">not</span> <span class="kw">null</span>))        </code></pre></div>
 </section><section id="model-storage-table" class="slide level2">
-<h2>Model storage table</h2>
+<h1>Model storage table</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> [companyModels]    (  
   [<span class="kw">id</span>] <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> IDENTITY (<span class="dv">1</span>,<span class="dv">1</span>)   
 , [name] <span class="dt">varchar</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>      
@@ -818,7 +818,7 @@ dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class=
 , <span class="kw">CONSTRAINT</span> unique_modelname <span class="kw">UNIQUE</span> ([name]))
 <span class="kw">WITH</span> (SYSTEM_VERSIONING = <span class="kw">ON</span> (HISTORY_TABLE = dbo.companyModelsHistory));  </code></pre></div>
 </section><section id="model-upsert-stored-procedure" class="slide level2">
-<h2>Model UPSERT stored procedure</h2>
+<h1>Model UPSERT stored procedure</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> modelUpsert
 <span class="ot">@modelname  varchar(200) , </span>
 <span class="ot">@modelobj varbinary(max) </span>
@@ -841,10 +841,10 @@ dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class=
         MySource.modelObj
     );</code></pre></div>
 </section><section id="add-some-data" class="slide level2">
-<h2>Add some data</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13<span class="op">::</span>flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</code></pre></div>
+<h1>Add some data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13::flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</code></pre></div>
 </section><section id="produce-a-model-1" class="slide level2">
-<h2>Produce a model</h2>
+<h1>Produce a model</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
@@ -870,10 +870,10 @@ dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class=
 
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-model-2" class="slide level2">
-<h2>Produce a model</h2>
+<h1>Produce a model</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm</code></pre></div>
 </section><section id="use-model-in-sql" class="slide level2">
-<h2>Use model in SQL</h2>
+<h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @mymodel VARBINARY(<span class="fu">MAX</span>)=(<span class="kw">SELECT</span> modelobj 
                 <span class="kw">FROM</span> companymodels 
                 <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromInSQL&#39;</span>
@@ -892,7 +892,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <span class="st">    [arr_delay.Pred]  FLOAT (53)    NULL,</span>
 <span class="st">    [arr_delay]  FLOAT (53)    NULL))</span></code></pre></div>
 </section><section id="produce-a-native-model" class="slide level2">
-<h2>Produce a native model</h2>
+<h1>Produce a native model</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm2
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
@@ -911,10 +911,10 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-native-model-1" class="slide level2">
-<h2>Produce a native model</h2>
+<h1>Produce a native model</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm2</code></pre></div>
 </section><section id="use-model-in-sql-1" class="slide level2">
-<h2>Use model in SQL</h2>
+<h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
   <span class="kw">SELECT</span> modelobj
   <span class="kw">FROM</span> companyModels
@@ -923,7 +923,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
   <span class="kw">FROM</span> PREDICT(MODEL = @model, <span class="kw">DATA</span> = flights <span class="kw">as</span> d)
   <span class="kw">WITH</span>(<span class="ot">&quot;arr_delay_Pred&quot;</span> <span class="dt">float</span>) <span class="kw">as</span> p;</code></pre></div>
 </section><section id="use-model-in-sql-2" class="slide level2">
-<h2>Use model in SQL</h2>
+<h1>Use model in SQL</h1>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
   <span class="kw">SELECT</span> modelobj
   <span class="kw">FROM</span> companyModels
@@ -934,7 +934,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <span class="ot">@inputData = N&#39;SELECT TOP 10 * FROM flights&#39;</span></code></pre></div>
 </section></section>
 <section><section id="wrap-up" class="titleslide slide level1"><h1>Wrap up</h1></section><section id="other-microsoft-ml-things" class="slide level2">
-<h2>Other Microsoft ML things</h2>
+<h1>Other Microsoft ML things</h1>
 <ul>
 <li>Azure ML
 <ul>
@@ -964,7 +964,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 </ul></li>
 </ul>
 </section><section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
+<h1>Conclusion</h1>
 <ul>
 <li>Thank you</li>
 <li>Get the slides via <a href="http://itsalocke.com/talks">itsalocke.com</a></li>
@@ -974,8 +974,8 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
     </div>
   </div>
 
-  <script src="C:\Users\steph\Dropbox\LOCKED~1\hugo\SUPERB~1\PRES-A~1\docs\MICROS~1/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="C:\Users\steph\Dropbox\LOCKED~1\hugo\SUPERB~1\PRES-A~1\docs\MICROS~1/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="microsoftmlserver_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="microsoftmlserver_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
