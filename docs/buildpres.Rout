@@ -155,269 +155,7 @@ label: unnamed-chunk-2 (with options)
 List of 1
  $ eval: logi TRUE
 
-  |                                                                         |...........                                                      |  18%
-  ordinary text without R code
+Quitting from lines 79-92 (RandSQLServer.Rmd) 
+Error: nanodbc/nanodbc.cpp:950: HY000: [unixODBC][Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Database 'advr' on server 'advr.database.windows.net' is not currently available.  Please retry the connection later.  If the problem persists, contact customer support, and provide them the session tracing ID of '{9BD10E9A-1CA9-42A3-927A-E08C6DA999FF}'. 
 
-  |                                                                         |.............                                                    |  20%
-label: unnamed-chunk-3 (with options) 
-List of 1
- $ eval: symbol do_eval
-
-  |                                                                         |..............                                                   |  22%
-  ordinary text without R code
-
-  |                                                                         |...............                                                  |  24%
-label: unnamed-chunk-4 (with options) 
-List of 3
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |.................                                                |  25%
-  ordinary text without R code
-
-  |                                                                         |..................                                               |  27%
-label: unnamed-chunk-5 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ echo      : logi FALSE
- $ engine    : chr "sql"
-
-  |                                                                         |...................                                              |  29%
-  ordinary text without R code
-
-  |                                                                         |....................                                             |  31%
-label: unnamed-chunk-6 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ error     : logi TRUE
- $ engine    : chr "sql"
-
-  |                                                                         |......................                                           |  33%
-  ordinary text without R code
-
-  |                                                                         |.......................                                          |  35%
-label: unnamed-chunk-7 (with options) 
-List of 5
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ echo      : logi FALSE
- $ result    : chr "hide"
- $ engine    : chr "sql"
-
-  |                                                                         |........................                                         |  37%
-  ordinary text without R code
-
-  |                                                                         |.........................                                        |  39%
-label: unnamed-chunk-8 (with options) 
-List of 3
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |...........................                                      |  41%
-  ordinary text without R code
-
-  |                                                                         |............................                                     |  43%
-label: unnamed-chunk-9 (with options) 
-List of 1
- $ echo: logi FALSE
-
-  |                                                                         |.............................                                    |  45%
-  ordinary text without R code
-
-  |                                                                         |...............................                                  |  47%
-label: unnamed-chunk-10 (with options) 
-List of 1
- $ eval: logi FALSE
-
-  |                                                                         |................................                                 |  49%
-  ordinary text without R code
-
-  |                                                                         |.................................                                |  51%
-label: unnamed-chunk-11
-  |                                                                         |..................................                               |  53%
-  ordinary text without R code
-
-  |                                                                         |....................................                             |  55%
-label: unnamed-chunk-12
-  |                                                                         |.....................................                            |  57%
-  ordinary text without R code
-
-  |                                                                         |......................................                           |  59%
-label: unnamed-chunk-13 (with options) 
-List of 1
- $ eval: logi FALSE
-
-  |                                                                         |........................................                         |  61%
-  ordinary text without R code
-
-  |                                                                         |.........................................                        |  63%
-label: unnamed-chunk-14 (with options) 
-List of 1
- $ eval: symbol do_eval
-
-  |                                                                         |..........................................                       |  65%
-  ordinary text without R code
-
-  |                                                                         |...........................................                      |  67%
-label: unnamed-chunk-15 (with options) 
-List of 5
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ echo      : logi FALSE
- $ result    : chr "hide"
- $ engine    : chr "sql"
-
-  |                                                                         |.............................................                    |  69%
-  ordinary text without R code
-
-  |                                                                         |..............................................                   |  71%
-label: unnamed-chunk-16 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |...............................................                  |  73%
-  ordinary text without R code
-
-  |                                                                         |................................................                 |  75%
-label: unnamed-chunk-17 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |..................................................               |  76%
-  ordinary text without R code
-
-  |                                                                         |...................................................              |  78%
-label: unnamed-chunk-18 (with options) 
-List of 3
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |....................................................             |  80%
-  ordinary text without R code
-
-  |                                                                         |......................................................           |  82%
-label: unnamed-chunk-19 (with options) 
-List of 5
- $ connection: symbol dbConn
- $ eval      : symbol do_eval
- $ echo      : logi FALSE
- $ result    : chr "hide"
- $ engine    : chr "sql"
-
-  |                                                                         |.......................................................          |  84%
-  ordinary text without R code
-
-  |                                                                         |........................................................         |  86%
-label: unnamed-chunk-20 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |.........................................................        |  88%
-  ordinary text without R code
-
-  |                                                                         |...........................................................      |  90%
-label: unnamed-chunk-21 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |............................................................     |  92%
-  ordinary text without R code
-
-  |                                                                         |.............................................................    |  94%
-label: unnamed-chunk-22 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |..............................................................   |  96%
-  ordinary text without R code
-
-  |                                                                         |................................................................ |  98%
-label: unnamed-chunk-23 (with options) 
-List of 4
- $ connection: symbol dbConn
- $ error     : logi TRUE
- $ eval      : symbol do_eval
- $ engine    : chr "sql"
-
-  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-output file: RandSQLServer.knit.md
-
-/usr/local/bin/pandoc +RTS -K512m -RTS RandSQLServer.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/RandSQLServer.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=RandSQLServer_files/reveal.js-3.3.0.1 --highlight-style pygments 
-
-Output created: docs/RandSQLServer.html
-
-
-processing file: RonSQLServer.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.........                                                        |  14%
-   inline R code fragments
-
-  |                                                                         |...................                                              |  29%
-label: setup (with options) 
-List of 1
- $ include: logi FALSE
-
-  |                                                                         |............................                                     |  43%
-  ordinary text without R code
-
-  |                                                                         |.....................................                            |  57%
-label: autodoc (with options) 
-List of 2
- $ child: chr "AboutMeTech.Rmd"
- $ eval : logi TRUE
-
-
-
-processing file: ./AboutMeTech.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-  |                                                                         |..............................................                   |  71%
-  ordinary text without R code
-
-  |                                                                         |........................................................         |  86%
-label: unnamed-chunk-1
-  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-output file: RonSQLServer.knit.md
-
-/usr/local/bin/pandoc +RTS -K512m -RTS RonSQLServer.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/RonSQLServer.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=RonSQLServer_files/reveal.js-3.3.0.1 --highlight-style pygments 
-
-Output created: docs/RonSQLServer.html
-Warning message:
-In block_exec(params) : failed to tidy R code in chunk <unnamed-chunk-13>
-reason: Error in base::parse(text = code, keep.source = FALSE) : 
-  <text>:5:1: unexpected symbol
-4: invisible(".BeGiN_TiDy_IdEnTiFiEr_HaHaHa# --- `model` is required for web service with serviceType.HaHaHa_EnD_TiDy_IdEnTiFiEr")
-5: invisible
-   ^
-
-> 
-> proc.time()
-   user  system elapsed 
-  6.652   0.412   7.984 
+Execution halted
