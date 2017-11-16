@@ -1,3 +1,4 @@
+# About
 ## Steph Locke
 - Founder of Locke Data
 - Microsoft Data Platform MVP

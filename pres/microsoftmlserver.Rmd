@@ -1,6 +1,6 @@
 ---
 title: 'Using Microsoft ML Server for data science'
-author: "Steph Locke<br>@SteffLocke<br>Locke Data"
+author: "Steph Locke @SteffLocke Locke Data"
 date: '`r Sys.Date()`'
 ---
 
