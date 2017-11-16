@@ -579,12 +579,18 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Save model object to disk</li>
 <li>Make into an API</li>
+<li>Save model in DB</li>
 </ul>
+</section><section id="local-with-r-1" class="slide level2">
+<h1>Local with R</h1>
+<p><img src="/pres-azure/pres/img/rtodeployr.png" /></p>
+</section><section id="local-with-r-2" class="slide level2">
+<h1>Local with R</h1>
+<p><img src="/pres-azure/pres/img/rtosql.png" /></p>
 </section><section id="local-with-microsoft-r-client" class="slide level2">
 <h1>Local with Microsoft R Client</h1>
 <ol type="1">
-<li>Collect data with RODBC or something</li>
-<li>Turn into an xdf</li>
+<li>Work with xdf or table connections</li>
 <li>Clean up data with <code>dplyrXdf</code></li>
 <li>Build model using an rx* function</li>
 <li>Make model useful later</li>
@@ -592,6 +598,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Save model object to disk using <code>rxSerializeModel</code></li>
 <li>Make into an API using <code>mrsdeploy</code></li>
+<li>Save model in DB</li>
 </ul>
 </section><section id="semi-local" class="slide level2">
 <h1>Semi-local</h1>
@@ -605,6 +612,9 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Save model object to disk using <code>rxSerializeModel</code></li>
 <li>Make into an API using <code>mrsdeploy</code></li>
 </ul>
+</section><section id="local-with-microsoft-r-client-1" class="slide level2">
+<h1>Local with Microsoft R Client</h1>
+<p><img src="/pres-azure/pres/img/rclienttoremote.png" /></p>
 </section><section id="remote" class="slide level2">
 <h1>Remote</h1>
 <ol type="1">
@@ -612,8 +622,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Run locally on a sample</li>
 <li>Send code to remote server with <code>mrsdeploy</code></li>
 </ol>
+</section><section id="remote-1" class="slide level2">
+<h1>Remote</h1>
+<p><img src="/pres-azure/pres/img/remoteexec.png" /></p>
 </section></section>
-<section><section id="local-with-r-1" class="titleslide slide level1"><h1>Local with R</h1></section><section id="produce-a-model" class="slide level2">
+<section><section id="local-with-r-3" class="titleslide slide level1"><h1>Local with R</h1></section><section id="produce-a-model" class="slide level2">
 <h1>Produce a model</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
 flightLM&lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay ~<span class="st"> </span>month +<span class="st"> </span>day +<span class="st">  </span>hour, <span class="dt">data=</span>flights, <span class="dt">model =</span> <span class="ot">FALSE</span>)
