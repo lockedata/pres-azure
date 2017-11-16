@@ -64,15 +64,24 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 4. Make model useful later
    + Save model object to disk
    + Make into an API
+   + Save model in DB
+
+## Local with R
+![](img/rtodeployr.png)
+
+## Local with R
+![](img/rtosql.png)
 
 ## Local with Microsoft R Client
-1. Collect data with RODBC or something
-2. Turn into an xdf
+1. Work with xdf or table connections
 2. Clean up data with `dplyrXdf`
 3. Build model using an rx* function
 4. Make model useful later
    + Save model object to disk using `rxSerializeModel`
    + Make into an API using `mrsdeploy`
+   + Save model in DB
+   
+
 
 ## Semi-local
 1. Connect to data using RevoScaleR
@@ -82,10 +91,16 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
    + Save model object to disk using `rxSerializeModel`
    + Make into an API using `mrsdeploy`
 
+## Local with Microsoft R Client
+![](img/rclienttoremote.png)
+
 ## Remote
 1. Write code
 1. Run locally on a sample
 2. Send code to remote server with `mrsdeploy`
+
+## Remote
+![](img/remoteexec.png)
 
 # Local with R
 
