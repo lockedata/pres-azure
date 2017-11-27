@@ -555,6 +555,6 @@ List of 1
  $ eval: logi TRUE
 
 Quitting from lines 79-92 (RandSQLServer.Rmd) 
-Error: nanodbc/nanodbc.cpp:950: 28000: [unixODBC][Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Login failed for user 'lockedata'. 
+Error: nanodbc/nanodbc.cpp:950: HY000: [unixODBC][Microsoft][ODBC Driver 13 for SQL Server][SQL Server]Database 'advr' on server 'advr.database.windows.net' is not currently available.  Please retry the connection later.  If the problem persists, contact customer support, and provide them the session tracing ID of '{BC2AFAEA-91FA-411D-AFA4-CE8F61485ACB}'. 
 
 Execution halted
