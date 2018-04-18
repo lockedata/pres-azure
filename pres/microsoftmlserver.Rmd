@@ -7,7 +7,7 @@ date: '`r Sys.Date()`'
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="large", tidy.opts=list( width.cutoff=60))
 
-do_eval<-FALSE
+do_eval<-TRUE
 dbConn<-NULL
 ```
 
@@ -50,6 +50,15 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 
 > Oo, and Azure SQL now!
 
+## High-level reasons to use it
+- Less data & compute on devices
+- Hefty compute requirements
+- Process out-of-memory stuff
+- Fast algorithms
+- Centrally administered environment
+- Microsoft support agreement
+
+# ML integrated with SQL
 ## SQL Server Overview
 - Use `sp_execute_external_script` to call R from SQL
 - Store model objects in SQL Server
@@ -68,7 +77,9 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 
 
 ## Local with R
-![](img/rtosql.png)
+```{r}
+knitr::include_graphics("img/rtosql.png")
+```
 
 ## Local with Microsoft R Client
 1. Work with xdf or table connections
@@ -81,7 +92,9 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
    
 
 ## Local with Microsoft R Client
-![](img/rtodeployr.png)
+```{r}
+knitr::include_graphics("img/rtodeployr.png")
+```
 
 ## Semi-local
 1. Connect to data using RevoScaleR
@@ -92,7 +105,10 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
    + Make into an API using `mrsdeploy`
 
 ## Local with Microsoft R Client
-![](img/rclienttoremote.png)
+```{r}
+knitr::include_graphics("img/rclienttoremote.png")
+```
+
 
 ## Remote
 1. Write code
@@ -100,31 +116,26 @@ You can install Machine Learning Server on open source Apache Hadoop from http:/
 2. Send code to remote server with `mrsdeploy`
 
 ## Remote
-![](img/remoteexec.png)
+```{r}
+knitr::include_graphics("img/remoteexec.png")
+```
 
-# Using ML Server / Client
+
+# Working with out-of-memory datasets
 ## Libraries
 ```{r eval=do_eval}
-library(DBI)
-library(odbc)
-library(tidyverse)
-
-if(!require(dplyrXdf)) devtools::install_github("RevolutionAnalytics/dplyrXdf")
 library(dplyrXdf)
 ```
 
 [Latest changes](http://blog.revolutionanalytics.com/2017/10/announcing-dplyrxdf-10.html)
 
-## Turn some data into an xdf
-You can use a conenction to a DB, Hadoop, etc too
+## Get an xdf
 ```{r eval=do_eval}
-if(!require(ggplot2movies)) install.packages("ggplot2movies")
-library(ggplot2movies)
-
-imdb_movies <- rxDataStep(movies, "movies.xdf", overwrite=TRUE)
+imdb_movies <- rxDataStep(ggplot2movies::movies, 
+                          "movies.xdf", 
+                          overwrite=TRUE)
 rxGetInfo(imdb_movies, verbose = 1)
 ```
-
 
 ## Prep data
 ```{r eval=do_eval}
@@ -142,6 +153,16 @@ head(action_or_not)
 imdb_movies %>% 
   filter(length < 60*5 ) %>% 
   RevoScaleR::rxHistogram(~rating | F(Action) + F(Romance), data=.)
+```
+
+## Why not ggplot2 I hear you say!
+```{r eval=do_eval, error=TRUE}
+library(ggplot2)
+imdb_movies %>% 
+  filter(length < 60*5 ) %>% 
+  ggplot(aes(rating)) +
+  geom_histogram() +
+  facet_grid(Action~Romance)
 ```
 
 ## Sample data
@@ -280,30 +301,29 @@ movies_dtree %>%
   rxVarImpPlot()
 ```
 
+# Pushing to remote servers
 ## Connecting to an environment
 [mrsdeploy](https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r)
 
-```{r eval=do_eval}
+```{r eval=FALSE}
 library(mrsdeploy)
-remoteLogin("http://51.140.39.75:12800", 
+remoteLogin("http://rsrvr.westus2.cloudapp.azure.com:12800", 
             username = "admin", 
             password = "zll+.?=g8JA11111",
-            commandline=FALSE)
+            commandline=FALSE,diff = FALSE)
 ```
 
 ## Publish model to Microsoft ML Server
 ```{r eval=FALSE}
 publishService(
-  "basicFlightsdtree",
-  code = NULL,
-  # --- `model` is required for web service with serviceType `Realtime` --- #
-  model = movies_dtree,
-  # --- `serviceType` is required for this web service --- #
-  serviceType = "Realtime"
+   "add-service",
+    code = "result <- x + y",
+    inputs = list(x = "numeric", y = "numeric"),
+    outputs = list(result = "numeric")
 )
 ```
 
-# SQL Server based execution
+# Using ML Server in SQL Server
 
 
 ## Connecting to an environment
@@ -312,10 +332,10 @@ library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
-server   = "advr.database.windows.net"
-database = "advr"
-uid      = "lockedata"
-pwd      = "zll+.?=g8JA11111"
+server = "lockedata.westeurope.cloudapp.azure.com"
+database = "datasci"
+uid = "u001"
+pwd = "HBBFSE"
 
 dbConn<-dbConnect(odbc(),
           driver=driver, server=server,
@@ -511,7 +531,7 @@ DECLARE @model varbinary(max) = (
 
 EXEC sp_rxPredict
 @model = @model,
-@inputData = N'SELECT TOP 10 * FROM flights'
+@inputData = N'SELECT TOP 10 month , day , hour FROM flights'
 ```
 
 
