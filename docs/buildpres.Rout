@@ -28,7 +28,7 @@ processing file: AboutMeBusiness.Rmd
 
 output file: AboutMeBusiness.knit.md
 
-/usr/local/bin/pandoc +RTS -K512m -RTS AboutMeBusiness.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/AboutMeBusiness.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=AboutMeBusiness_files/reveal.js-3.3.0.1 --highlight-style pygments 
+/usr/local/bin/pandoc +RTS -K512m -RTS AboutMeBusiness.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/AboutMeBusiness.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=reveal/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/AboutMeBusiness.html
 
@@ -40,7 +40,7 @@ processing file: AboutMeTech.Rmd
 
 output file: AboutMeTech.knit.md
 
-/usr/local/bin/pandoc +RTS -K512m -RTS AboutMeTech.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/AboutMeTech.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=AboutMeTech_files/reveal.js-3.3.0.1 --highlight-style pygments 
+/usr/local/bin/pandoc +RTS -K512m -RTS AboutMeTech.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/AboutMeTech.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=reveal/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/AboutMeTech.html
 
@@ -76,7 +76,7 @@ processing file: ./AboutMeTech.Rmd
 
 output file: isthecloudcosteffective.knit.md
 
-/usr/local/bin/pandoc +RTS -K512m -RTS isthecloudcosteffective.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/isthecloudcosteffective.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=isthecloudcosteffective_files/reveal.js-3.3.0.1 --highlight-style pygments 
+/usr/local/bin/pandoc +RTS -K512m -RTS isthecloudcosteffective.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/isthecloudcosteffective.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=reveal/reveal.js-3.3.0.1 --highlight-style pygments 
 
 Output created: docs/isthecloudcosteffective.html
 
