@@ -111,12 +111,12 @@ processing file: ./AboutMeBusiness.Rmd
 
   |                                                                         |....                                                             |   6%
 label: unnamed-chunk-1
-  |                                                                         |.....                                                            |   7%
+  |                                                                         |.....                                                            |   8%
   ordinary text without R code
 
-  |                                                                         |.....                                                            |   8%
-label: unnamed-chunk-2
   |                                                                         |......                                                           |   9%
+label: unnamed-chunk-2
+  |                                                                         |......                                                           |  10%
   ordinary text without R code
 
   |                                                                         |.......                                                          |  11%
