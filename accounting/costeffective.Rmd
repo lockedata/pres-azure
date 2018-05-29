@@ -16,6 +16,7 @@ library(ggplot2)
 library(ggthemes)
 library(optiRum)
 library(hrbrthemes)
+library(plotly)
 
 createflow <- function(x, pos, len) {
   basis <- vector(mode = "numeric", len)
@@ -175,19 +176,36 @@ lb <- reactive(pmin(
   min(results()$onprem$totalval) * 1.05,
   min(results()$cloud$totalval) * 1.05
 ))
+simple_cashflows<-reactive(data.frame(
+  n=1:input$time,
+  vals=100 * (1+input$int/12)^(1:input$time-1)
+))
+
+scales=c(1,10,50,100,200,500,1000)
+doubling_inputs<-reactive({
+  base<-data.frame(
+  scales=scales,
+  amts=100*scales)
+  
+  base$interest=base$amts* (1+input$int)^(input$time-1)  -base$amts
+  base$multsofmin=base$interest / min(base$interest)
+  
+  base
+})
 ```
 
 
-Overview
+An example
 =====================================  
 
-On-premises 
+Comparison 
 -----------------------------------------------------------------------
-### On-prem
+### Comparison
 
 ```{r}
-renderPlot({
-  ggplot(results()$onprem, aes(x = per, y = totalval)) +
+renderPlotly(
+  subplot(
+  ggplotly({ggplot(results()$onprem, aes(x = per, y = totalval)) +
     geom_line(size = 3, colour = "#2165B6") +
     scale_y_comma(limits = c(lb(), ub())) +
     hrbrthemes::theme_ipsum(
@@ -205,15 +223,9 @@ renderPlot({
       size = 12,
       colour = "#E8830C"
     )
-})
-```
-
-
-Cloud
------------------------------------------------------------------------
-### Cloud
-```{r}
-renderPlot({
+  }),
+  
+  ggplotly({
   ggplot(results()$cloud, aes(x = per, y = totalval)) +
     geom_line(size = 3, colour = "#2165B6") +
     scale_y_comma(limits = c(lb(), ub())) +
@@ -224,7 +236,7 @@ renderPlot({
       axis = FALSE
     ) +
     labs(x = "Months", y = "Balance + Assets",
-         title = "The cost of using the cloud over time") +
+         title = "Cashflows and residual balances (On-prem vs Cloud)") +
     geom_hline(aes(yintercept = 0), colour = "#E8830C") +
     geom_text(
       data = results()$cloud[input$time + 1, ],
@@ -232,7 +244,9 @@ renderPlot({
       size = 12,
       colour = "#E8830C"
     )
-})
+  }), shareX = TRUE, shareY=TRUE
+  
+))
 ```
 
 
@@ -247,4 +261,56 @@ renderDataTable(results()$onprem)
 ### Cloud data
 ```{r}
 renderDataTable(results()$cloud)
+```
+
+
+Compound Interest
+=====================================  
+If I invest my money I (hopefully) earn money. This is usually a percentage of what I had originally. The actual amount I receive is the interest, and the amount relative to my original amount is the interest rate.
+
+Compound interest is nifty because you earn interest on the interest you got before. This means your money grows and grows more over time.
+
+
+### 100 currency compounded each month by investment
+```{r}
+renderPlot(
+  ggplot(simple_cashflows(),aes(x=n, y=vals))+
+    geom_line()+
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    )
+)
+```
+
+
+
+
+
+The value of money
+=====================================  
+Moneye I spend now cannot be un-spent. I cannot invest it and derive value from it. Money I have *now* is worth more than that same amount of money *later*.
+
+When we talk about the value of money, we talk about the Present Value (PV) and the Future Value (FV). Present Value is what is that money worth today, and Future Value is what is money worth in the future.
+
+The FV of some money is basically what would we have if we'd have invested it and gained all that compound interest. The PV of some amount in future is how much would we have to invest now to get that amount at the point in future. Obviously this is all predicated on some sort of interest rate -- making these calculations have assumptions that people need to look at carefully!
+
+### Future value of £100 based on different interest rates
+```{r}
+renderPlot(
+  ggplot(data.frame(int_rate=seq(0,0.15,.01),
+                    val=100*(1+seq(0,0.15,.01)/12)^(input$time-1)),
+         aes(x=int_rate, y=val))+
+    geom_line()+
+    geom_point()+
+  scale_x_continuous(labels=scales::percent)+
+    hrbrthemes::theme_ipsum(
+      base_size = 18,
+      axis_title_size = 24,
+      grid = FALSE,
+      axis = FALSE
+    )
+)
 ```
