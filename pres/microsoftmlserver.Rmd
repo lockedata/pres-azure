@@ -152,13 +152,14 @@ head(action_or_not)
 ```{r eval=do_eval}
 imdb_movies %>% 
   filter(length < 60*5 ) %>% 
-  RevoScaleR::rxHistogram(~rating | F(Action) + F(Romance), data=.)
+  rxHistogram(~rating | F(Action) + F(Romance), data=.)
 ```
 
 ## Why not ggplot2 I hear you say!
 ```{r eval=do_eval, error=TRUE}
 library(ggplot2)
-imdb_movies %>% 
+imdb_movies %>%
+  as_data_frame() %>% 
   filter(length < 60*5 ) %>% 
   ggplot(aes(rating)) +
   geom_histogram() +
@@ -243,7 +244,7 @@ movies_dtree %>%
 ## Decision trees
 ```{r eval=FALSE}
 movies_dtree %>% 
-  createTreeView() %>% 
+  RevoTreeView::createTreeView() %>% 
   plot()
 ```
 
@@ -281,19 +282,19 @@ plot(movies_testing$Comedy, movies_testing$`0_Pred`)
 ## ROC curves
 ```{r eval=do_eval}
 movies_testing %>% 
-  rxPredict(movies_dtree, data=., 
+  rxPredict(movies_dtree, data=.,
+            predVarNames="Comedy_Pred",
+             type="vector") %>%
+  rxRocCurve(actualVarName="Comedy", predVarNames = "1_Pred", data=.)
+
+movies_testing %>% 
+  rxPredict(movies_dtree, data=.,
             predVarNames="Comedy_Pred",
              type="vector") %>% 
-  rxRocCurve(actualVarName="Comedy", predVarNames = "Comedy_Pred", data=.)
-
+  count(Comedy, Comedy_Pred) 
 ```
 
-## Lorenz curves
-```{r eval=do_eval}
-movies_testing %>% 
-  rxLorenz("Comedy_Pred","Comedy", data=.) %>% 
-  plot()
-```
+
 
 ## Variable importance
 ```{r eval=do_eval}
@@ -332,10 +333,10 @@ library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
-server = "lockedata.westeurope.cloudapp.azure.com"
+server = "lockedata2.westeurope.cloudapp.azure.com"
 database = "datasci"
-uid = "u001"
-pwd = "HBBFSE"
+uid = "lockedata"
+pwd = "zll+.?=g8JA11111"
 
 dbConn<-dbConnect(odbc(),
           driver=driver, server=server,
@@ -359,7 +360,7 @@ EXECUTE sp_execute_external_script
         @language = N'R'
         ,@script = N'OutputDataSet <- InputDataSet'
         ,@input_data_1 = N'SELECT 1 as Col'
- WITH RESULT SETS ((col varchar(50) not null))        
+ WITH RESULT SETS ((newcol varchar(50) not null))        
 ```
 
 
@@ -443,7 +444,7 @@ EXECUTE sp_execute_external_script
         ,@script = N'
         flightLM<-lm(arr_delay ~ month + day +  hour, data=InputDataSet, model=FALSE)
         OutputDataSet<-data.frame(modelname="modelFromInSQL",
-        modelobj=paste0(                              serialize(flightLM,NULL)
+        modelobj=paste0( serialize(flightLM,NULL)
        ,collapse = "") )
         '
         ,@input_data_1 = N'SELECT * FROM flights'
