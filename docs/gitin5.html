@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Steph Locke (@theStephLocke)" />
-  <meta name="dcterms.date" content="2018-06-23" />
+  <meta name="dcterms.date" content="2018-06-29" />
   <title>Git in 5</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="gitin5_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 
-<link rel="stylesheet" href="gitin5_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -453,7 +453,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">Git in 5</h1>
     <h2 class="author">Steph Locke (<span class="citation" data-cites="theStephLocke">@theStephLocke</span>)</h2>
-    <h3 class="date">2018-06-23</h3>
+    <h3 class="date">2018-06-29</h3>
 </section>
 
 <section class="slide level2">
@@ -476,7 +476,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 -->
 </section>
 <section id="whos-a-git" class="slide level2">
-<h2>Who’s a git?</h2>
+<h1>Who’s a git?</h1>
 <p>Not who* but what…</p>
 <p>Git is source control that is</p>
 <ul>
@@ -492,40 +492,40 @@ document.getElementsByTagName('head')[0].appendChild(style);
 -->
 </section>
 <section><section id="a-simple-git-workflow" class="titleslide slide level1"><h1>A (simple) Git workflow</h1></section><section id="clone-a-copy-of-the-code" class="slide level2" data-background="http://img.lum.dolimg.com/v1/images/clone-trooper-armor_607fbd6a.jpeg">
-<h2>Clone a copy of the code</h2>
+<h1>Clone a copy of the code</h1>
 <p>Take a copy of the code for you to work on without preventing anyone else from doing the same, and most definiitely not damaging the remote copy</p>
 <pre><code>git clone https://github.com/stephlocke/Rtraining.git</code></pre>
 </section><section id="branch-the-code" class="slide level2" data-background="http://www.alternet.org/files/story_images/hunter-s.-thompson-fear-and-loathing1.jpg">
-<h2>Branch the code</h2>
+<h1>Branch the code</h1>
 <p>Branches are different containers of code - they don’t impact each other. This means that you can make them for features, for trying something out, for releases etc</p>
 <pre><code>git branch breakallthethings
 git checkout breakallthethings</code></pre>
 </section><section id="make-your-changes" class="slide level2" data-background="http://www.caribflame.com/wp-content/uploads/2016/03/obama-change-1.jpg">
-<h2>Make your changes</h2>
+<h1>Make your changes</h1>
 </section><section id="state-your-business" class="slide level2" data-background="http://crooksandliars.com/files/primary_image/14/12/respectcartman.jpg">
-<h2>State your business</h2>
+<h1>State your business</h1>
 <p>Tell git which bits of code you’re happy* with.</p>
 <pre><code>git add iLoveCursors.sql</code></pre>
 <p>* For various definitions of happy</p>
 </section><section id="commit-your-code" class="slide level2" data-background="http://lovelace-media.imgix.net/uploads/299/94220ab0-fcee-0132-451e-0a2ca390b447.jpg?">
-<h2>Commit your code</h2>
+<h1>Commit your code</h1>
 <p>Confirm your changes and tell your local git that you’re happy with them</p>
 <pre><code>git commit -m &quot;I loves me some cursors&quot;</code></pre>
 </section><section id="merge-your-code" class="slide level2" data-background="http://aksports.com/wp-content/uploads/2014/09/merge-sign.jpg">
-<h2>Merge your code</h2>
+<h1>Merge your code</h1>
 <p>Super happy with your? Publish it to the master branch</p>
 <pre><code>git checkout master
 git merge breakallthethings -m &quot;I didn&#39;t break all the things&quot;</code></pre>
 </section><section id="push-your-code" class="slide level2" data-background="http://i.perezhilton.com/wp-content/uploads/2014/11/salt-n-pepa-push-it-commercial.gif">
-<h2>Push your code</h2>
+<h1>Push your code</h1>
 <p>Put new code on the remote location</p>
 <pre><code>git push</code></pre>
 </section></section>
 <section><section id="git-moah-things" class="titleslide slide level1"><h1>Git moah things</h1></section><section id="git-model" class="slide level2">
-<h2>Git model</h2>
+<h1>Git model</h1>
 <p><img src="https://raw.githubusercontent.com/stephlocke/lazyCDN/master/versioncontrolallthings.jpg" alt="git model" /> via <a href="https://twitter.com/cthydng/status/575483540202106880">@cthydng</a></p>
 </section><section id="git-resources" class="slide level2">
-<h2>Git resources</h2>
+<h1>Git resources</h1>
 <ul>
 <li><a href="https://git-scm.com/">Git homepage</a></li>
 <li><a href="https://services.github.com/kit/downloads/github-git-cheat-sheet.pdf">Git cheatsheet</a></li>
@@ -535,7 +535,7 @@ git merge breakallthethings -m &quot;I didn&#39;t break all the things&quot;</co
 <li><a href="https://try.github.io/levels/1/challenges/1">Try Git</a></li>
 </ul>
 </section><section id="git-remotes" class="slide level2">
-<h2>Git remotes</h2>
+<h1>Git remotes</h1>
 <ul>
 <li><a href="https://github.com/">GitHub</a></li>
 <li><a href="https://about.gitlab.com/">GitLab</a></li>
@@ -543,7 +543,7 @@ git merge breakallthethings -m &quot;I didn&#39;t break all the things&quot;</co
 <li><a href="https://bitbucket.org/">BitBucket</a></li>
 </ul>
 </section><section id="git-clients" class="slide level2">
-<h2>Git clients</h2>
+<h1>Git clients</h1>
 <ul>
 <li><a href="https://git-for-windows.github.io/">Git GUI</a></li>
 <li>Integration in Visual Studio</li>
@@ -551,7 +551,7 @@ git merge breakallthethings -m &quot;I didn&#39;t break all the things&quot;</co
 <li><a href="https://desktop.github.com/">GitHub Desktop</a></li>
 </ul>
 </section><section id="git-advice" class="slide level2">
-<h2>Git advice</h2>
+<h1>Git advice</h1>
 <ul>
 <li><a href="http://workingwithdevs.com/two-different-types-of-release-branch/">Alex Yates’s piece on release branches</a></li>
 <li><a href="http://nvie.com/posts/a-successful-git-branching-model/">Git Flow</a></li>
@@ -562,8 +562,8 @@ git merge breakallthethings -m &quot;I didn&#39;t break all the things&quot;</co
     </div>
   </div>
 
-  <script src="gitin5_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="gitin5_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 

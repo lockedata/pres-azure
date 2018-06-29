@@ -45,6 +45,26 @@ output file: AboutMeTech.knit.md
 Output created: docs/AboutMeTech.html
 
 
+processing file: gitin5.Rmd
+  |                                                                         |                                                                 |   0%  |                                                                         |......................                                           |  33%
+   inline R code fragments
+
+  |                                                                         |...........................................                      |  67%
+label: setup (with options) 
+List of 1
+ $ include: logi FALSE
+
+  |                                                                         |.................................................................| 100%
+  ordinary text without R code
+
+
+output file: gitin5.knit.md
+
+/usr/local/bin/pandoc +RTS -K512m -RTS gitin5.utf8.md --to revealjs --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash-implicit_figures --output /pres-azure/docs/gitin5.html --smart --email-obfuscation none --template /usr/local/lib/R/site-library/revealjs/rmarkdown/templates/revealjs_presentation/resources/default.html --variable center=false --slide-level 2 --variable theme=simple --variable transition=default --variable backgroundTransition=default --variable history=true --variable "height='1080'" --variable "width='1920'" --variable "margin='0.05'" --css lockedata.css --mathjax --variable "mathjax-url:https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" --variable revealjs-url=reveal/reveal.js-3.3.0.1 --highlight-style pygments 
+
+Output created: docs/gitin5.html
+
+
 processing file: isthecloudcosteffective.Rmd
   |                                                                         |                                                                 |   0%  |                                                                         |.............                                                    |  20%
    inline R code fragments
