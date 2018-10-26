@@ -1,6 +1,6 @@
 ---
 title: 'R & SQL Server for real-time predictions'
-author: "Steph Locke\n@SteffLocke\nLocke Data"
+author: "Steph Locke\n@theStephLocke\nLocke Data"
 date: '`r Sys.Date()`'
 ---
 
@@ -16,39 +16,6 @@ do_eval<-TRUE
 
 
 
-# R
-
-## Overview
-> R is an integrated suite of software facilities for data manipulation, calculation and graphical display
-
-- Open source
-- In-memory & single-core (by default)
-- Multi-platform
-- Extensible environment
-- Delivered by the [R Foundation](https://www.r-project.org/foundation/), supported by the [R Consortium](https://www.r-consortium.org/), grown by R developers 
-- [r-project.org](http://www.r-project.org/)
-
-## What's it look like?
-```{r}
-ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
-```
-
-## Versions
-- ["Standard" R](https://r-project.org)
-- [Microsoft R Open](https://mran.revolutionanalytics.com/download/)
-- [Microsoft ML Server](https://msdn.microsoft.com/en-us/library/mt674876.aspx)
-- [TERR](https://docs.tibco.com/products/tibco-enterprise-runtime-for-r)
-- [Oracle R](http://www.oracle.com/technetwork/database/database-technologies/r/r-distribution/overview/index.html)
-
-## Key things to manage
-- Packages
-- RAM
-- Code
-
-## Next steps
-- [Learn R online](https://datacamp.com)
-- [Working with R](http://geni.us/workingwithr)
-
 # SQL Server + ML Services
 
 ## Overview
@@ -56,7 +23,7 @@ ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
 - Store model objects in SQL Server
 - Use certain models in a native PREDICT function
 
-## 2016/2017 Editions
+## Editions
 - Express (w/ Advanced tools) - R Open or base R
 - Standard - R Open or base R
 - Enterprise - ML Server
@@ -70,30 +37,25 @@ ggplot2::qplot(mpg, disp, data = mtcars, colour = cyl)
 - Permissions
 - Code
 
-
-## Connecting to our demo env
+## Connecting 
 ```{r eval=TRUE}
 library(DBI)
 library(odbc)
 
 driver   = "ODBC Driver 13 for SQL Server"
-server   = "51.141.54.209"
-database = "advr"
+server   = "lockedata.westcentralus.cloudapp.azure.com"
+database = "datasci"
 uid      = "lockedata"
-pwd      = "zll+.?=g8JA11111"
+pwd      = "ITDevconnections!"
 
 dbConn<-dbConnect(odbc(),
           driver=driver, server=server,
           database=database, uid=uid,
           pwd=pwd)
-```
 
-
-## Connecting to our demo env (extra)
-```{r eval=do_eval}
 library(RODBCext)
-
 dbstring <- glue::glue('Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}')
+ 
 dbconn <- RODBC::odbcDriverConnect(dbstring)
 ```
 
@@ -107,9 +69,7 @@ EXECUTE sp_execute_external_script
  WITH RESULT SETS ((col varchar(50) not null))        
 ```
 
-# DEMO PREP 
-
-## Setup model storage area
+## Model storage area
 ```{sql, connection=dbConn, eval=do_eval, echo=FALSE}
 ALTER TABLE dbo.companyModels SET ( SYSTEM_VERSIONING = OFF)
 DROP TABLE IF EXISTS dbo.companyModelsHistory;
@@ -168,9 +128,7 @@ dbWriteTable(dbConn, "flights", nycflights13::flights, overwrite=TRUE)
 dbWriteTable(dbConn, "flights", nycflights13::flights, overwrite=TRUE)
 ```
 
-
-# R DEMO 
-
+# From R
 ## Produce a basic model
 ```{r}
 library(nycflights13)
@@ -201,12 +159,14 @@ publishService(
 
 ## Store a model
 ```{r eval=do_eval}
-RODBCext::sqlExecute(dbconn, "exec modelUpsert @modelname=? , @modelobj=?",
-                     data = data.frame("modelFromR", paste0( serialize(flightLM,NULL)
-       ,collapse = "")))
+RODBCext::sqlExecute(dbconn, 
+  "exec modelUpsert @modelname=? , @modelobj=?",
+   data = data.frame("modelFromR", 
+          paste0( serialize(flightLM,NULL)
+                ,collapse = "")))
 ```
 
-# IN-SQL DEMO - ANY MODEL 
+# SQL Demo - any R code
 
 ## Produce a basic model
 ```{sql, connection=dbConn, eval=do_eval, echo=FALSE, result="hide"}
@@ -266,7 +226,7 @@ WITH RESULT SETS ((
     [arr_delay]  FLOAT (53)    NULL))
 ```
 
-# NATIVE SQL DEMO 
+# In-SQL - use native PREDICT
 ## Produce a basic model
 ```{sql, connection=dbConn, eval=do_eval, echo=FALSE, result="hide"}
 DROP PROCEDURE IF EXISTS generate_flightlm2
@@ -306,18 +266,6 @@ DECLARE @model varbinary(max) = (
 SELECT TOP 10 d.*, p.*
   FROM PREDICT(MODEL = @model, DATA = flights as d)
   WITH("arr_delay_Pred" float) as p;
-```
-
-## Use model in SQL
-```{sql, connection=dbConn, error=TRUE, eval=FALSE}
-DECLARE @model varbinary(max) = (
-  SELECT modelobj
-  FROM companyModels
-  WHERE [name] = 'modelFromRevo');
-
-EXEC sp_rxPredict
-@model = @model,
-@inputData = N'SELECT TOP 10 * FROM flights'
 ```
 
 # Deploying SQL Server & R Services
@@ -369,4 +317,4 @@ EXEC sp_rxPredict
 ## Wrapup
 - Thank you
 - Get the slides via [itsalocke.com](http://itsalocke.com/talks)
-- Get in touch! [\@SteffLocke](https://twitter.com/stefflocke)
+- Get in touch! [\@theStephLocke](https://twitter.com/theStephLocke)

@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Steph Locke @SteffLocke Locke Data" />
-  <meta name="dcterms.date" content="2017-12-09" />
+  <meta name="author" content="Steph Locke @theStephLocke Locke Data" />
+  <meta name="dcterms.date" content="2018-10-26" />
   <title>R &amp; SQL Server for real-time predictions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="RandSQLServer_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
@@ -50,7 +50,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="RandSQLServer_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -489,12 +489,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 <section>
     <h1 class="title">R &amp; SQL Server for real-time predictions</h1>
-    <h2 class="author">Steph Locke <span class="citation" data-cites="SteffLocke">@SteffLocke</span> Locke Data</h2>
-    <h3 class="date">2017-12-09</h3>
+    <h2 class="author">Steph Locke <span class="citation" data-cites="theStephLocke">@theStephLocke</span> Locke Data</h2>
+    <h3 class="date">2018-10-26</h3>
 </section>
 
 <section id="steph-locke" class="slide level2">
-<h1>Steph Locke</h1>
+<h2>Steph Locke</h2>
 <ul>
 <li>Locke Data</li>
 <li>Presenter on Data Science, BI, and DataOps</li>
@@ -508,97 +508,57 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li><a href="//itsalocke.com/talks">itsalocke.com/talks</a></li>
 </ul>
 </section>
-<section><section id="r" class="titleslide slide level1"><h1>R</h1></section><section id="overview" class="slide level2">
-<h1>Overview</h1>
-<blockquote>
-<p>R is an integrated suite of software facilities for data manipulation, calculation and graphical display</p>
-</blockquote>
-<ul>
-<li>Open source</li>
-<li>In-memory &amp; single-core (by default)</li>
-<li>Multi-platform</li>
-<li>Extensible environment</li>
-<li>Delivered by the <a href="https://www.r-project.org/foundation/">R Foundation</a>, supported by the <a href="https://www.r-consortium.org/">R Consortium</a>, grown by R developers</li>
-<li><a href="http://www.r-project.org/">r-project.org</a></li>
-</ul>
-</section><section id="whats-it-look-like" class="slide level2">
-<h1>What’s it look like?</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ggplot2::<span class="kw">qplot</span>(mpg, disp, <span class="dt">data =</span> mtcars, <span class="dt">colour =</span> cyl)</code></pre></div>
-<p><img src="RandSQLServer_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" /></p>
-</section><section id="versions" class="slide level2">
-<h1>Versions</h1>
-<ul>
-<li><a href="https://r-project.org">“Standard” R</a></li>
-<li><a href="https://mran.revolutionanalytics.com/download/">Microsoft R Open</a></li>
-<li><a href="https://msdn.microsoft.com/en-us/library/mt674876.aspx">Microsoft ML Server</a></li>
-<li><a href="https://docs.tibco.com/products/tibco-enterprise-runtime-for-r">TERR</a></li>
-<li><a href="http://www.oracle.com/technetwork/database/database-technologies/r/r-distribution/overview/index.html">Oracle R</a></li>
-</ul>
-</section><section id="key-things-to-manage" class="slide level2">
-<h1>Key things to manage</h1>
-<ul>
-<li>Packages</li>
-<li>RAM</li>
-<li>Code</li>
-</ul>
-</section><section id="next-steps" class="slide level2">
-<h1>Next steps</h1>
-<ul>
-<li><a href="https://datacamp.com">Learn R online</a></li>
-<li><a href="http://geni.us/workingwithr">Working with R</a></li>
-</ul>
-</section></section>
-<section><section id="sql-server-ml-services" class="titleslide slide level1"><h1>SQL Server + ML Services</h1></section><section id="overview-1" class="slide level2">
-<h1>Overview</h1>
+<section><section id="sql-server-ml-services" class="titleslide slide level1"><h1>SQL Server + ML Services</h1></section><section id="overview" class="slide level2">
+<h2>Overview</h2>
 <ul>
 <li>Use <code>sp_execute_external_script</code> to call R from SQL</li>
 <li>Store model objects in SQL Server</li>
 <li>Use certain models in a native PREDICT function</li>
 </ul>
 </section><section id="editions" class="slide level2">
-<h1>2016/2017 Editions</h1>
+<h2>Editions</h2>
 <ul>
 <li>Express (w/ Advanced tools) - R Open or base R</li>
 <li>Standard - R Open or base R</li>
 <li>Enterprise - ML Server</li>
 </ul>
 <p><a href="https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2017#Programmability">SQL Server feature comparison</a></p>
-</section><section id="key-things-to-manage-1" class="slide level2">
-<h1>Key things to manage</h1>
+</section><section id="key-things-to-manage" class="slide level2">
+<h2>Key things to manage</h2>
 <ul>
 <li>RAM &amp; CPU</li>
 <li>Licenses vs Server resources</li>
 <li>Permissions</li>
 <li>Code</li>
 </ul>
-</section><section id="connecting-to-our-demo-env" class="slide level2">
-<h1>Connecting to our demo env</h1>
+</section><section id="connecting" class="slide level2">
+<h2>Connecting</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)
 <span class="kw">library</span>(odbc)
 
 driver   =<span class="st"> &quot;ODBC Driver 13 for SQL Server&quot;</span>
-server   =<span class="st"> &quot;51.141.54.209&quot;</span>
-database =<span class="st"> &quot;advr&quot;</span>
+server   =<span class="st"> &quot;lockedata.westcentralus.cloudapp.azure.com&quot;</span>
+database =<span class="st"> &quot;datasci&quot;</span>
 uid      =<span class="st"> &quot;lockedata&quot;</span>
-pwd      =<span class="st"> &quot;zll+.?=g8JA11111&quot;</span>
+pwd      =<span class="st"> &quot;ITDevconnections!&quot;</span>
 
 dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(),
           <span class="dt">driver=</span>driver, <span class="dt">server=</span>server,
           <span class="dt">database=</span>database, <span class="dt">uid=</span>uid,
-          <span class="dt">pwd=</span>pwd)</code></pre></div>
-</section><section id="connecting-to-our-demo-env-extra" class="slide level2">
-<h1>Connecting to our demo env (extra)</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RODBCext)</code></pre></div>
+          <span class="dt">pwd=</span>pwd)
+
+<span class="kw">library</span>(RODBCext)</code></pre></div>
 <pre><code>## Loading required package: RODBC</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;RODBCext&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:RODBC&#39;:
 ## 
 ##     odbcFetchRows, sqlFetchMore</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbstring &lt;-<span class="st"> </span>glue::<span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)
-dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbstring &lt;-<span class="st"> </span>glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)
+ 
+dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
 </section><section id="a-basic-execution" class="slide level2">
-<h1>A basic execution</h1>
+<h2>A basic execution</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXECUTE</span> sp_execute_external_script
         @language = N<span class="st">&#39;R&#39;</span>
         ,@script = N<span class="st">&#39;OutputDataSet &lt;- InputDataSet&#39;</span>
@@ -606,6 +566,7 @@ dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</
  <span class="kw">WITH</span> RESULT SETS ((col <span class="dt">varchar</span>(<span class="dv">50</span>) <span class="kw">not</span> <span class="kw">null</span>))        </code></pre></div>
 <div class="knitsql-table">
 <table>
+<caption>1 records</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">col</th>
@@ -618,9 +579,8 @@ dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</
 </tbody>
 </table>
 </div>
-</section></section>
-<section><section id="demo-prep" class="titleslide slide level1"><h1>DEMO PREP</h1></section><section id="setup-model-storage-area" class="slide level2">
-<h1>Setup model storage area</h1>
+</section><section id="model-storage-area" class="slide level2">
+<h2>Model storage area</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> [companyModels]    (  
   [<span class="kw">id</span>] <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> IDENTITY (<span class="dv">1</span>,<span class="dv">1</span>)   
 , [name] <span class="dt">varchar</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>      
@@ -631,7 +591,7 @@ dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</
 , <span class="kw">CONSTRAINT</span> unique_modelname <span class="kw">UNIQUE</span> ([name]))
 <span class="kw">WITH</span> (SYSTEM_VERSIONING = <span class="kw">ON</span> (HISTORY_TABLE = dbo.companyModelsHistory));  </code></pre></div>
 </section><section id="model-upsert-stored-procedure" class="slide level2">
-<h1>Model UPSERT stored procedure</h1>
+<h2>Model UPSERT stored procedure</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> modelUpsert
 <span class="ot">@modelname  varchar(200) , </span>
 <span class="ot">@modelobj varbinary(max) </span>
@@ -654,13 +614,13 @@ dbconn &lt;-<span class="st"> </span>RODBC::<span class="kw">odbcDriverConnect</
         MySource.modelObj
     );</code></pre></div>
 </section><section id="add-some-data" class="slide level2">
-<h1>Add some data</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13::flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</code></pre></div>
+<h2>Add some data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13<span class="op">::</span>flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</code></pre></div>
 </section></section>
-<section><section id="r-demo" class="titleslide slide level1"><h1>R DEMO</h1></section><section id="produce-a-basic-model" class="slide level2">
-<h1>Produce a basic model</h1>
+<section><section id="from-r" class="titleslide slide level1"><h1>From R</h1></section><section id="produce-a-basic-model" class="slide level2">
+<h2>Produce a basic model</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
-flightLM&lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay ~<span class="st"> </span>month +<span class="st"> </span>day +<span class="st">  </span>hour, <span class="dt">data=</span>flights, <span class="dt">model =</span> <span class="ot">FALSE</span>)
+flightLM&lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>month <span class="op">+</span><span class="st"> </span>day <span class="op">+</span><span class="st">  </span>hour, <span class="dt">data=</span>flights, <span class="dt">model =</span> <span class="ot">FALSE</span>)
 
 flightLM</code></pre></div>
 <pre><code>## 
@@ -672,13 +632,13 @@ flightLM</code></pre></div>
 ## (Intercept)        month          day         hour  
 ##  -13.466402    -0.218229    -0.001232     1.659978</code></pre>
 </section><section id="use-model-in-r" class="slide level2">
-<h1>Use model in R</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_flights&lt;-<span class="st"> </span>flights[<span class="dv">1</span>:<span class="dv">5</span>,]
+<h2>Use model in R</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_flights&lt;-<span class="st"> </span>flights[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,]
 <span class="kw">predict</span>(flightLM, sample_flights)</code></pre></div>
 <pre><code>##         1         2         3         4         5 
 ## -5.385970 -5.385970 -5.385970 -5.385970 -3.725991</code></pre>
 </section><section id="publish-model-to-microsoft-ml-server" class="slide level2">
-<h1>Publish model to Microsoft ML Server</h1>
+<h2>Publish model to Microsoft ML Server</h2>
 <p><a href="https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r">mrsdeploy</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">publishService</span>(
   <span class="st">&quot;basicFlightsLM&quot;</span>,
@@ -689,13 +649,15 @@ flightLM</code></pre></div>
   <span class="dt">serviceType =</span> <span class="st">&quot;Realtime&quot;</span>
 )</code></pre></div>
 </section><section id="store-a-model" class="slide level2">
-<h1>Store a model</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RODBCext::<span class="kw">sqlExecute</span>(dbconn, <span class="st">&quot;exec modelUpsert @modelname=? , @modelobj=?&quot;</span>,
-                     <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="st">&quot;modelFromR&quot;</span>, <span class="kw">paste0</span>( <span class="kw">serialize</span>(flightLM,<span class="ot">NULL</span>)
-       ,<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)))</code></pre></div>
+<h2>Store a model</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RODBCext<span class="op">::</span><span class="kw">sqlExecute</span>(dbconn, 
+  <span class="st">&quot;exec modelUpsert @modelname=? , @modelobj=?&quot;</span>,
+   <span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="st">&quot;modelFromR&quot;</span>, 
+          <span class="kw">paste0</span>( <span class="kw">serialize</span>(flightLM,<span class="ot">NULL</span>)
+                ,<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)))</code></pre></div>
 </section></section>
-<section><section id="in-sql-demo---any-model" class="titleslide slide level1"><h1>IN-SQL DEMO - ANY MODEL</h1></section><section id="produce-a-basic-model-1" class="slide level2">
-<h1>Produce a basic model</h1>
+<section><section id="sql-demo---any-r-code" class="titleslide slide level1"><h1>SQL Demo - any R code</h1></section><section id="produce-a-basic-model-1" class="slide level2">
+<h2>Produce a basic model</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
@@ -721,10 +683,10 @@ flightLM</code></pre></div>
 
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-basic-model-2" class="slide level2">
-<h1>Produce a basic model</h1>
+<h2>Produce a basic model</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm</code></pre></div>
 </section><section id="use-model-in-sql" class="slide level2">
-<h1>Use model in SQL</h1>
+<h2>Use model in SQL</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @mymodel VARBINARY(<span class="fu">MAX</span>)=(<span class="kw">SELECT</span> modelobj 
                 <span class="kw">FROM</span> companymodels 
                 <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromInSQL&#39;</span>
@@ -776,8 +738,8 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 </table>
 </div>
 </section></section>
-<section><section id="native-sql-demo" class="titleslide slide level1"><h1>NATIVE SQL DEMO</h1></section><section id="produce-a-basic-model-3" class="slide level2">
-<h1>Produce a basic model</h1>
+<section><section id="in-sql---use-native-predict" class="titleslide slide level1"><h1>In-SQL - use native PREDICT</h1></section><section id="produce-a-basic-model-3" class="slide level2">
+<h2>Produce a basic model</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm2
 <span class="kw">AS</span>
 <span class="kw">BEGIN</span>
@@ -796,10 +758,10 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 
 <span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-basic-model-4" class="slide level2">
-<h1>Produce a basic model</h1>
+<h2>Produce a basic model</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm2</code></pre></div>
 </section><section id="use-model-in-sql-1" class="slide level2">
-<h1>Use model in SQL</h1>
+<h2>Use model in SQL</h2>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
   <span class="kw">SELECT</span> modelobj
   <span class="kw">FROM</span> companyModels
@@ -854,7 +816,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">1400</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">15</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
+<td style="text-align: left;">2013-01-01 10:00:00</td>
 <td style="text-align: right;">-5.385970</td>
 </tr>
 <tr class="even">
@@ -876,7 +838,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">1416</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">29</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
+<td style="text-align: left;">2013-01-01 10:00:00</td>
 <td style="text-align: right;">-5.385970</td>
 </tr>
 <tr class="odd">
@@ -898,7 +860,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">1089</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">40</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
+<td style="text-align: left;">2013-01-01 10:00:00</td>
 <td style="text-align: right;">-5.385970</td>
 </tr>
 <tr class="even">
@@ -920,7 +882,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">1576</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">45</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
+<td style="text-align: left;">2013-01-01 10:00:00</td>
 <td style="text-align: right;">-5.385970</td>
 </tr>
 <tr class="odd">
@@ -942,7 +904,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">762</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
+<td style="text-align: left;">2013-01-01 11:00:00</td>
 <td style="text-align: right;">-3.725991</td>
 </tr>
 <tr class="even">
@@ -964,7 +926,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">719</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">58</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
+<td style="text-align: left;">2013-01-01 10:00:00</td>
 <td style="text-align: right;">-5.385970</td>
 </tr>
 <tr class="odd">
@@ -986,7 +948,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">1065</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
+<td style="text-align: left;">2013-01-01 11:00:00</td>
 <td style="text-align: right;">-3.725991</td>
 </tr>
 <tr class="even">
@@ -1008,7 +970,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">229</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
+<td style="text-align: left;">2013-01-01 11:00:00</td>
 <td style="text-align: right;">-3.725991</td>
 </tr>
 <tr class="odd">
@@ -1030,7 +992,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">944</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
+<td style="text-align: left;">2013-01-01 11:00:00</td>
 <td style="text-align: right;">-3.725991</td>
 </tr>
 <tr class="even">
@@ -1052,32 +1014,22 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <td style="text-align: right;">733</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
+<td style="text-align: left;">2013-01-01 11:00:00</td>
 <td style="text-align: right;">-3.725991</td>
 </tr>
 </tbody>
 </table>
 </div>
-</section><section id="use-model-in-sql-2" class="slide level2">
-<h1>Use model in SQL</h1>
-<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
-  <span class="kw">SELECT</span> modelobj
-  <span class="kw">FROM</span> companyModels
-  <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);
-
-<span class="kw">EXEC</span> sp_rxPredict
-<span class="ot">@model = @model,</span>
-<span class="ot">@inputData = N&#39;SELECT TOP 10 * FROM flights&#39;</span></code></pre></div>
 </section></section>
 <section><section id="deploying-sql-server-r-services" class="titleslide slide level1"><h1>Deploying SQL Server &amp; R Services</h1></section><section id="azure-is-your-friend" class="slide level2">
-<h1>Azure is your friend</h1>
+<h2>Azure is your friend</h2>
 <ul>
 <li>Automatable</li>
 <li>Disposable</li>
 <li>Scalable</li>
 </ul>
 </section><section id="arm-templates" class="slide level2">
-<h1>ARM templates</h1>
+<h2>ARM templates</h2>
 <ul>
 <li>JSON specification of resources</li>
 <li>Paramaterised for reuse</li>
@@ -1085,17 +1037,17 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <li>Deploy in many different languages</li>
 </ul>
 </section><section id="powershell" class="slide level2">
-<h1>PowerShell</h1>
+<h2>PowerShell</h2>
 <ul>
 <li>Azure modules</li>
 <li>Use ARM templates</li>
 <li>Used in Azure Automation</li>
 </ul>
 </section><section id="demo" class="slide level2">
-<h1>Demo</h1>
+<h2>Demo</h2>
 <p><a href="https://github.com/stephlocke/SQLServerVM-tidyverse">Github</a></p>
-</section><section id="next-steps-1" class="slide level2">
-<h1>Next steps</h1>
+</section><section id="next-steps" class="slide level2">
+<h2>Next steps</h2>
 <ul>
 <li><a href="https://azure.microsoft.com/en-gb/documentation/articles/resource-group-authoring-templates/">Authoring ARM templates</a></li>
 <li><a href="https://msdn.microsoft.com/en-us/powershell/scripting/getting-started/fundamental/windows-powershell-basics">PowerShell basics</a></li>
@@ -1103,7 +1055,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 </ul>
 </section></section>
 <section><section id="other-microsoft-r-things" class="titleslide slide level1"><h1>Other Microsoft &amp; R things</h1></section><section id="azure-ml" class="slide level2">
-<h1>Azure ML</h1>
+<h2>Azure ML</h2>
 <ul>
 <li>GUI data science</li>
 <li>R &amp; Python</li>
@@ -1112,7 +1064,7 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 <li>Easy webservices</li>
 </ul>
 </section><section id="r-in-powerbi" class="slide level2">
-<h1>R in PowerBI</h1>
+<h2>R in PowerBI</h2>
 <ul>
 <li>Interactive reports</li>
 <li>R data source</li>
@@ -1120,25 +1072,25 @@ InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
 </ul>
 </section></section>
 <section><section id="wrapup" class="titleslide slide level1"><h1>Wrapup</h1></section><section id="microsoft-resources" class="slide level2">
-<h1>Microsoft resources</h1>
+<h2>Microsoft resources</h2>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/sql/advanced-analytics/r/sql-server-r-services" class="uri">https://docs.microsoft.com/en-us/sql/advanced-analytics/r/sql-server-r-services</a></li>
 <li><a href="https://docs.microsoft.com/en-us/sql/advanced-analytics/r/how-to-do-realtime-scoring#native-scoring-with-predict" class="uri">https://docs.microsoft.com/en-us/sql/advanced-analytics/r/how-to-do-realtime-scoring#native-scoring-with-predict</a></li>
 <li><a href="https://blogs.msdn.microsoft.com/sqlserverstorageengine/2017/09/25/announcing-preview-of-machine-learning-services-with-r-support-in-azure-sql-database/" class="uri">https://blogs.msdn.microsoft.com/sqlserverstorageengine/2017/09/25/announcing-preview-of-machine-learning-services-with-r-support-in-azure-sql-database/</a></li>
 </ul>
 </section><section id="wrapup-1" class="slide level2">
-<h1>Wrapup</h1>
+<h2>Wrapup</h2>
 <ul>
 <li>Thank you</li>
 <li>Get the slides via <a href="http://itsalocke.com/talks">itsalocke.com</a></li>
-<li>Get in touch! <a href="https://twitter.com/stefflocke">@SteffLocke</a></li>
+<li>Get in touch! <a href="https://twitter.com/theStephLocke">@theStephLocke</a></li>
 </ul>
 </section></section>
     </div>
   </div>
 
-  <script src="RandSQLServer_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="RandSQLServer_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 
