@@ -3,82 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Steph Locke @SteffLocke Locke Data" />
-  <meta name="dcterms.date" content="2018-04-18" />
+  <meta name="author" content="Steph Locke @theStephLocke Locke Data" />
+  <meta name="dcterms.date" content="2019-02-19" />
   <title>Using Microsoft ML Server for data science</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="reveal/reveal.js-3.6.0/css/reveal.css"/>
+  <link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="reveal/reveal.js-3.6.0/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -517,11 +489,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 <section>
     <h1 class="title">Using Microsoft ML Server for data science</h1>
-    <h2 class="author">Steph Locke <span class="citation" data-cites="SteffLocke">@SteffLocke</span> Locke Data</h2>
-    <h3 class="date">2018-04-18</h3>
+    <h2 class="author">Steph Locke <span class="citation" data-cites="theStephLocke">@theStephLocke</span> Locke Data</h2>
+    <h3 class="date">2019-02-19</h3>
 </section>
 
-<section><section id="about" class="title-slide slide level1"><h1>About</h1></section><section id="steph-locke" class="slide level2">
+<section><section id="about" class="titleslide slide level1"><h1>About</h1></section><section id="steph-locke" class="slide level2">
 <h2>Steph Locke</h2>
 <ul>
 <li>Founder of Locke Data</li>
@@ -541,7 +513,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ul>
 <p><a href="http://itsalocke.com">itsalocke.com</a> | <a href="https://twitter.com/lockedata">T: lockedata</a></p>
 </section></section>
-<section><section id="ml-server" class="title-slide slide level1"><h1>ML Server</h1></section><section id="overview" class="slide level2">
+<section><section id="ml-server" class="titleslide slide level1"><h1>ML Server</h1></section><section id="overview" class="slide level2">
 <h2>Overview</h2>
 <ul>
 <li>Runs R and Python</li>
@@ -569,8 +541,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li>Cloudera, Hortonworks, MapR supported</li>
 <li>Can install on vanilla Hadoop You can install Machine Learning Server on open source Apache Hadoop from <a href="http://hadoop.apache.org" class="uri">http://hadoop.apache.org</a> but we can only offer support for commercial distributions.</li>
-<li>Works with Spark</li>
 </ul></li>
+<li>Works with Spark</li>
 <li>Machine Learning Server for Linux</li>
 <li>Machine Learning Server for Windows
 <ul>
@@ -599,7 +571,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Microsoft support agreement</li>
 </ul>
 </section></section>
-<section><section id="ml-integrated-with-sql" class="title-slide slide level1"><h1>ML integrated with SQL</h1></section><section id="sql-server-overview" class="slide level2">
+<section><section id="ml-integrated-with-sql" class="titleslide slide level1"><h1>ML integrated with SQL</h1></section><section id="sql-server-overview" class="slide level2">
 <h2>SQL Server Overview</h2>
 <ul>
 <li>Use <code>sp_execute_external_script</code> to call R from SQL</li>
@@ -607,55 +579,55 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Use certain models in a native PREDICT function</li>
 </ul>
 </section></section>
-<section><section id="typical-workflows" class="title-slide slide level1"><h1>Typical workflows</h1></section><section id="local-with-r" class="slide level2">
+<section><section id="typical-workflows" class="titleslide slide level1"><h1>Typical workflows</h1></section><section id="local-with-r" class="slide level2">
 <h2>Local with R</h2>
 <ol type="1">
 <li>Collect data with RODBC or something</li>
 <li>Clean up data</li>
 <li>Build model</li>
-<li>Make model useful later
+<li>Make model useful later</li>
+</ol>
 <ul>
 <li>Save model object to disk</li>
 <li>Save model in DB</li>
-</ul></li>
-</ol>
+</ul>
 </section><section id="local-with-r-1" class="slide level2">
 <h2>Local with R</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rtosql.png&quot;</span>)</a></code></pre></div>
-<p><img src="E:/sites/superbuild/pres-azure/pres/img/rtosql.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rtosql.png&quot;</span>)</code></pre></div>
+<p><img src="img/rtosql.png" width="960" /></p>
 </section><section id="local-with-microsoft-r-client" class="slide level2">
 <h2>Local with Microsoft R Client</h2>
 <ol type="1">
 <li>Work with xdf or table connections</li>
 <li>Clean up data with <code>dplyrXdf</code></li>
 <li>Build model using an rx* function</li>
-<li>Make model useful later
+<li>Make model useful later</li>
+</ol>
 <ul>
 <li>Save model object to disk using <code>rxSerializeModel</code></li>
 <li>Make into an API using <code>mrsdeploy</code></li>
 <li>Save model in DB</li>
-</ul></li>
-</ol>
+</ul>
 </section><section id="local-with-microsoft-r-client-1" class="slide level2">
 <h2>Local with Microsoft R Client</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rtodeployr.png&quot;</span>)</a></code></pre></div>
-<p><img src="E:/sites/superbuild/pres-azure/pres/img/rtodeployr.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rtodeployr.png&quot;</span>)</code></pre></div>
+<p><img src="img/rtodeployr.png" width="960" /></p>
 </section><section id="semi-local" class="slide level2">
 <h2>Semi-local</h2>
 <ol type="1">
 <li>Connect to data using RevoScaleR</li>
 <li>Clean up data with <code>rx*</code> functions</li>
 <li>Build model using an <code>rx*</code> function</li>
-<li>Make model useful later
+<li>Make model useful later</li>
+</ol>
 <ul>
 <li>Save model object to disk using <code>rxSerializeModel</code></li>
 <li>Make into an API using <code>mrsdeploy</code></li>
-</ul></li>
-</ol>
+</ul>
 </section><section id="local-with-microsoft-r-client-2" class="slide level2">
 <h2>Local with Microsoft R Client</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rclienttoremote.png&quot;</span>)</a></code></pre></div>
-<p><img src="E:/sites/superbuild/pres-azure/pres/img/rclienttoremote.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/rclienttoremote.png&quot;</span>)</code></pre></div>
+<p><img src="img/rclienttoremote.png" width="960" /></p>
 </section><section id="remote" class="slide level2">
 <h2>Remote</h2>
 <ol type="1">
@@ -665,21 +637,30 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </ol>
 </section><section id="remote-1" class="slide level2">
 <h2>Remote</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/remoteexec.png&quot;</span>)</a></code></pre></div>
-<p><img src="E:/sites/superbuild/pres-azure/pres/img/remoteexec.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/remoteexec.png&quot;</span>)</code></pre></div>
+<p><img src="img/remoteexec.png" width="960" /></p>
 </section></section>
-<section><section id="working-with-out-of-memory-datasets" class="title-slide slide level1"><h1>Working with out-of-memory datasets</h1></section><section id="libraries" class="slide level2">
+<section><section id="working-with-out-of-memory-datasets" class="titleslide slide level1"><h1>Working with out-of-memory datasets</h1></section><section id="libraries" class="slide level2">
 <h2>Libraries</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(dplyrXdf)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyrXdf)</code></pre></div>
+<pre><code>## Loading required package: dplyr</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
 <p><a href="http://blog.revolutionanalytics.com/2017/10/announcing-dplyrxdf-10.html">Latest changes</a></p>
 </section><section id="get-an-xdf" class="slide level2">
 <h2>Get an xdf</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">imdb_movies &lt;-<span class="st"> </span><span class="kw">rxDataStep</span>(ggplot2movies<span class="op">::</span>movies, </a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">                          <span class="st">&quot;movies.xdf&quot;</span>, </a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">                          <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">rxGetInfo</span>(imdb_movies, <span class="dt">verbose =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies &lt;-<span class="st"> </span><span class="kw">rxDataStep</span>(ggplot2movies<span class="op">::</span>movies, 
+                          <span class="st">&quot;movies.xdf&quot;</span>, 
+                          <span class="dt">overwrite=</span><span class="ot">TRUE</span>)
+<span class="kw">rxGetInfo</span>(imdb_movies, <span class="dt">verbose =</span> <span class="dv">1</span>)</code></pre></div>
 <pre><code>## 
-## Name: E:\sites\superbuild\pres-azure\pres\movies.xdf
+## Name: T:\sites\superbuild\pres-azure\pres\movies.xdf
 ## Number of rows: 58788
 ## Number of variables: 24
 ## Number of blocks: 1
@@ -711,67 +692,72 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ## Col 23: &#39;Romance&#39;, Int (Min/Max=0,1) 
 ## Col 24: &#39;Short&#39;, Int (Min/Max=0,1) 
 ## </code></pre>
-<pre><code>## File name: E:\sites\superbuild\pres-azure\pres\movies.xdf 
+<pre><code>## File name: T:\sites\superbuild\pres-azure\pres\movies.xdf 
 ## Number of observations: 58788 
 ## Number of variables: 24 
 ## Number of blocks: 1 
 ## Compression type: zlib</code></pre>
 </section><section id="prep-data" class="slide level2">
 <h2>Prep data</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Action) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(rating)) -&gt;</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>action_or_not</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="kw">head</span>(action_or_not)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(Action) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="kw">mean</span>(rating)) -&gt;
+<span class="st">  </span>action_or_not
+
+<span class="kw">head</span>(action_or_not)</code></pre></div>
 <pre><code>##   Action mean.rating.
 ## 1      0     5.987748
 ## 2      1     5.290670</code></pre>
 </section><section id="produce-charts" class="slide level2">
 <h2>Produce charts</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span>RevoScaleR<span class="op">::</span><span class="kw">rxHistogram</span>(<span class="op">~</span>rating <span class="op">|</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance), <span class="dt">data=</span>.)</a></code></pre></div>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-52-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxHistogram</span>(<span class="op">~</span>rating <span class="op">|</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance), <span class="dt">data=</span>.)</code></pre></div>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
 </section><section id="why-not-ggplot2-i-hear-you-say" class="slide level2">
 <h2>Why not ggplot2 I hear you say!</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(rating)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_grid</span>(Action<span class="op">~</span>Romance)</a></code></pre></div>
-<pre><code>## Error: ggplot2 doesn&#39;t know how to deal with data of class tbl_xdf</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">as_data_frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(length <span class="op">&lt;</span><span class="st"> </span><span class="dv">60</span><span class="op">*</span><span class="dv">5</span> ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(rating)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(Action<span class="op">~</span>Romance)</code></pre></div>
+<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
 </section><section id="sample-data" class="slide level2">
 <h2>Sample data</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.7</span>) -&gt;</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span>movies_training</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="st">  </span><span class="kw">anti_join</span>(movies_training) -&gt;</a>
-<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="st">  </span>movies_testing</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.7</span>) -&gt;
+<span class="st">  </span>movies_training
+
+imdb_movies <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">anti_join</span>(movies_training) -&gt;
+<span class="st">  </span>movies_testing</code></pre></div>
 <pre><code>## Joining by: c(&quot;title&quot;, &quot;year&quot;, &quot;length&quot;, &quot;budget&quot;, &quot;rating&quot;, &quot;votes&quot;, &quot;r1&quot;, &quot;r2&quot;, &quot;r3&quot;, &quot;r4&quot;, &quot;r5&quot;, &quot;r6&quot;, &quot;r7&quot;, &quot;r8&quot;, &quot;r9&quot;, &quot;r10&quot;, &quot;mpaa&quot;, &quot;Action&quot;, &quot;Animation&quot;, &quot;Comedy&quot;, &quot;Drama&quot;, &quot;Documentary&quot;, &quot;Romance&quot;, &quot;Short&quot;)</code></pre>
 </section><section id="feature-reduction" class="slide level2">
 <h2>Feature reduction</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(caret)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw">rxCor</span>(<span class="op">~</span>votes <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>budget , <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span>caret<span class="op">::</span><span class="kw">findCorrelation</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret)</code></pre></div>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxCor</span>(<span class="op">~</span>votes <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>budget , <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>caret<span class="op">::</span><span class="kw">findCorrelation</span>()</code></pre></div>
 <pre><code>## integer(0)</code></pre>
 </section><section id="feature-reduction-1" class="slide level2">
 <h2>Feature reduction</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">as_data_frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span>caret<span class="op">::</span><span class="kw">nearZeroVar</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">as_data_frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>caret<span class="op">::</span><span class="kw">nearZeroVar</span>()</code></pre></div>
 <pre><code>## integer(0)</code></pre>
 </section><section id="linear-regression" class="slide level2">
 <h2>Linear regression</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw">rxLinMod</span>(rating<span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st">  </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Comedy) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), </a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">           <span class="dt">data=</span>.</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">           )</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxLinMod</span>(rating<span class="op">~</span><span class="st"> </span>year <span class="op">+</span><span class="st">  </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Comedy) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), 
+           <span class="dt">data=</span>.
+           )</code></pre></div>
 <pre><code>## Call:
 ## rxLinMod(formula = rating ~ year + length + F(Comedy) + F(Action) + 
 ##     F(Romance) + F(Short) + F(Documentary) + F(Animation) + F(Drama), 
@@ -782,7 +768,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ##     F(Animation) + F(Drama)
 ## Data: . (RxXdfData Data Source)
 ## File name:
-##     C:\Users\steph\AppData\Local\Temp\RtmpQXaDaA\dxTmp1820ace66f9\file18204e342e7c.xdf
+##     C:\Users\steph\AppData\Local\Temp\Rtmpk3NXZ1\dxTmp5f403c242d5\file5f401680134.xdf
 ## Dependent variable(s): rating
 ## Total independent variables: 17 (Including number dropped: 7)
 ## Number of valid observations: 41152
@@ -790,95 +776,95 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ##  
 ## Coefficients:
 ##                       rating
-## (Intercept)     15.716387184
-## year            -0.003945851
-## length           0.003802654
-## F_Comedy=0      -0.109625062
+## (Intercept)     16.304848975
+## year            -0.004246986
+## length           0.004413400
+## F_Comedy=0      -0.100088907
 ## F_Comedy=1           Dropped
-## F_Action=0       0.513137538
+## F_Action=0       0.534339352
 ## F_Action=1           Dropped
-## F_Romance=0     -0.259196288
+## F_Romance=0     -0.278440762
 ## F_Romance=1          Dropped
-## F_Short=0       -0.891354409
+## F_Short=0       -0.943634816
 ## F_Short=1            Dropped
-## F_Documentary=0 -1.002087887
+## F_Documentary=0 -0.982752376
 ## F_Documentary=1      Dropped
-## F_Animation=0   -0.442218919
+## F_Animation=0   -0.452721765
 ## F_Animation=1        Dropped
-## F_Drama=0       -0.560276711
+## F_Drama=0       -0.579044473
 ## F_Drama=1            Dropped</code></pre>
 </section><section id="logistic-regression" class="slide level2">
 <h2>Logistic regression</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="st">  </span><span class="kw">rxLogit</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), </a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">           <span class="dt">data=</span>.</a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">           ) -&gt;</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="st">  </span>movies_logit</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">movies_logit</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxLogit</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Action) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Romance) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Short) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Documentary) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Animation) <span class="op">+</span><span class="st"> </span><span class="kw">F</span>(Drama), 
+           <span class="dt">data=</span>.
+           ) -&gt;
+<span class="st">  </span>movies_logit
+
+movies_logit</code></pre></div>
 <pre><code>## Logistic Regression Results for: Comedy ~ rating + year + budget +
 ##     length + F(Action) + F(Romance) + F(Short) + F(Documentary) +
 ##     F(Animation) + F(Drama)
 ## Data: . (RxXdfData Data Source)
 ## File name:
-##     C:\Users\steph\AppData\Local\Temp\RtmpQXaDaA\dxTmp1820ace66f9\file18204e342e7c.xdf
+##     C:\Users\steph\AppData\Local\Temp\Rtmpk3NXZ1\dxTmp5f403c242d5\file5f401680134.xdf
 ## Dependent variable(s): Comedy
 ## Total independent variables: 17 (Including number dropped: 6)
-## Number of valid observations: 3678
-## Number of missing observations: 37474 
+## Number of valid observations: 3668
+## Number of missing observations: 37484 
 ##  
 ## Coefficients:
 ##                        Comedy
-## (Intercept)     -3.981107e+01
-## rating           1.159191e-01
-## year             1.771178e-02
-## budget           7.339086e-09
-## length          -1.456081e-02
-## F_Action=0       1.325100e+00
+## (Intercept)     -3.985229e+01
+## rating           1.381661e-01
+## year             1.788001e-02
+## budget           7.667605e-09
+## length          -1.721379e-02
+## F_Action=0       1.033358e+00
 ## F_Action=1            Dropped
-## F_Romance=0     -1.315394e+00
+## F_Romance=0     -1.218565e+00
 ## F_Romance=1           Dropped
-## F_Short=0        1.772405e+00
+## F_Short=0        1.911827e+00
 ## F_Short=1             Dropped
-## F_Documentary=0  2.308422e+00
+## F_Documentary=0  2.215248e+00
 ## F_Documentary=1       Dropped
-## F_Animation=0   -2.038826e-01
+## F_Animation=0   -2.413086e-01
 ## F_Animation=1         Dropped
-## F_Drama=0        1.379021e+00
+## F_Drama=0        1.315651e+00
 ## F_Drama=1             Dropped</code></pre>
 </section><section id="decision-trees" class="slide level2">
 <h2>Decision trees</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">  </span><span class="kw">rxDTree</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, </a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">           <span class="dt">data=</span>. , <span class="dt">method =</span> <span class="st">&quot;class&quot;</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4">           ) -&gt;</a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="st">  </span>movies_dtree</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxDTree</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, 
+           <span class="dt">data=</span>. , <span class="dt">method =</span> <span class="st">&quot;class&quot;</span>
+           ) -&gt;
+<span class="st">  </span>movies_dtree</code></pre></div>
 </section><section id="decision-trees-1" class="slide level2">
 <h2>Decision trees</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="st">  </span><span class="kw">rxAddInheritance</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="st">  </span><span class="kw">plotcp</span>()</a></code></pre></div>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-60-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxAddInheritance</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">plotcp</span>()</code></pre></div>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-16-1.png" width="768" /></p>
 </section><section id="decision-trees-2" class="slide level2">
 <h2>Decision trees</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw">rxDTreeBestCp</span>() -&gt;</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span>best_cp</a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="st"> </span><span class="kw">prune</span>(<span class="dt">cp=</span>best_cp) -&gt;</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7"><span class="st">  </span>movies_dtree</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxDTreeBestCp</span>() -&gt;
+<span class="st">  </span>best_cp
+
+movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">prune</span>(<span class="dt">cp=</span>best_cp) -&gt;
+<span class="st">  </span>movies_dtree</code></pre></div>
 </section><section id="decision-trees-3" class="slide level2">
 <h2>Decision trees</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="st">  </span><span class="kw">createTreeView</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw">plot</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>RevoTreeView<span class="op">::</span><span class="kw">createTreeView</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">plot</span>()</code></pre></div>
 </section><section id="boosted-decision-trees" class="slide level2">
 <h2>Boosted decision trees</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw">rxBTrees</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, </a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">           <span class="dt">data=</span>.</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">           )</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxBTrees</span>(Comedy<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year <span class="op">+</span><span class="st"> </span>budget <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st">  </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama, 
+           <span class="dt">data=</span>.
+           )</code></pre></div>
 <pre><code>## 
 ## Call:
 ## rxBTrees(formula = Comedy ~ rating + year + budget + length + 
@@ -890,12 +876,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ##        Number of boosting iterations: 10 
 ## No. of variables tried at each split: 3 
 ## 
-##             OOB estimate of deviance: 1.157148</code></pre>
+##             OOB estimate of deviance: 1.161409</code></pre>
 </section><section id="clustering" class="slide level2">
 <h2>Clustering</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">movies_training <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">rxKmeans</span>(<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year  <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>Comedy<span class="op">+</span><span class="st"> </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama,</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">           <span class="dt">data=</span>.,<span class="dt">numClusters =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_training <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxKmeans</span>(<span class="op">~</span><span class="st"> </span>rating <span class="op">+</span>year  <span class="op">+</span><span class="st"> </span>length <span class="op">+</span><span class="st"> </span>Comedy<span class="op">+</span><span class="st"> </span>Action <span class="op">+</span><span class="st"> </span>Romance <span class="op">+</span><span class="st"> </span>Short <span class="op">+</span><span class="st"> </span>Documentary <span class="op">+</span><span class="st"> </span>Animation <span class="op">+</span><span class="st"> </span>Drama,
+           <span class="dt">data=</span>.,<span class="dt">numClusters =</span> <span class="dv">10</span>)</code></pre></div>
 <pre><code>## Call:
 ## rxKmeans(formula = ~rating + year + length + Comedy + Action + 
 ##     Romance + Short + Documentary + Animation + Drama, data = ., 
@@ -906,37 +892,37 @@ document.getElementsByTagName('head')[0].appendChild(style);
 ## Number of missing observations: 0 
 ## Clustering algorithm:  
 ##  
-## K-means clustering with 10 clusters of sizes 5018, 2, 1760, 3621, 3883, 652, 4944, 1572, 7401, 12299
+## K-means clustering with 10 clusters of sizes 3901, 1355, 1, 3602, 535, 12751, 4942, 1894, 4627, 7544
 ## 
 ## Cluster means:
-##      rating     year     length    Comedy      Action     Romance
-## 1  6.341610 1990.354  118.85034 0.2245915 0.115185333 0.130530092
-## 2  5.100000 1978.500 4050.00000 0.0000000 0.000000000 0.000000000
-## 3  6.234545 1929.485   11.45341 0.6022727 0.008522727 0.014204545
-## 4  6.581966 1997.837   18.50621 0.2289423 0.027064347 0.027340514
-## 5  6.481535 1950.975  103.09065 0.2892094 0.039144991 0.140870461
-## 6  6.948313 1975.992  192.73313 0.1211656 0.225460123 0.205521472
-## 7  5.938147 1942.394   72.71784 0.2649676 0.028519417 0.090614887
-## 8  6.468575 1957.120   11.12150 0.5591603 0.001908397 0.001908397
-## 9  5.454317 1973.166   90.94987 0.2772598 0.099581138 0.042426699
-## 10 5.521546 1996.251   90.57850 0.2963656 0.113505163 0.088543784
-##           Short Documentary    Animation      Drama
-## 1  0.0003985652 0.036867278 0.0053806297 0.59625349
-## 2  0.0000000000 0.000000000 0.0000000000 0.00000000
-## 3  0.9954545455 0.090340909 0.4130681818 0.07670455
-## 4  0.9268157967 0.101629384 0.1455399061 0.17812759
-## 5  0.0000000000 0.006180788 0.0005150657 0.54210662
-## 6  0.0015337423 0.064417178 0.0030674847 0.58435583
-## 7  0.0036407767 0.021237864 0.0060679612 0.37560680
-## 8  0.9910941476 0.120865140 0.6049618321 0.03689567
-## 9  0.0000000000 0.037562492 0.0120254020 0.35454668
-## 10 0.0005691520 0.087649402 0.0187820148 0.36726563
+##      rating     year     length     Comedy      Action     Romance
+## 1  6.483415 1950.608  103.20508 0.28377339 0.039220713 0.150986926
+## 2  6.154908 1926.191   12.00221 0.59409594 0.008118081 0.019188192
+## 3  3.800000 1987.000 5220.00000 0.00000000 0.000000000 0.000000000
+## 4  6.594336 1997.582   18.63381 0.22570794 0.028595225 0.026651860
+## 5  7.047664 1973.277  202.92336 0.08971963 0.242990654 0.192523364
+## 6  5.531652 1996.224   90.92024 0.29660419 0.114892950 0.090502706
+## 7  5.949069 1942.539   72.92473 0.27175233 0.030756779 0.093889114
+## 8  6.474710 1953.687   10.52218 0.58289335 0.002639916 0.002639916
+## 9  6.395072 1990.020  121.07348 0.21828399 0.118435271 0.135508969
+## 10 5.464117 1973.265   91.14939 0.27743902 0.097428420 0.042815483
+##           Short Documentary   Animation      Drama
+## 1  0.0000000000 0.004614201 0.001025378 0.54319405
+## 2  0.9874538745 0.079704797 0.342435424 0.08856089
+## 3  0.0000000000 0.000000000 0.000000000 0.00000000
+## 4  0.9275402554 0.107995558 0.143531371 0.17101610
+## 5  0.0018691589 0.067289720 0.005607477 0.56822430
+## 6  0.0005489766 0.084071838 0.018822053 0.36836327
+## 7  0.0030352084 0.020437070 0.005868070 0.37596115
+## 8  0.9963041183 0.119324182 0.629355861 0.03748680
+## 9  0.0006483683 0.034363518 0.005403069 0.60881781
+## 10 0.0001325557 0.035657476 0.011267232 0.34941676
 ## 
 ## Within cluster sum of squares by cluster:
 ##         1         2         3         4         5         6         7 
-## 1241540.4 2737947.9  376162.0  772836.4  894155.3 1990525.5 1042310.0 
+##  938201.3  300975.0       0.0  781644.5 2726363.2 1612255.3 1048064.3 
 ##         8         9        10 
-##  229992.8  949107.2 1511836.5 
+##  273960.0 1339137.2  973255.3 
 ## 
 ## Available components:
 ##  [1] &quot;centers&quot;       &quot;size&quot;          &quot;withinss&quot;      &quot;valid.obs&quot;    
@@ -946,87 +932,90 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="predict-on-new-data" class="slide level2">
 <h2>Predict on new data</h2>
 <p>Once you’ve made predictions you can use R packages to do evaluations.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">movies_testing <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, .) </a></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">movies_testing <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, .) -&gt;</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="st">  </span>movies_testing</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="kw">plot</span>(movies_testing<span class="op">$</span>Comedy, movies_testing<span class="op">$</span><span class="st">`</span><span class="dt">0_Pred</span><span class="st">`</span>)</a></code></pre></div>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-66-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, .) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, .) -&gt;
+<span class="st">  </span>movies_testing
+
+<span class="kw">plot</span>(movies_testing<span class="op">$</span>Comedy, movies_testing<span class="op">$</span><span class="st">`</span><span class="dt">0_Pred</span><span class="st">`</span>)</code></pre></div>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-22-1.png" width="768" /></p>
 </section><section id="roc-curves" class="slide level2">
 <h2>ROC curves</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">movies_testing <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, <span class="dt">data=</span>., </a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">            <span class="dt">predVarNames=</span><span class="st">&quot;Comedy_Pred&quot;</span>,</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4">             <span class="dt">type=</span><span class="st">&quot;vector&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="st">  </span><span class="kw">rxRocCurve</span>(<span class="dt">actualVarName=</span><span class="st">&quot;Comedy&quot;</span>, <span class="dt">predVarNames =</span> <span class="st">&quot;Comedy_Pred&quot;</span>, <span class="dt">data=</span>.)</a></code></pre></div>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-67-1.png" width="768" /></p>
-</section><section id="lorenz-curves" class="slide level2">
-<h2>Lorenz curves</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">movies_testing <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">  </span><span class="kw">rxLorenz</span>(<span class="st">&quot;Comedy_Pred&quot;</span>,<span class="st">&quot;Comedy&quot;</span>, <span class="dt">data=</span>.) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">plot</span>()</a></code></pre></div>
-<pre><code>## 
-Rows Processed: 57502</code></pre>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-68-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxPredict</span>(movies_dtree, <span class="dt">data=</span>.,
+            <span class="dt">predVarNames=</span><span class="st">&quot;Comedy_Pred&quot;</span>,
+             <span class="dt">type=</span><span class="st">&quot;vector&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">rxRocCurve</span>(<span class="dt">actualVarName=</span><span class="st">&quot;Comedy&quot;</span>, <span class="dt">predVarNames =</span> <span class="st">&quot;1_Pred&quot;</span>, <span class="dt">data=</span>.)</code></pre></div>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-23-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_testing <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>(Comedy, Comedy_Pred) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">collect</span>()</code></pre></div>
+<pre><code>##   Comedy Comedy_Pred     n
+## 1      0           1 39351
+## 2      1           1 12628
+## 3      0           2  1407
+## 4      1           2  4116</code></pre>
 </section><section id="variable-importance" class="slide level2">
 <h2>Variable importance</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span><span class="kw">rxVarImpPlot</span>()</a></code></pre></div>
-<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-69-1.png" width="768" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies_dtree <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rxVarImpPlot</span>()</code></pre></div>
+<p><img src="microsoftmlserver_files/figure-revealjs/unnamed-chunk-24-1.png" width="768" /></p>
 </section></section>
-<section><section id="pushing-to-remote-servers" class="title-slide slide level1"><h1>Pushing to remote servers</h1></section><section id="connecting-to-an-environment" class="slide level2">
+<section><section id="pushing-to-remote-servers" class="titleslide slide level1"><h1>Pushing to remote servers</h1></section><section id="connecting-to-an-environment" class="slide level2">
 <h2>Connecting to an environment</h2>
 <p><a href="https://docs.microsoft.com/en-us/machine-learning-server/operationalize/how-to-deploy-web-service-publish-manage-in-r">mrsdeploy</a></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">library</span>(mrsdeploy)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">remoteLogin</span>(<span class="st">&quot;http://rsrvr.westus2.cloudapp.azure.com:12800&quot;</span>, </a>
-<a class="sourceLine" id="cb38-3" data-line-number="3">            <span class="dt">username =</span> <span class="st">&quot;admin&quot;</span>, </a>
-<a class="sourceLine" id="cb38-4" data-line-number="4">            <span class="dt">password =</span> <span class="st">&quot;zll+.?=g8JA11111&quot;</span>,</a>
-<a class="sourceLine" id="cb38-5" data-line-number="5">            <span class="dt">commandline=</span><span class="ot">FALSE</span>,<span class="dt">diff =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mrsdeploy)
+<span class="kw">remoteLogin</span>(<span class="st">&quot;http://rsrvr.westus2.cloudapp.azure.com:12800&quot;</span>, 
+            <span class="dt">username =</span> <span class="st">&quot;admin&quot;</span>, 
+            <span class="dt">password =</span> <span class="st">&quot;zll+.?=g8JA11111&quot;</span>,
+            <span class="dt">commandline=</span><span class="ot">FALSE</span>,<span class="dt">diff =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </section><section id="publish-model-to-microsoft-ml-server" class="slide level2">
 <h2>Publish model to Microsoft ML Server</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">publishService</span>(</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">   <span class="st">&quot;add-service&quot;</span>,</a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">    <span class="dt">code =</span> <span class="st">&quot;result &lt;- x + y&quot;</span>,</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">    <span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="st">&quot;numeric&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;numeric&quot;</span>),</a>
-<a class="sourceLine" id="cb39-5" data-line-number="5">    <span class="dt">outputs =</span> <span class="kw">list</span>(<span class="dt">result =</span> <span class="st">&quot;numeric&quot;</span>)</a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">publishService</span>(
+   <span class="st">&quot;add-service&quot;</span>,
+    <span class="dt">code =</span> <span class="st">&quot;result &lt;- x + y&quot;</span>,
+    <span class="dt">inputs =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="st">&quot;numeric&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;numeric&quot;</span>),
+    <span class="dt">outputs =</span> <span class="kw">list</span>(<span class="dt">result =</span> <span class="st">&quot;numeric&quot;</span>)
+)</code></pre></div>
 </section></section>
-<section><section id="using-ml-server-in-sql-server" class="title-slide slide level1"><h1>Using ML Server in SQL Server</h1></section><section id="connecting-to-an-environment-1" class="slide level2">
+<section><section id="using-ml-server-in-sql-server" class="titleslide slide level1"><h1>Using ML Server in SQL Server</h1></section><section id="connecting-to-an-environment-1" class="slide level2">
 <h2>Connecting to an environment</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">library</span>(DBI)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">library</span>(odbc)</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">driver   =<span class="st"> &quot;ODBC Driver 13 for SQL Server&quot;</span></a>
-<a class="sourceLine" id="cb40-5" data-line-number="5">server =<span class="st"> &quot;lockedata.westeurope.cloudapp.azure.com&quot;</span></a>
-<a class="sourceLine" id="cb40-6" data-line-number="6">database =<span class="st"> &quot;datasci&quot;</span></a>
-<a class="sourceLine" id="cb40-7" data-line-number="7">uid =<span class="st"> &quot;u001&quot;</span></a>
-<a class="sourceLine" id="cb40-8" data-line-number="8">pwd =<span class="st"> &quot;HBBFSE&quot;</span></a>
-<a class="sourceLine" id="cb40-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb40-10" data-line-number="10">dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(),</a>
-<a class="sourceLine" id="cb40-11" data-line-number="11">          <span class="dt">driver=</span>driver, <span class="dt">server=</span>server,</a>
-<a class="sourceLine" id="cb40-12" data-line-number="12">          <span class="dt">database=</span>database, <span class="dt">uid=</span>uid,</a>
-<a class="sourceLine" id="cb40-13" data-line-number="13">          <span class="dt">pwd=</span>pwd)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DBI)</code></pre></div>
+<pre><code>## Warning: package &#39;DBI&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(odbc)
+driver=<span class="st">&quot;ODBC Driver 13 for SQL Server&quot;</span>
+server=<span class="st">&quot;difinitydb.australiaeast.cloudapp.azure.com&quot;</span>
+database=<span class="st">&quot;prod&quot;</span>
+uid=<span class="st">&quot;steph&quot;</span>
+pwd=<span class="st">&quot;DifinityConf1!&quot;</span>
+dbConn&lt;-<span class="kw">dbConnect</span>(<span class="kw">odbc</span>(), <span class="dt">driver=</span>driver,
+            <span class="dt">server=</span>server, <span class="dt">database=</span>database,
+            <span class="dt">uid=</span>uid, <span class="dt">pwd=</span>pwd)</code></pre></div>
 </section><section id="connecting-to-an-environment-env-extra" class="slide level2">
 <h2>Connecting to an environment env (extra)</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">library</span>(RODBCext)</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">dbstring &lt;-<span class="st"> </span>glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class="kw">odbcDriverConnect</span>(dbstring)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RODBCext)</code></pre></div>
+<pre><code>## Loading required package: RODBC</code></pre>
+<pre><code>## 
+## Attaching package: &#39;RODBCext&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:RODBC&#39;:
+## 
+##     odbcFetchRows, sqlFetchMore</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dbstring &lt;-<span class="st"> </span>glue<span class="op">::</span><span class="kw">glue</span>(<span class="st">&#39;Driver={driver};Server={server};Database={database};Uid={uid};Pwd={pwd}&#39;</span>)
+dbconn &lt;-<span class="st"> </span>RODBC<span class="op">::</span><span class="kw">odbcDriverConnect</span>(dbstring)</code></pre></div>
 </section><section id="a-basic-execution" class="slide level2">
 <h2>A basic execution</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">EXECUTE</span> sp_execute_external_script</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">        @language = N<span class="st">&#39;R&#39;</span></a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">        ,@script = N<span class="st">&#39;OutputDataSet &lt;- InputDataSet&#39;</span></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">        ,@input_data_1 = N<span class="st">&#39;SELECT 1 as Col&#39;</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5"> <span class="kw">WITH</span> RESULT SETS ((col <span class="dt">varchar</span>(<span class="dv">50</span>) <span class="kw">not</span> <span class="kw">null</span>))        </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXECUTE</span> sp_execute_external_script
+        @language = N<span class="st">&#39;R&#39;</span>
+        ,@script = N<span class="st">&#39;OutputDataSet &lt;- InputDataSet&#39;</span>
+        ,@input_data_1 = N<span class="st">&#39;SELECT 1 as Col&#39;</span>
+ <span class="kw">WITH</span> RESULT SETS ((newcol <span class="dt">varchar</span>(<span class="dv">50</span>) <span class="kw">not</span> <span class="kw">null</span>))        </code></pre></div>
 <div class="knitsql-table">
 <table>
 <caption>1 records</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">col</th>
+<th style="text-align: left;">newcol</th>
 </tr>
 </thead>
 <tbody>
@@ -1038,89 +1027,89 @@ Rows Processed: 57502</code></pre>
 </div>
 </section><section id="model-storage-table" class="slide level2">
 <h2>Model storage table</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> [companyModels]    (  </a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">  [<span class="kw">id</span>] <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> IDENTITY (<span class="dv">1</span>,<span class="dv">1</span>)   </a>
-<a class="sourceLine" id="cb43-3" data-line-number="3">, [name] <span class="dt">varchar</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>      </a>
-<a class="sourceLine" id="cb43-4" data-line-number="4">, [modelObj] varbinary(<span class="fu">max</span>)    </a>
-<a class="sourceLine" id="cb43-5" data-line-number="5">, [ValidFrom] datetime2 (<span class="dv">2</span>) <span class="kw">GENERATED</span> ALWAYS <span class="kw">AS</span> <span class="kw">ROW</span> <span class="kw">START</span>  </a>
-<a class="sourceLine" id="cb43-6" data-line-number="6">, [ValidTo] datetime2 (<span class="dv">2</span>) <span class="kw">GENERATED</span> ALWAYS <span class="kw">AS</span> <span class="kw">ROW</span> <span class="kw">END</span>  </a>
-<a class="sourceLine" id="cb43-7" data-line-number="7">, PERIOD <span class="kw">FOR</span> SYSTEM_TIME (ValidFrom, ValidTo)  </a>
-<a class="sourceLine" id="cb43-8" data-line-number="8">, <span class="kw">CONSTRAINT</span> unique_modelname <span class="kw">UNIQUE</span> ([name]))</a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="kw">WITH</span> (SYSTEM_VERSIONING = <span class="kw">ON</span> (HISTORY_TABLE = dbo.companyModelsHistory));  </a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">TABLE</span> [companyModels]    (  
+  [<span class="kw">id</span>] <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span> IDENTITY (<span class="dv">1</span>,<span class="dv">1</span>)   
+, [name] <span class="dt">varchar</span>(<span class="dv">200</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>      
+, [modelObj] varbinary(<span class="fu">max</span>)    
+, [ValidFrom] datetime2 (<span class="dv">2</span>) <span class="kw">GENERATED</span> ALWAYS <span class="kw">AS</span> <span class="kw">ROW</span> <span class="kw">START</span>  
+, [ValidTo] datetime2 (<span class="dv">2</span>) <span class="kw">GENERATED</span> ALWAYS <span class="kw">AS</span> <span class="kw">ROW</span> <span class="kw">END</span>  
+, PERIOD <span class="kw">FOR</span> SYSTEM_TIME (ValidFrom, ValidTo)  
+, <span class="kw">CONSTRAINT</span> unique_modelname <span class="kw">UNIQUE</span> ([name]))
+<span class="kw">WITH</span> (SYSTEM_VERSIONING = <span class="kw">ON</span> (HISTORY_TABLE = dbo.companyModelsHistory));  </code></pre></div>
 </section><section id="model-upsert-stored-procedure" class="slide level2">
 <h2>Model UPSERT stored procedure</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> modelUpsert</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="ot">@modelname  varchar(200) , </span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="ot">@modelobj varbinary(max) </span></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="kw">AS</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="kw">WITH</span> MySource <span class="kw">as</span> (</a>
-<a class="sourceLine" id="cb44-6" data-line-number="6">    <span class="kw">select</span> @modelname <span class="kw">as</span> [name], @modelobj <span class="kw">as</span> [modelObj]</a>
-<a class="sourceLine" id="cb44-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb44-8" data-line-number="8"><span class="kw">MERGE</span> companymodels <span class="kw">AS</span> MyTarget</a>
-<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="kw">USING</span> MySource</a>
-<a class="sourceLine" id="cb44-10" data-line-number="10">     <span class="kw">ON</span> MySource.[name] = MyTarget.[name]</a>
-<a class="sourceLine" id="cb44-11" data-line-number="11"><span class="kw">WHEN</span> MATCHED <span class="kw">THEN</span> <span class="kw">UPDATE</span> <span class="kw">SET</span> </a>
-<a class="sourceLine" id="cb44-12" data-line-number="12">    modelObj = MySource.[modelObj]</a>
-<a class="sourceLine" id="cb44-13" data-line-number="13"><span class="kw">WHEN</span> <span class="kw">NOT</span> MATCHED <span class="kw">THEN</span> <span class="kw">INSERT</span></a>
-<a class="sourceLine" id="cb44-14" data-line-number="14">    (</a>
-<a class="sourceLine" id="cb44-15" data-line-number="15">        [name], </a>
-<a class="sourceLine" id="cb44-16" data-line-number="16">        modelObj</a>
-<a class="sourceLine" id="cb44-17" data-line-number="17">    )</a>
-<a class="sourceLine" id="cb44-18" data-line-number="18">    <span class="kw">VALUES</span> (</a>
-<a class="sourceLine" id="cb44-19" data-line-number="19">        MySource.[name], </a>
-<a class="sourceLine" id="cb44-20" data-line-number="20">        MySource.modelObj</a>
-<a class="sourceLine" id="cb44-21" data-line-number="21">    );</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> modelUpsert
+<span class="ot">@modelname  varchar(200) , </span>
+<span class="ot">@modelobj varbinary(max) </span>
+<span class="kw">AS</span>
+<span class="kw">WITH</span> MySource <span class="kw">as</span> (
+    <span class="kw">select</span> @modelname <span class="kw">as</span> [name], @modelobj <span class="kw">as</span> [modelObj]
+)
+<span class="kw">MERGE</span> companymodels <span class="kw">AS</span> MyTarget
+<span class="kw">USING</span> MySource
+     <span class="kw">ON</span> MySource.[name] = MyTarget.[name]
+<span class="kw">WHEN</span> MATCHED <span class="kw">THEN</span> <span class="kw">UPDATE</span> <span class="kw">SET</span> 
+    modelObj = MySource.[modelObj]
+<span class="kw">WHEN</span> <span class="kw">NOT</span> MATCHED <span class="kw">THEN</span> <span class="kw">INSERT</span>
+    (
+        [name], 
+        modelObj
+    )
+    <span class="kw">VALUES</span> (
+        MySource.[name], 
+        MySource.modelObj
+    );</code></pre></div>
 </section><section id="add-some-data" class="slide level2">
 <h2>Add some data</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13<span class="op">::</span>flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbWriteTable</span>(dbConn, <span class="st">&quot;flights&quot;</span>, nycflights13<span class="op">::</span>flights, <span class="dt">overwrite=</span><span class="ot">TRUE</span>)</code></pre></div>
 </section><section id="produce-a-model" class="slide level2">
 <h2>Produce a model</h2>
-<div class="sourceCode" id="cb46"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">AS</span></a>
-<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="kw">BEGIN</span></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">CREATE</span> <span class="kw">TABLE</span> #varcha</a>
-<a class="sourceLine" id="cb46-5" data-line-number="5">([name] <span class="dt">varchar</span>(<span class="dv">200</span>),</a>
-<a class="sourceLine" id="cb46-6" data-line-number="6">    [modelobj] <span class="dt">VARCHAR</span>(<span class="fu">MAX</span>)</a>
-<a class="sourceLine" id="cb46-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb46-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="kw">INSERT</span> <span class="kw">INTO</span> #varcha</a>
-<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="kw">EXECUTE</span> sp_execute_external_script</a>
-<a class="sourceLine" id="cb46-11" data-line-number="11">        @language = N<span class="st">&#39;R&#39;</span></a>
-<a class="sourceLine" id="cb46-12" data-line-number="12">        ,@script = N<span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="st">        flightLM&lt;-lm(arr_delay ~ month + day +  hour, data=InputDataSet, model=FALSE)</span></a>
-<a class="sourceLine" id="cb46-14" data-line-number="14"><span class="st">        OutputDataSet&lt;-data.frame(modelname=&quot;modelFromInSQL&quot;,</span></a>
-<a class="sourceLine" id="cb46-15" data-line-number="15"><span class="st">        modelobj=paste0(                              serialize(flightLM,NULL)</span></a>
-<a class="sourceLine" id="cb46-16" data-line-number="16"><span class="st">       ,collapse = &quot;&quot;) )</span></a>
-<a class="sourceLine" id="cb46-17" data-line-number="17"><span class="st">        &#39;</span></a>
-<a class="sourceLine" id="cb46-18" data-line-number="18">        ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span></a>
-<a class="sourceLine" id="cb46-19" data-line-number="19">         ;</a>
-<a class="sourceLine" id="cb46-20" data-line-number="20"><span class="kw">INSERT</span> <span class="kw">INTO</span> companyModels(name, modelObj) </a>
-<a class="sourceLine" id="cb46-21" data-line-number="21"><span class="kw">SELECT</span> [name], <span class="fu">CONVERT</span>(VARBINARY(<span class="fu">MAX</span>), modelObj, <span class="dv">2</span>) </a>
-<a class="sourceLine" id="cb46-22" data-line-number="22"><span class="kw">FROM</span> #varcha</a>
-<a class="sourceLine" id="cb46-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb46-24" data-line-number="24"><span class="kw">END</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+<span class="kw">CREATE</span> <span class="kw">TABLE</span> #varcha
+([name] <span class="dt">varchar</span>(<span class="dv">200</span>),
+    [modelobj] <span class="dt">VARCHAR</span>(<span class="fu">MAX</span>)
+)
+
+<span class="kw">INSERT</span> <span class="kw">INTO</span> #varcha
+<span class="kw">EXECUTE</span> sp_execute_external_script
+        @language = N<span class="st">&#39;R&#39;</span>
+        ,@script = N<span class="st">&#39;</span>
+<span class="st">        flightLM&lt;-lm(arr_delay ~ month + day +  hour, data=InputDataSet, model=FALSE)</span>
+<span class="st">        OutputDataSet&lt;-data.frame(modelname=&quot;modelFromInSQL&quot;,</span>
+<span class="st">        modelobj=paste0( serialize(flightLM,NULL)</span>
+<span class="st">       ,collapse = &quot;&quot;) )</span>
+<span class="st">        &#39;</span>
+        ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span>
+         ;
+<span class="kw">INSERT</span> <span class="kw">INTO</span> companyModels(name, modelObj) 
+<span class="kw">SELECT</span> [name], <span class="fu">CONVERT</span>(VARBINARY(<span class="fu">MAX</span>), modelObj, <span class="dv">2</span>) 
+<span class="kw">FROM</span> #varcha
+
+<span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-model-1" class="slide level2">
 <h2>Produce a model</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">EXEC</span> generate_flightlm</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm</code></pre></div>
 </section><section id="use-model-in-sql" class="slide level2">
 <h2>Use model in SQL</h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">DECLARE</span> @mymodel VARBINARY(<span class="fu">MAX</span>)=(<span class="kw">SELECT</span> modelobj </a>
-<a class="sourceLine" id="cb48-2" data-line-number="2">                <span class="kw">FROM</span> companymodels </a>
-<a class="sourceLine" id="cb48-3" data-line-number="3">                <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromInSQL&#39;</span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4">                );</a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="kw">EXEC</span> sp_execute_external_script</a>
-<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="ot">@language = N&#39;R&#39;,  </span></a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="ot">@script = N&#39;</span></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8">OutputDataSet&lt;-data.frame( predict(unserialize(as.raw(model)), InputDataSet),</a>
-<a class="sourceLine" id="cb48-9" data-line-number="9">InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]</a>
-<a class="sourceLine" id="cb48-10" data-line-number="10">    )</a>
-<a class="sourceLine" id="cb48-11" data-line-number="11"><span class="st">&#39;,</span></a>
-<a class="sourceLine" id="cb48-12" data-line-number="12"><span class="st">@input_data_1 = N&#39;</span>SELECT TOP <span class="dv">5</span> * <span class="kw">from</span> flights<span class="st">&#39;,  </span></a>
-<a class="sourceLine" id="cb48-13" data-line-number="13"><span class="st">@params = N&#39;</span>@model varbinary(<span class="fu">max</span>)<span class="st">&#39;,  </span></a>
-<a class="sourceLine" id="cb48-14" data-line-number="14"><span class="st">@model =  @mymodel </span></a>
-<a class="sourceLine" id="cb48-15" data-line-number="15"><span class="st">WITH RESULT SETS ((</span></a>
-<a class="sourceLine" id="cb48-16" data-line-number="16"><span class="st">    [arr_delay.Pred]  FLOAT (53)    NULL,</span></a>
-<a class="sourceLine" id="cb48-17" data-line-number="17"><span class="st">    [arr_delay]  FLOAT (53)    NULL))</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @mymodel VARBINARY(<span class="fu">MAX</span>)=(<span class="kw">SELECT</span> modelobj 
+                <span class="kw">FROM</span> companymodels 
+                <span class="kw">WHERE</span> [name]=<span class="st">&#39;modelFromInSQL&#39;</span>
+                );
+<span class="kw">EXEC</span> sp_execute_external_script
+<span class="ot">@language = N&#39;R&#39;,  </span>
+<span class="ot">@script = N&#39;</span>
+OutputDataSet&lt;-data.frame( predict(unserialize(as.raw(model)), InputDataSet),
+InputDataSet[,<span class="ot">&quot;arr_delay&quot;</span>]
+    )
+<span class="st">&#39;,</span>
+<span class="st">@input_data_1 = N&#39;</span>SELECT TOP <span class="dv">5</span> * <span class="kw">from</span> flights<span class="st">&#39;,  </span>
+<span class="st">@params = N&#39;</span>@model varbinary(<span class="fu">max</span>)<span class="st">&#39;,  </span>
+<span class="st">@model =  @mymodel </span>
+<span class="st">WITH RESULT SETS ((</span>
+<span class="st">    [arr_delay.Pred]  FLOAT (53)    NULL,</span>
+<span class="st">    [arr_delay]  FLOAT (53)    NULL))</span></code></pre></div>
 <div class="knitsql-table">
 <table>
 <caption>5 records</caption>
@@ -1132,59 +1121,59 @@ Rows Processed: 57502</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">-5.385970</td>
-<td style="text-align: right;">11</td>
+<td style="text-align: right;">8.229685</td>
+<td style="text-align: right;">-33</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-5.385970</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: right;">8.229685</td>
+<td style="text-align: right;">30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-5.385970</td>
-<td style="text-align: right;">33</td>
+<td style="text-align: right;">8.229685</td>
+<td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-5.385970</td>
-<td style="text-align: right;">-18</td>
+<td style="text-align: right;">8.229685</td>
+<td style="text-align: right;">-30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-3.725991</td>
-<td style="text-align: right;">-25</td>
+<td style="text-align: right;">6.569707</td>
+<td style="text-align: right;">NA</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section><section id="produce-a-native-model" class="slide level2">
 <h2>Produce a native model</h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm2</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="kw">AS</span></a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="kw">BEGIN</span></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>);</a>
-<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="kw">EXECUTE</span> sp_execute_external_script</a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">  @language = N<span class="st">&#39;R&#39;</span></a>
-<a class="sourceLine" id="cb49-7" data-line-number="7">  , @script = N<span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="st">        flightLM&lt;-rxLinMod(arr_delay ~ month + day +  hour, data=InputDataSet)</span></a>
-<a class="sourceLine" id="cb49-9" data-line-number="9"><span class="st">    model &lt;- rxSerializeModel(flightLM, realtimeScoringOnly = TRUE)</span></a>
-<a class="sourceLine" id="cb49-10" data-line-number="10"><span class="st">    &#39;</span></a>
-<a class="sourceLine" id="cb49-11" data-line-number="11">  ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span></a>
-<a class="sourceLine" id="cb49-12" data-line-number="12">  , @params = N<span class="st">&#39;@model varbinary(max) OUTPUT&#39;</span></a>
-<a class="sourceLine" id="cb49-13" data-line-number="13">  , @model = @model OUTPUT</a>
-<a class="sourceLine" id="cb49-14" data-line-number="14">  <span class="kw">INSERT</span> [companyModels] ([name], [modelObj])</a>
-<a class="sourceLine" id="cb49-15" data-line-number="15">  <span class="kw">VALUES</span>(<span class="st">&#39;modelFromRevo&#39;</span>, @model) ;</a>
-<a class="sourceLine" id="cb49-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb49-17" data-line-number="17"><span class="kw">END</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">CREATE</span> <span class="kw">PROCEDURE</span> generate_flightlm2
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+<span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>);
+<span class="kw">EXECUTE</span> sp_execute_external_script
+  @language = N<span class="st">&#39;R&#39;</span>
+  , @script = N<span class="st">&#39;</span>
+<span class="st">        flightLM&lt;-rxLinMod(arr_delay ~ month + day +  hour, data=InputDataSet)</span>
+<span class="st">    model &lt;- rxSerializeModel(flightLM, realtimeScoringOnly = TRUE)</span>
+<span class="st">    &#39;</span>
+  ,@input_data_1 = N<span class="st">&#39;SELECT * FROM flights&#39;</span>
+  , @params = N<span class="st">&#39;@model varbinary(max) OUTPUT&#39;</span>
+  , @model = @model OUTPUT
+  <span class="kw">INSERT</span> [companyModels] ([name], [modelObj])
+  <span class="kw">VALUES</span>(<span class="st">&#39;modelFromRevo&#39;</span>, @model) ;
+
+<span class="kw">END</span></code></pre></div>
 </section><section id="produce-a-native-model-1" class="slide level2">
 <h2>Produce a native model</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">EXEC</span> generate_flightlm2</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">EXEC</span> generate_flightlm2</code></pre></div>
 </section><section id="use-model-in-sql-1" class="slide level2">
 <h2>Use model in SQL</h2>
-<div class="sourceCode" id="cb51"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2">  <span class="kw">SELECT</span> modelobj</a>
-<a class="sourceLine" id="cb51-3" data-line-number="3">  <span class="kw">FROM</span> companyModels</a>
-<a class="sourceLine" id="cb51-4" data-line-number="4">  <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);</a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="kw">SELECT</span> TOP <span class="dv">10</span> d.*, p.*</a>
-<a class="sourceLine" id="cb51-6" data-line-number="6">  <span class="kw">FROM</span> PREDICT(MODEL = @model, <span class="kw">DATA</span> = flights <span class="kw">as</span> d)</a>
-<a class="sourceLine" id="cb51-7" data-line-number="7">  <span class="kw">WITH</span>(<span class="ot">&quot;arr_delay_Pred&quot;</span> <span class="dt">float</span>) <span class="kw">as</span> p;</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
+  <span class="kw">SELECT</span> modelobj
+  <span class="kw">FROM</span> companyModels
+  <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);
+<span class="kw">SELECT</span> TOP <span class="dv">10</span> d.*, p.*
+  <span class="kw">FROM</span> PREDICT(MODEL = @model, <span class="kw">DATA</span> = flights <span class="kw">as</span> d)
+  <span class="kw">WITH</span>(<span class="ot">&quot;arr_delay_Pred&quot;</span> <span class="dt">float</span>) <span class="kw">as</span> p;</code></pre></div>
 <div class="knitsql-table">
 <table>
 <caption>Displaying records 1 - 10</caption>
@@ -1215,237 +1204,237 @@ Rows Processed: 57502</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">517</td>
-<td style="text-align: right;">515</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">830</td>
-<td style="text-align: right;">819</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: left;">UA</td>
-<td style="text-align: right;">1545</td>
-<td style="text-align: left;">N14228</td>
-<td style="text-align: left;">EWR</td>
-<td style="text-align: left;">IAH</td>
-<td style="text-align: right;">227</td>
-<td style="text-align: right;">1400</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
-<td style="text-align: right;">-5.385970</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">533</td>
-<td style="text-align: right;">529</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">850</td>
-<td style="text-align: right;">830</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: left;">UA</td>
-<td style="text-align: right;">1714</td>
-<td style="text-align: left;">N24211</td>
-<td style="text-align: left;">LGA</td>
-<td style="text-align: left;">IAH</td>
-<td style="text-align: right;">227</td>
-<td style="text-align: right;">1416</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
-<td style="text-align: right;">-5.385970</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">542</td>
-<td style="text-align: right;">540</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">923</td>
-<td style="text-align: right;">850</td>
-<td style="text-align: right;">33</td>
-<td style="text-align: left;">AA</td>
-<td style="text-align: right;">1141</td>
-<td style="text-align: left;">N619AA</td>
-<td style="text-align: left;">JFK</td>
-<td style="text-align: left;">MIA</td>
-<td style="text-align: right;">160</td>
-<td style="text-align: right;">1089</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
-<td style="text-align: right;">-5.385970</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">544</td>
-<td style="text-align: right;">545</td>
-<td style="text-align: right;">-1</td>
-<td style="text-align: right;">1004</td>
-<td style="text-align: right;">1022</td>
-<td style="text-align: right;">-18</td>
-<td style="text-align: left;">B6</td>
-<td style="text-align: right;">725</td>
-<td style="text-align: left;">N804JB</td>
-<td style="text-align: left;">JFK</td>
-<td style="text-align: left;">BQN</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">1576</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
-<td style="text-align: right;">-5.385970</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">554</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">-6</td>
-<td style="text-align: right;">812</td>
-<td style="text-align: right;">837</td>
-<td style="text-align: right;">-25</td>
-<td style="text-align: left;">DL</td>
-<td style="text-align: right;">461</td>
-<td style="text-align: left;">N668DN</td>
-<td style="text-align: left;">LGA</td>
-<td style="text-align: left;">ATL</td>
-<td style="text-align: right;">116</td>
-<td style="text-align: right;">762</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
-<td style="text-align: right;">-3.725991</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">554</td>
-<td style="text-align: right;">558</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1446</td>
+<td style="text-align: right;">1450</td>
 <td style="text-align: right;">-4</td>
-<td style="text-align: right;">740</td>
-<td style="text-align: right;">728</td>
-<td style="text-align: right;">12</td>
-<td style="text-align: left;">UA</td>
-<td style="text-align: right;">1696</td>
-<td style="text-align: left;">N39463</td>
-<td style="text-align: left;">EWR</td>
-<td style="text-align: left;">ORD</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">719</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">58</td>
-<td style="text-align: left;">2013-01-01 05:00:00</td>
-<td style="text-align: right;">-5.385970</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">555</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">-5</td>
-<td style="text-align: right;">913</td>
-<td style="text-align: right;">854</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">B6</td>
-<td style="text-align: right;">507</td>
-<td style="text-align: left;">N516JB</td>
-<td style="text-align: left;">EWR</td>
-<td style="text-align: left;">FLL</td>
-<td style="text-align: right;">158</td>
-<td style="text-align: right;">1065</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">1601</td>
+<td style="text-align: right;">1634</td>
+<td style="text-align: right;">-33</td>
+<td style="text-align: left;">EV</td>
+<td style="text-align: right;">5207</td>
+<td style="text-align: left;">N744EV</td>
+<td style="text-align: left;">LGA</td>
+<td style="text-align: left;">BGR</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">378</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">557</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">-3</td>
-<td style="text-align: right;">709</td>
-<td style="text-align: right;">723</td>
-<td style="text-align: right;">-14</td>
-<td style="text-align: left;">EV</td>
-<td style="text-align: right;">5708</td>
-<td style="text-align: left;">N829AS</td>
-<td style="text-align: left;">LGA</td>
-<td style="text-align: left;">IAD</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">229</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
-<td style="text-align: right;">-3.725991</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">557</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">-3</td>
-<td style="text-align: right;">838</td>
-<td style="text-align: right;">846</td>
-<td style="text-align: right;">-8</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1447</td>
+<td style="text-align: right;">1411</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">1732</td>
+<td style="text-align: right;">1702</td>
+<td style="text-align: right;">30</td>
 <td style="text-align: left;">B6</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: left;">N593JB</td>
+<td style="text-align: right;">1883</td>
+<td style="text-align: left;">N793JB</td>
 <td style="text-align: left;">JFK</td>
 <td style="text-align: left;">MCO</td>
-<td style="text-align: right;">140</td>
+<td style="text-align: right;">134</td>
 <td style="text-align: right;">944</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1447</td>
+<td style="text-align: right;">1441</td>
 <td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: right;">1752</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">DL</td>
+<td style="text-align: right;">1779</td>
+<td style="text-align: left;">N362NW</td>
+<td style="text-align: left;">LGA</td>
+<td style="text-align: left;">FLL</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1076</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2013</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">558</td>
-<td style="text-align: right;">600</td>
-<td style="text-align: right;">-2</td>
-<td style="text-align: right;">753</td>
-<td style="text-align: right;">745</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">AA</td>
-<td style="text-align: right;">301</td>
-<td style="text-align: left;">N3ALAA</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1448</td>
+<td style="text-align: right;">1459</td>
+<td style="text-align: right;">-11</td>
+<td style="text-align: right;">1619</td>
+<td style="text-align: right;">1649</td>
+<td style="text-align: right;">-30</td>
+<td style="text-align: left;">MQ</td>
+<td style="text-align: right;">3391</td>
+<td style="text-align: left;">N713MQ</td>
 <td style="text-align: left;">LGA</td>
-<td style="text-align: left;">ORD</td>
-<td style="text-align: right;">138</td>
-<td style="text-align: right;">733</td>
-<td style="text-align: right;">6</td>
+<td style="text-align: left;">CMH</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">479</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1448</td>
+<td style="text-align: right;">1359</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">2056</td>
+<td style="text-align: right;">1655</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">UA</td>
+<td style="text-align: right;">1601</td>
+<td style="text-align: left;">N38458</td>
+<td style="text-align: left;">EWR</td>
+<td style="text-align: left;">FLL</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">1065</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">2013-07-13 13:00:00</td>
+<td style="text-align: right;">6.569707</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1449</td>
+<td style="text-align: right;">1450</td>
+<td style="text-align: right;">-1</td>
+<td style="text-align: right;">1659</td>
+<td style="text-align: right;">1652</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: right;">1543</td>
+<td style="text-align: left;">N152UW</td>
+<td style="text-align: left;">LGA</td>
+<td style="text-align: left;">CLT</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">544</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1450</td>
+<td style="text-align: right;">1450</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: left;">2013-01-01 06:00:00</td>
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">1627</td>
+<td style="text-align: right;">1632</td>
+<td style="text-align: right;">-5</td>
+<td style="text-align: left;">9E</td>
+<td style="text-align: right;">3393</td>
+<td style="text-align: left;">N934XJ</td>
+<td style="text-align: left;">JFK</td>
+<td style="text-align: left;">DCA</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">213</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1450</td>
+<td style="text-align: right;">1455</td>
+<td style="text-align: right;">-5</td>
+<td style="text-align: right;">1747</td>
+<td style="text-align: right;">1800</td>
+<td style="text-align: right;">-13</td>
+<td style="text-align: left;">AA</td>
+<td style="text-align: right;">1751</td>
+<td style="text-align: left;">N3DJAA</td>
+<td style="text-align: left;">JFK</td>
+<td style="text-align: left;">TPA</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">1005</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1451</td>
+<td style="text-align: right;">1455</td>
+<td style="text-align: right;">-4</td>
+<td style="text-align: right;">1632</td>
+<td style="text-align: right;">1645</td>
+<td style="text-align: right;">-13</td>
+<td style="text-align: left;">MQ</td>
+<td style="text-align: right;">2815</td>
+<td style="text-align: left;">N677MQ</td>
+<td style="text-align: left;">JFK</td>
+<td style="text-align: left;">CLE</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">425</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2013</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">1452</td>
+<td style="text-align: right;">1450</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1650</td>
+<td style="text-align: right;">1649</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">EV</td>
+<td style="text-align: right;">4111</td>
+<td style="text-align: left;">N13566</td>
+<td style="text-align: left;">EWR</td>
+<td style="text-align: left;">CHS</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;">628</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">2013-07-13 14:00:00</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section><section id="use-model-in-sql-2" class="slide level2">
 <h2>Use model in SQL</h2>
-<div class="sourceCode" id="cb52"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">  <span class="kw">SELECT</span> modelobj</a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">  <span class="kw">FROM</span> companyModels</a>
-<a class="sourceLine" id="cb52-4" data-line-number="4">  <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);</a>
-<a class="sourceLine" id="cb52-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="kw">EXEC</span> sp_rxPredict</a>
-<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="ot">@model = @model,</span></a>
-<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="ot">@inputData = N&#39;SELECT TOP 10 month , day , hour FROM flights&#39;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">DECLARE</span> @model varbinary(<span class="fu">max</span>) = (
+  <span class="kw">SELECT</span> modelobj
+  <span class="kw">FROM</span> companyModels
+  <span class="kw">WHERE</span> [name] = <span class="st">&#39;modelFromRevo&#39;</span>);
+
+<span class="kw">EXEC</span> sp_rxPredict
+<span class="ot">@model = @model,</span>
+<span class="ot">@inputData = N&#39;SELECT TOP 10 month , day , hour FROM flights&#39;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
 <caption>Displaying records 1 - 10</caption>
@@ -1456,40 +1445,40 @@ Rows Processed: 57502</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">-5.385970</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-5.385970</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-5.385970</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-5.385970</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">6.569707</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-5.385970</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">-3.725991</td>
+<td style="text-align: right;">8.229685</td>
 </tr>
 </tbody>
 </table>
 </div>
 </section></section>
-<section><section id="wrap-up" class="title-slide slide level1"><h1>Wrap up</h1></section><section id="other-microsoft-ml-things" class="slide level2">
+<section><section id="wrap-up" class="titleslide slide level1"><h1>Wrap up</h1></section><section id="other-microsoft-ml-things" class="slide level2">
 <h2>Other Microsoft ML things</h2>
 <ul>
 <li>Azure ML
@@ -1514,24 +1503,23 @@ Rows Processed: 57502</code></pre>
 </ul></li>
 <li>Latest additions
 <ul>
-<li>Azure ML workbench</li>
+<li>Azure ML studio</li>
 <li>Azure Databricks</li>
 <li>VS for AI</li>
 </ul></li>
 </ul>
-</section><section id="conclusion" class="slide level2">
-<h2>Conclusion</h2>
+</section><section id="conclusion--thank-you" class="slide level2">
+<h2>Conclusion- Thank you</h2>
 <ul>
-<li>Thank you</li>
 <li>Get the slides via <a href="http://itsalocke.com/talks">itsalocke.com</a></li>
-<li>Get in touch! <a href="https://twitter.com/stefflocke">@SteffLocke</a></li>
+<li>Get in touch! <a href="https://twitter.com/theStephLocke">@theStephLocke</a></li>
 </ul>
 </section></section>
     </div>
   </div>
 
-  <script src="reveal/reveal.js-3.6.0/lib/js/head.min.js"></script>
-  <script src="reveal/reveal.js-3.6.0/js/reveal.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="reveal/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 

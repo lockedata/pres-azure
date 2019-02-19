@@ -1,6 +1,6 @@
 ---
 title: 'Using Microsoft ML Server for data science'
-author: "Steph Locke @SteffLocke Locke Data"
+author: "Steph Locke @theStephLocke Locke Data"
 date: '`r Sys.Date()`'
 ---
 
@@ -288,10 +288,8 @@ movies_testing %>%
   rxRocCurve(actualVarName="Comedy", predVarNames = "1_Pred", data=.)
 
 movies_testing %>% 
-  rxPredict(movies_dtree, data=.,
-            predVarNames="Comedy_Pred",
-             type="vector") %>% 
-  count(Comedy, Comedy_Pred) 
+  count(Comedy, Comedy_Pred) %>% 
+  collect()
 ```
 
 
@@ -331,17 +329,14 @@ publishService(
 ```{r eval=do_eval}
 library(DBI)
 library(odbc)
-
-driver   = "ODBC Driver 13 for SQL Server"
-server = "lockedata2.westeurope.cloudapp.azure.com"
-database = "datasci"
-uid = "lockedata"
-pwd = "zll+.?=g8JA11111"
-
-dbConn<-dbConnect(odbc(),
-          driver=driver, server=server,
-          database=database, uid=uid,
-          pwd=pwd)
+driver="ODBC Driver 13 for SQL Server"
+server="difinitydb.australiaeast.cloudapp.azure.com"
+database="prod"
+uid="steph"
+pwd="DifinityConf1!"
+dbConn<-dbConnect(odbc(), driver=driver,
+            server=server, database=database,
+            uid=uid, pwd=pwd)
 ```
 
 
@@ -365,7 +360,7 @@ EXECUTE sp_execute_external_script
 
 
 ## Model storage table
-```{sql, connection=dbConn, eval=do_eval, echo=FALSE}
+```{sql, connection=dbConn, eval=TRUE, echo=FALSE}
 ALTER TABLE dbo.companyModels SET ( SYSTEM_VERSIONING = OFF)
 DROP TABLE IF EXISTS dbo.companyModelsHistory;
 DROP TABLE IF EXISTS dbo.companyModels
@@ -555,12 +550,11 @@ EXEC sp_rxPredict
     + R data source
     + R graphics
 - Latest additions
-    + Azure ML workbench
+    + Azure ML studio
     + Azure Databricks
     + VS for AI
 
 
-## Conclusion
-- Thank you
+## Conclusion- Thank you
 - Get the slides via [itsalocke.com](http://itsalocke.com/talks)
-- Get in touch! [\@SteffLocke](https://twitter.com/stefflocke)
+- Get in touch! [\@theStephLocke](https://twitter.com/theStephLocke)
