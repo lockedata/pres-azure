@@ -22,7 +22,7 @@ Type 'q()' to quit R.
 
 
 processing file: AboutMeBusiness.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
+  |                                                                              |                                                                      |   0%  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
@@ -34,7 +34,7 @@ Output created: docs/AboutMeBusiness.html
 
 
 processing file: AboutMeTech.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
+  |                                                                              |                                                                      |   0%  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
@@ -46,15 +46,15 @@ Output created: docs/AboutMeTech.html
 
 
 processing file: gitin5.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |......................                                           |  33%
+  |                                                                              |                                                                      |   0%  |                                                                              |.......................                                               |  33%
    inline R code fragments
 
-  |                                                                         |...........................................                      |  67%
+  |                                                                              |...............................................                       |  67%
 label: setup (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                         |.................................................................| 100%
+  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
@@ -66,18 +66,18 @@ Output created: docs/gitin5.html
 
 
 processing file: isthecloudcosteffective.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.............                                                    |  20%
+  |                                                                              |                                                                      |   0%  |                                                                              |..............                                                        |  20%
    inline R code fragments
 
-  |                                                                         |..........................                                       |  40%
+  |                                                                              |............................                                          |  40%
 label: setup (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                         |.......................................                          |  60%
+  |                                                                              |..........................................                            |  60%
   ordinary text without R code
 
-  |                                                                         |....................................................             |  80%
+  |                                                                              |........................................................              |  80%
 label: autodoc (with options) 
 List of 2
  $ child: chr "AboutMeTech.Rmd"
@@ -86,11 +86,11 @@ List of 2
 
 
 processing file: ./AboutMeTech.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
+  |                                                                              |                                                                      |   0%  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
-  |                                                                         |.................................................................| 100%
+  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
@@ -102,18 +102,18 @@ Output created: docs/isthecloudcosteffective.html
 
 
 processing file: microsoftmlserver.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.                                                                |   1%
+  |                                                                              |                                                                      |   0%  |                                                                              |.                                                                     |   1%
    inline R code fragments
 
-  |                                                                         |.                                                                |   2%
+  |                                                                              |..                                                                    |   2%
 label: setup (with options) 
 List of 1
  $ include: logi FALSE
 
-  |                                                                         |..                                                               |   3%
+  |                                                                              |..                                                                    |   3%
   ordinary text without R code
 
-  |                                                                         |...                                                              |   4%
+  |                                                                              |...                                                                   |   4%
 label: autodoc (with options) 
 List of 2
  $ child: chr "AboutMeBusiness.Rmd"
@@ -122,34 +122,34 @@ List of 2
 
 
 processing file: ./AboutMeBusiness.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |.................................................................| 100%
+  |                                                                              |                                                                      |   0%  |                                                                              |......................................................................| 100%
   ordinary text without R code
 
 
-  |                                                                         |...                                                              |   5%
+  |                                                                              |....                                                                  |   5%
   ordinary text without R code
 
-  |                                                                         |....                                                             |   6%
+  |                                                                              |.....                                                                 |   6%
 label: unnamed-chunk-1
-  |                                                                         |.....                                                            |   8%
+  |                                                                              |.....                                                                 |   8%
   ordinary text without R code
 
-  |                                                                         |......                                                           |   9%
+  |                                                                              |......                                                                |   9%
 label: unnamed-chunk-2
-  |                                                                         |......                                                           |  10%
+  |                                                                              |.......                                                               |  10%
   ordinary text without R code
 
-  |                                                                         |.......                                                          |  11%
+  |                                                                              |........                                                              |  11%
 label: unnamed-chunk-3
-  |                                                                         |........                                                         |  12%
+  |                                                                              |........                                                              |  12%
   ordinary text without R code
 
-  |                                                                         |........                                                         |  13%
+  |                                                                              |.........                                                             |  13%
 label: unnamed-chunk-4
-  |                                                                         |.........                                                        |  14%
+  |                                                                              |..........                                                            |  14%
   ordinary text without R code
 
-  |                                                                         |..........                                                       |  15%
+  |                                                                              |...........                                                           |  15%
 label: unnamed-chunk-5 (with options) 
 List of 1
  $ eval: symbol do_eval
